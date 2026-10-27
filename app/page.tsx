@@ -1,6 +1,6 @@
 import Link from "next/link";
 import {
-  ArrowRight, CalendarClock, Building2, Store, Factory, Bot,
+  ArrowRight, CalendarClock, Building2, Store, Factory, Bot, ShoppingCart,
   CheckCircle2, ShieldCheck, Quote, Sparkles,
 } from "lucide-react";
 
@@ -23,7 +23,7 @@ const TRUST_STATS = [
   { value: "3", label: "层数据校验法（独家方法论）" },
 ];
 
-/* ---------- 四类入口（点击后进入对应身份的产品筛选） ---------- */
+/* ---------- 五类入口（点击后进入对应身份的产品筛选 / 或直接弹企微码） ---------- */
 const ENTRIES = [
   {
     icon: Building2,
@@ -33,6 +33,7 @@ const ENTRIES = [
     pain: "散采价格乱、断货频繁、滞销压资金、报价靠拍脑袋。",
     give: "SOP 清单 + 供应商分级方法 + 库存周转模板",
     cta: "看给我的产品",
+    action: "link" as const,
   },
   {
     icon: Store,
@@ -42,6 +43,7 @@ const ENTRIES = [
     pain: "干货看了一堆，轮到自己干还是没体系、没方法。",
     give: "基础知识库 + 体系课 + 每周复盘社群",
     cta: "看给我的产品",
+    action: "link" as const,
   },
   {
     icon: Factory,
@@ -51,6 +53,7 @@ const ENTRIES = [
     pain: "类目评估靠人工翻平台，慢、口径乱、结论不可复用。",
     give: "订阅数据看板 + 评估模板 + 定制报告",
     cta: "看给我的产品",
+    action: "link" as const,
   },
   {
     icon: Bot,
@@ -60,6 +63,17 @@ const ENTRIES = [
     pain: "通用模型答不准汽配问题，缺语料、缺标注规则、缺评测尺子。",
     give: "语料授权（签 DPA）+ 标注规则 + 评测集共建",
     cta: "看给我的产品",
+    action: "link" as const,
+  },
+  {
+    icon: ShoppingCart,
+    role: "seller" as const,
+    title: "零售 / 跨境卖家",
+    need: "想少踩坑多出单",
+    pain: "卖汽配退货率太高？选品总踩坑？平台规则合规搞不清？",
+    give: "爆款选品数据 + OE 码匹配工具 + 平台合规 SOP",
+    cta: "获取卖家避坑指南",
+    action: "wecom" as const,
   },
 ];
 
@@ -201,19 +215,37 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ========== 四类入口 ========== */}
+      {/* ========== 五类入口 ========== */}
       <section className="section-pad">
         <div className="container-site">
           <SectionHeading
-            tag="四类访客入口"
+            tag="五类访客入口"
             title="你是谁，直接走对应的路"
             desc="不用在九类产品里翻。选一个身份，我们把你该看的、该拿的、该问的排好顺序。"
           />
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+
+          {/*
+            排版（5 个卡片在不同屏幕下的排法）：
+            - 手机（<640px）：横向滑动卡片，snap 对齐，右侧露出下一张，不拥挤
+            - 平板（sm~lg）：两列，最后一张单出来时自动居中
+            - 桌面（lg+）：一排三张 + 第二排两张居中
+          */}
+          <div className="-mx-4 flex snap-x snap-mandatory gap-3 overflow-x-auto px-4 pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:mx-0 sm:flex-wrap sm:justify-center sm:gap-4 sm:overflow-visible sm:px-0 sm:pb-0">
             {ENTRIES.map((e) => (
-              <Card key={e.title} className="flex h-full flex-col">
+              <Card
+                key={e.title}
+                className={`flex w-[82%] shrink-0 snap-center flex-col sm:w-[calc(50%-0.5rem)] sm:shrink lg:w-[calc(33.333%-0.667rem)] ${
+                  e.action === "wecom" ? "border-brand-orange/40 shadow-warm" : ""
+                }`}
+              >
                 <CardContent className="flex flex-1 flex-col gap-3 p-5">
-                  <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-secondary text-primary">
+                  <span
+                    className={`flex h-11 w-11 items-center justify-center rounded-xl ${
+                      e.action === "wecom"
+                        ? "bg-brand-orange-soft text-brand-orange"
+                        : "bg-secondary text-primary"
+                    }`}
+                  >
                     <e.icon className="h-5 w-5" strokeWidth={1.75} />
                   </span>
                   <div>
@@ -225,15 +257,30 @@ export default async function HomePage() {
                     <span className="font-semibold">你会拿到：</span>
                     {e.give}
                   </p>
-                  <Button asChild size="sm" variant="default" className="mt-auto w-full">
-                    <Link href={`/products?role=${e.role}`}>
-                      {e.cta} <ArrowRight />
-                    </Link>
-                  </Button>
+                  {e.action === "wecom" ? (
+                    <WecomCtaButton
+                      label={e.cta}
+                      size="sm"
+                      variant="orange"
+                      from={`entry-${e.role}`}
+                      subject={e.title}
+                      className="mt-auto w-full"
+                    />
+                  ) : (
+                    <Button asChild size="sm" variant="default" className="mt-auto w-full">
+                      <Link href={`/products?role=${e.role}`}>
+                        {e.cta} <ArrowRight />
+                      </Link>
+                    </Button>
+                  )}
                 </CardContent>
               </Card>
             ))}
           </div>
+
+          <p className="mt-1 flex items-center justify-center gap-1 text-xs text-muted-foreground sm:hidden">
+            ← 左右滑动查看全部 5 个身份 →
+          </p>
         </div>
       </section>
 

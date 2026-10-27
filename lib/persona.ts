@@ -1,10 +1,10 @@
 /* ============================================================
-   四类访客身份 → 产品推荐路由
-   首页四类入口点击后跳 /products?role=xxx，产品中心据此把该身份
+   五类访客身份 → 产品推荐路由
+   首页入口点击后跳 /products?role=xxx，产品中心据此把该身份
    该看的产品排到最前并打「为你推荐」标。
    ============================================================ */
 
-export type PersonaKey = "repair" | "dealer" | "enterprise" | "ai";
+export type PersonaKey = "repair" | "dealer" | "enterprise" | "ai" | "seller";
 
 export interface Persona {
   key: PersonaKey;
@@ -67,9 +67,20 @@ export const PERSONAS: Record<PersonaKey, Persona> = {
     demand: "AI合作",
     intent: "consult",
   },
+  seller: {
+    key: "seller",
+    identity: "零售/跨境卖家",
+    label: "零售 / 跨境卖家",
+    need: "想少踩坑多出单",
+    pain: "卖汽配退货率太高？选品总踩坑？平台规则合规搞不清？",
+    give: "爆款选品数据 + OE 码匹配工具 + 平台合规 SOP",
+    recommended: ["toolkit-selection", "toolkit-fitment", "sop-checklists", "knowledge-base"],
+    demand: "选品数据",
+    intent: "asset",
+  },
 };
 
-export const PERSONA_ORDER: PersonaKey[] = ["repair", "dealer", "enterprise", "ai"];
+export const PERSONA_ORDER: PersonaKey[] = ["repair", "dealer", "enterprise", "ai", "seller"];
 
 /** 从 URL 参数解析身份，非法值返回 null（不报错，退化为无推荐） */
 export function getPersona(key?: string | string[] | null): Persona | null {
