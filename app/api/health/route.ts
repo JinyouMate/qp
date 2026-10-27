@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { getSupabaseAdmin, isSupabaseConfigured } from "@/lib/supabase";
+import { cloudClearProbeEvents, cloudInsertEvent } from "@/lib/cloud";
 
 export const dynamic = "force-dynamic";
 
@@ -45,8 +46,34 @@ export async function GET(request: Request) {
       : null,
   };
 
+  /* ---------- 云服务（WorkBuddy）自检：插一条 events 再删掉 ---------- */
+  try {
+    const probe = await cloudInsertEvent({
+      event: "__healthcheck__",
+      props: { probe: true },
+      path: "/api/health",
+    });
+    if (probe.ok) {
+      const clear = await cloudClearProbeEvents();
+      result.cloud = {
+        ok: true,
+        write: `✅ 写入成功（自检记录自动清理 ${clear.cleaned} 条${clear.error ? ` · 清理失败：${clear.error}` : ""}）`,
+      };
+    } else {
+      result.cloud = { ok: false, error: probe.error ?? "未知错误" };
+    }
+  } catch (e) {
+    result.cloud = { ok: false, error: e instanceof Error ? e.message : String(e) };
+  }
+
   if (!configured) {
     result.hint = "Supabase 环境变量未配置，站点运行在兜底静态数据模式，留资不会入库。";
+    result.ok = false;
+    result.conclusion =
+      "Supabase 未配置；" +
+      ((result.cloud as { ok?: boolean } | undefined)?.ok
+        ? "云服务已连通，留资会写入云数据库。"
+        : "云服务也未连通，留资暂不入库。");
     return NextResponse.json(result, { status: 200 });
   }
 
@@ -119,8 +146,9 @@ export async function GET(request: Request) {
 
   const allTablesOk = Object.values(tableStatus).every((v) => v === "✅");
   result.ok = allTablesOk && String(result.write ?? "").startsWith("✅");
+  const cloudOk = (result.cloud as { ok?: boolean } | undefined)?.ok === true;
   result.conclusion = result.ok
-    ? "数据库已就绪，留资可真实入库。"
+    ? `数据库已就绪，留资可真实入库。${cloudOk ? "云服务同步已开启，线索会同时留一份到云数据库。" : "云服务未连通（见 cloud 字段），线索仅写入 Supabase。"}`
     : "数据库未完全就绪，请检查建表 SQL 是否执行成功（见 tables 字段）。";
 
   return NextResponse.json(result, { status: 200 });
