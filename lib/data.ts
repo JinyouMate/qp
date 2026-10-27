@@ -236,14 +236,51 @@ export const FALLBACK_PARTNERS: Partner[] = [
 
 /* ---------- 服务端数据入口（Supabase 优先，兜底降级） ---------- */
 
+/* ============================================================
+   交付口径清洗（2026-10-27）
+
+   数据库里还留着历史文案：「知识星球课程」「小鹅通录播」等。
+   全站已不接入任何第三方平台，因此在**读取层**统一改写一次，
+   保证页面上绝不出现旧平台名——不改数据库也能立刻生效。
+   配套 SQL：supabase/migrations/0007_wecom_only.sql（可选执行，用于彻底清库）。
+   ============================================================ */
+const DELIVERY_REPLACERS: Array<[RegExp, string]> = [
+  [/知识星球课程/g, "企微交付课程"],
+  [/知识星球/g, "企业微信"],
+  [/小鹅通/g, "企业微信"],
+  [/Baklib\s*\/?\s*飞书/g, "内部资料库"],
+  [/Baklib/g, "内部资料库"],
+];
+
+function sanitizeText<T>(v: T): T {
+  if (typeof v !== "string") return v;
+  return DELIVERY_REPLACERS.reduce(
+    (acc, [re, to]) => acc.replace(re, to),
+    v
+  ) as unknown as T;
+}
+
+/** 对一行的所有字符串字段做清洗（只动 string，其他原样返回） */
+function sanitizeRow<T extends Record<string, unknown>>(row: T): T {
+  const out = { ...row };
+  for (const k of Object.keys(out)) {
+    const v = out[k];
+    if (typeof v === "string") out[k] = sanitizeText(v);
+  }
+  return out;
+}
+
 export async function getProducts(): Promise<Product[]> {
-  return (await fetchTable<Product>("products")) ?? FALLBACK_PRODUCTS;
+  const rows = (await fetchTable<Product>("products")) ?? FALLBACK_PRODUCTS;
+  return rows.map((r) => sanitizeRow(r as unknown as Record<string, unknown>) as unknown as Product);
 }
 export async function getContents(): Promise<ContentItem[]> {
-  return (await fetchTable<ContentItem>("contents")) ?? FALLBACK_CONTENTS;
+  const rows = (await fetchTable<ContentItem>("contents")) ?? FALLBACK_CONTENTS;
+  return rows.map((r) => sanitizeRow(r as unknown as Record<string, unknown>) as unknown as ContentItem);
 }
 export async function getCases(): Promise<CaseStudy[]> {
-  return (await fetchTable<CaseStudy>("cases")) ?? FALLBACK_CASES;
+  const rows = (await fetchTable<CaseStudy>("cases")) ?? FALLBACK_CASES;
+  return rows.map((r) => sanitizeRow(r as unknown as Record<string, unknown>) as unknown as CaseStudy);
 }
 export async function getPartners(): Promise<Partner[]> {
   return (await fetchTable<Partner>("partners")) ?? FALLBACK_PARTNERS;

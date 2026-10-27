@@ -19,6 +19,20 @@ update public.products
  where third_party_platform is not null
    and third_party_platform <> '企业微信';
 
+-- 清掉文案里的旧平台名（前端读取层已有兜底清洗，这里是彻底清库）
+update public.products
+   set deliverable = regexp_replace(
+         regexp_replace(
+           regexp_replace(deliverable, '知识星球课程', '企微交付课程', 'g'),
+           '知识星球', '企业微信', 'g'),
+         '小鹅通', '企业微信', 'g')
+ where deliverable ~ '知识星球|小鹅通';
+
+update public.contents
+   set summary = regexp_replace(
+         regexp_replace(summary, '知识星球', '企业微信', 'g'), '小鹅通', '企业微信', 'g')
+ where summary ~ '知识星球|小鹅通';
+
 comment on column public.products.third_party_url is
   '已废弃：官网不再跳转任何第三方平台链接，转化统一收口到企业微信二维码弹窗';
 comment on column public.products.third_party_platform is
