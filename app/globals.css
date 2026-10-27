@@ -1,0 +1,131 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   汽配知识局 · 品牌主题（设计系统 V2）
+   主色 深绿 #1F6F4A · 行动色 砖红 #C44536 · 强调 暖橙 #E07A3F
+   辅助 米白 #F7F4EF · 浅灰 #E8E5DF
+   圆角 12-16px · 阴影轻暖柔和 · 移动端优先
+   ============================================================ */
+
+@layer base {
+  :root {
+    --background: 38 33% 95%;          /* #F7F4EF 米白 */
+    --foreground: 32 15% 20%;          /* #3A332B 暖炭 */
+
+    --card: 42 50% 98%;                /* #FCFAF6 */
+    --card-foreground: 32 15% 20%;
+
+    --primary: 152 56% 28%;            /* #1F6F4A 深绿 */
+    --primary-foreground: 38 33% 97%;
+
+    --secondary: 148 30% 92%;          /* #E5F0E9 浅绿 */
+    --secondary-foreground: 152 50% 24%;
+
+    --muted: 40 16% 93%;               /* #EDEAE3 */
+    --muted-foreground: 36 9% 48%;     /* #857C6F */
+
+    --accent: 26 85% 95%;              /* #FBEFE2 浅橙 */
+    --accent-foreground: 24 72% 42%;   /* 深暖橙 */
+
+    --destructive: 6 57% 49%;          /* #C44536 砖红（主 CTA） */
+    --destructive-foreground: 38 33% 97%;
+
+    --border: 40 22% 87%;              /* #E5E0D6 */
+    --input: 40 22% 87%;
+    --ring: 152 56% 28%;
+
+    --radius: 1rem;                    /* 16px */
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+}
+
+@layer utilities {
+  .container-site {
+    @apply mx-auto w-full max-w-6xl px-4 sm:px-6;
+  }
+  .section-pad {
+    @apply py-12 md:py-20;
+  }
+  /* 图占位：用于替换为真实工作场景 / 数据截图 / 课程现场照片 */
+  .figure-ph {
+    @apply flex flex-col items-center justify-center gap-2 rounded-xl border border-dashed bg-card text-muted-foreground;
+  }
+}
+
+/* ============================================================
+   MDX 正文排版（/insights/*  内容页，利于收录与阅读）
+   ============================================================ */
+.mdx-body {
+  @apply text-[15px] leading-[1.9] text-foreground md:text-base;
+}
+.mdx-body h2 {
+  @apply mb-4 mt-10 border-l-4 border-brand-green pl-3 text-xl font-bold md:text-2xl;
+}
+.mdx-body h3 {
+  @apply mb-3 mt-8 text-lg font-bold md:text-xl;
+}
+.mdx-body p {
+  @apply my-4;
+}
+.mdx-body ul,
+.mdx-body ol {
+  @apply my-4 space-y-2 pl-6;
+}
+.mdx-body ul {
+  @apply list-disc;
+}
+.mdx-body ol {
+  @apply list-decimal;
+}
+.mdx-body li::marker {
+  @apply text-brand-green;
+}
+.mdx-body strong {
+  @apply font-bold text-brand-green;
+}
+.mdx-body a {
+  @apply font-medium text-primary underline underline-offset-2 hover:text-brand-orange;
+}
+.mdx-body blockquote {
+  @apply my-6 rounded-r-lg border-l-4 border-brand-orange bg-brand-orange-soft px-4 py-3 text-sm text-accent-foreground;
+}
+.mdx-body blockquote p {
+  @apply my-0;
+}
+.mdx-body pre {
+  @apply my-6 overflow-x-auto rounded-xl bg-brand-cream p-4 text-[13px] leading-relaxed;
+}
+.mdx-body code {
+  @apply rounded bg-brand-gray px-1.5 py-0.5 text-[13px];
+}
+.mdx-body pre code {
+  @apply bg-transparent p-0;
+}
+.mdx-body table {
+  @apply my-6 w-full border-collapse overflow-hidden rounded-xl text-sm;
+}
+.mdx-body thead {
+  @apply bg-brand-green-soft;
+}
+.mdx-body th {
+  @apply border border-border px-3 py-2 text-left font-semibold;
+}
+.mdx-body td {
+  @apply border border-border px-3 py-2 align-top;
+}
+.mdx-body hr {
+  @apply my-10 border-border;
+}
