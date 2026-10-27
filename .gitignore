@@ -25,8 +25,17 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# local env files
+# local env files（防止密钥泄露：真实密钥绝不入库）
+.env
+.env.local
 .env*.local
+!.env.example
+
+# AI 工作记录（含会话记忆，禁止入库）
+.workbuddy/
+
+# 本地自检脚本（仅本机用，不入库）
+*.command
 
 # vercel
 .vercel
