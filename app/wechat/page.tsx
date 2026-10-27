@@ -3,7 +3,9 @@ import type { Metadata } from "next";
 import { buildMetadata, KEYWORDS } from "@/lib/seo";
 import Link from "next/link";
 import { Suspense } from "react";
-import { CheckCircle2, MessageCircle, Users, ExternalLink, ArrowRight, Quote } from "lucide-react";
+import { CheckCircle2, Users, ExternalLink, ArrowRight, Quote } from "lucide-react";
+
+import { PLANET } from "@/lib/brand";
 
 import { PageHero } from "@/components/site/page-hero";
 import { SectionHeading } from "@/components/site/section-heading";
@@ -59,15 +61,20 @@ export default function WechatPage() {
 
       <section className="section-pad">
         <div className="container-site grid gap-8 md:grid-cols-[auto_1fr] md:items-start">
-          {/* 企微二维码占位 */}
+          {/* 企微活码（真实图片：public/wecom-qr.png） */}
           <Card id="qrcode" className="mx-auto w-fit scroll-mt-24">
             <CardContent className="p-5 text-center">
-              <div className="figure-ph h-56 w-56">
-                <MessageCircle className="h-7 w-7 text-brand-orange" />
-                <p className="px-4 text-xs">此处替换为企业微信活码图片</p>
-              </div>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={PLANET.wecomQr}
+                alt="企业微信活码：扫码添加，备注「官网」优先通过"
+                width={224}
+                height={224}
+                className="rounded-lg"
+                style={{ width: 224, height: 224 }}
+              />
               <p className="mt-3 text-sm font-semibold">企微活码</p>
-              <p className="text-xs text-muted-foreground">备注「官网」优先通过</p>
+              <p className="text-xs text-muted-foreground">微信扫码 · 备注「官网」优先通过</p>
             </CardContent>
           </Card>
 

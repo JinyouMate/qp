@@ -30,8 +30,8 @@ export const PLANET = {
   name: "知识星球",
   /** 全局兜底星球入口：某个产品没配 planet_url 时用它（留空则走企微兜底） */
   defaultUrl: "",
-  /** 企微活码图片（替换 public/wecom-qr.svg 即可） */
-  wecomQr: "/wecom-qr.svg",
+  /** 企微活码图片（换码时直接替换 public/wecom-qr.png，文件名保持不变） */
+  wecomQr: "/wecom-qr.png",
   /** 企微落地页 */
   wecomPath: "/wechat",
   /** 加入后的权益说明（弹窗与权限页复用） */
