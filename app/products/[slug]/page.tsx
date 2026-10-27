@@ -12,7 +12,7 @@ import { Badge } from "@/components/ui/badge";
 import { ProductIcon } from "@/components/site/icon";
 import { ProductCta } from "@/components/site/product-cta";
 import { ProductCard } from "@/components/site/product-card";
-import { PlanetNote } from "@/components/site/planet-note";
+import { WecomNote } from "@/components/site/wecom-note";
 import { LeadSection } from "@/components/site/lead-section";
 import { Faq } from "@/components/site/faq";
 import { JsonLd, productSchema, breadcrumbSchema } from "@/components/site/json-ld";
@@ -148,12 +148,10 @@ export default function ProductDetailPage({ params }: { params: { slug: string }
 
             <p className="mt-3 flex items-start gap-2 text-xs text-muted-foreground">
               <ShieldCheck className="mt-0.5 h-3.5 w-3.5 shrink-0 text-brand-green" />
-              本站不收款、不做支付。加入与内容查阅在
-              {product.third_party_platform ?? "知识星球"}完成，官网只做说明、留资与跳转。
+              本站不收款、不做支付、不跳转任何第三方平台。扫码加企微后，
+              系统自动下发内部资料库链接并邀请你加入行业交流群。
             </p>
-            {product.cta_type === "buy" && (
-              <PlanetNote platform={product.third_party_platform} className="mt-2" />
-            )}
+            {product.cta_type === "buy" && <WecomNote className="mt-2" />}
           </div>
 
           {/* 粘性参数卡 */}
@@ -170,7 +168,7 @@ export default function ProductDetailPage({ params }: { params: { slug: string }
                     { icon: Package, k: "交付形式", v: detail.form },
                     { icon: Clock, k: "见效周期", v: detail.timeline },
                     { icon: RefreshCw, k: "更新频率", v: detail.update },
-                    { icon: Sparkles, k: "交付平台", v: product.third_party_platform ?? "站内交付" },
+                    { icon: Sparkles, k: "交付方式", v: "企业微信（扫码即发）" },
                   ].map((row) => (
                     <div key={row.k} className="flex gap-2">
                       <row.icon className="mt-0.5 h-4 w-4 shrink-0 text-brand-orange" strokeWidth={1.5} />
@@ -183,9 +181,7 @@ export default function ProductDetailPage({ params }: { params: { slug: string }
                 </dl>
                 <div className="space-y-2.5 border-t border-dashed pt-4">
                   <ProductCta product={product} size="default" />
-                  {product.cta_type === "buy" && (
-                    <PlanetNote platform={product.third_party_platform} />
-                  )}
+                  {product.cta_type === "buy" && <WecomNote />}
                 </div>
               </CardContent>
             </Card>

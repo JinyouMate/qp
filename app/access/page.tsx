@@ -1,29 +1,29 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, MessageCircle, ShieldCheck, Smartphone, Copy, Search } from "lucide-react";
+import { ArrowRight, MessageCircle, ShieldCheck, Smartphone, Users, Search } from "lucide-react";
 
 import { buildMetadata, KEYWORDS } from "@/lib/seo";
-import { PLANET } from "@/lib/brand";
+import { WECOM } from "@/lib/brand";
 import { PageHero } from "@/components/site/page-hero";
 import { SectionHeading } from "@/components/site/section-heading";
 import { Faq } from "@/components/site/faq";
 import { LeadSection } from "@/components/site/lead-section";
-import { PlanetNote } from "@/components/site/planet-note";
+import { WecomNote } from "@/components/site/wecom-note";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 
 /* ============================================================
-   查询我的资料权限（原「查单页」的替代）
+   查询我的资料权限
 
-   本站不接入任何支付，因此没有站内订单、没有交易流水号。
-   用户买了什么、能看到什么，全部以**知识星球**里的记录为准。
-   查不到 → 加客服（企微）人工核对。
+   本站不接入任何支付、不跳转任何第三方平台，因此没有站内订单、没有交易流水。
+   资料与交付全部在企业微信完成：扫码添加后自动下发内部资料库链接并邀请进群。
+   查不到 → 加企微客服人工核对。
    ============================================================ */
 
 export const metadata: Metadata = buildMetadata({
   title: "查询我的资料权限",
   description:
-    "本站不收款、没有站内订单。你在知识星球加入的星球、购买的课程与资料，都在星球 APP 内查阅；找不到或付款后未开通，加企微客服人工核对。",
+    "本站不收款、没有站内订单。资料与交付全部在企业微信完成：扫码添加后自动下发内部资料库链接并邀请进群；找不到就加企微客服人工核对。",
   path: "/access",
   keywords: [KEYWORDS.knowledge, KEYWORDS.sop],
   noindex: true,
@@ -32,20 +32,20 @@ export const metadata: Metadata = buildMetadata({
 const WAYS = [
   {
     icon: Smartphone,
-    title: "在知识星球 APP 里看",
+    title: "在企业微信里看",
     steps: [
-      "打开知识星球 APP → 底部「我」",
-      "进入「我加入的」→ 找到「汽配知识局」",
-      "里面的 SOP、报告、模板、课程回放，付款后永久可查",
+      "打开微信 → 通讯录「企业微信联系人」→ 找到汽配知识局",
+      "查看聊天记录里我们发你的内部资料库链接",
+      "链接点开即是 SOP、报告、模板与课程回放，长期有效",
     ],
   },
   {
-    icon: Copy,
-    title: "用微信打开星球链接",
+    icon: Users,
+    title: "在行业交流群里问",
     steps: [
-      "回到官网产品页，点【加入知识星球】重新获取一次链接",
-      "复制链接 → 粘贴到微信（自己或文件传输助手）→ 点击打开",
-      "按提示加入后，内容与 APP 端同步解锁",
+      "添加后我们会邀请你进入对应身份的交流群",
+      "群里直接提问，同行与我们一起答",
+      "每周 / 每月有复盘与资料更新提醒",
     ],
   },
   {
@@ -53,8 +53,8 @@ const WAYS = [
     title: "还是找不到？找客服核对",
     steps: [
       "加企业微信，报你留资时填的手机号 / 微信号",
-      "我们按星球后台记录核对开通状态（一般当天回复）",
-      "确认付款未开通的，人工补开；重复付款的，原路退回",
+      "我们按后台记录核对开通状态（一般当天回复）",
+      "确认漏发的，人工补发；重复提交的，合并处理",
     ],
   },
 ];
@@ -62,23 +62,23 @@ const WAYS = [
 const FAQS = [
   {
     q: "官网为什么查不到我的订单？",
-    a: "本站不处理支付，也没有站内收银台。成交、付款与交付全部在知识星球完成，所以订单与权益以星球后台记录为准。",
+    a: "本站不处理支付，也没有站内收银台、不跳转任何第三方平台。资料与交付全部在企业微信完成，所以权益以企微后台与资料库记录为准。",
   },
   {
-    q: "付款后多久能看内容？",
-    a: "星球加入成功后立即解锁。若超过 10 分钟仍看不到，多半是微信号与付款账号不一致，加企微报手机号即可核对补开。",
+    q: "加企微后多久能收到资料？",
+    a: "扫码添加后系统自动发送，一般几分钟内。若超过当天仍未收到，多半是微信号与留资号不一致，在企微里报一下手机号即可核对补发。",
   },
   {
     q: "我能看多久？到期会失效吗？",
-    a: "加入即永久有效，SOP 与报告持续更新，不额外收费。年度星球到期只影响后续新增内容，历史内容仍可查阅。",
+    a: "加入即长期有效，SOP 与报告持续更新，不额外收费。年度权益到期只影响后续新增内容，历史内容仍可查阅。",
   },
   {
     q: "可以开发票吗？",
-    a: "由知识星球或对应第三方平台按其规则开具，本站不代收货款、不开发票。需要发票可在星球内联系星主。",
+    a: "可以。在企微里说明需求，由运营主体（深圳市元卦科技有限公司）直接开具电子发票。",
   },
   {
-    q: "能退款吗？",
-    a: "按知识星球平台的退款规则执行。遇到重复付款、付错产品这类情况，加企微我们协助你走平台退款流程。",
+    q: "不想加了，能删掉我的信息吗？",
+    a: "能。在企微里说一声，或按《隐私政策》里的联系方式申请，我们按流程删除你的留资记录。",
   },
 ];
 
@@ -88,7 +88,7 @@ export default function AccessPage() {
       <PageHero
         tag="权限查询"
         title="查询我的资料权限"
-        desc="本站不收款、没有站内订单。你加入的星球、购买的课程与资料，全部在知识星球里查阅；查不到就加客服，我们人工核对。"
+        desc="本站不收款、没有站内订单。内部资料库链接与行业交流群邀请，都在企业微信里；查不到就加客服，我们人工核对。"
       />
 
       <section className="section-pad">
@@ -97,7 +97,7 @@ export default function AccessPage() {
             <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-brand-green" strokeWidth={1.5} />
             <span>
               这里不展示任何联系方式与交易流水——本站也没有这些信息。
-              你的权益状态以{PLANET.name}后台记录为准。
+              你的权益状态以{WECOM.name}后台与资料库记录为准。
             </span>
           </div>
 
@@ -121,7 +121,7 @@ export default function AccessPage() {
                   </ol>
                   {w.title.startsWith("还是找不到") && (
                     <Button asChild variant="orange" className="mt-auto w-full">
-                      <Link href={`${PLANET.wecomPath}?from=access`}>
+                      <Link href={`${WECOM.path}?from=access`}>
                         <MessageCircle /> 加企微客服核对
                       </Link>
                     </Button>
@@ -142,7 +142,7 @@ export default function AccessPage() {
           />
           <Faq items={FAQS} />
           <div className="mt-6">
-            <PlanetNote />
+            <WecomNote />
           </div>
           <div className="mt-6 flex flex-wrap gap-3">
             <Button asChild variant="default">
@@ -151,7 +151,7 @@ export default function AccessPage() {
               </Link>
             </Button>
             <Button asChild variant="outline">
-              <Link href={`${PLANET.wecomPath}?from=access`}>
+              <Link href={`${WECOM.path}?from=access`}>
                 <MessageCircle /> 加企微，人工查权限
               </Link>
             </Button>
@@ -160,8 +160,8 @@ export default function AccessPage() {
       </section>
 
       <LeadSection
-        title="还没加入？先留资拿入口"
-        desc="留一次联系方式，星球专属入口和新人资料包一起发你。"
+        title="还没添加？先留资也行"
+        desc="留一次联系方式，内部资料库链接和入群邀请一起发你。"
       />
     </>
   );

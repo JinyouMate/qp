@@ -16,7 +16,7 @@ import { getProducts } from "@/lib/data";
 
 export const metadata: Metadata = buildMetadata({
   title: "培训课程",
-  description: "录播 + 社群答疑 + 作业批改的体系课。从选品、适配数据到跨境平台运营，讲方法也讲真实数据。课程在小鹅通 / 知识星球交付。",
+  description: "录播 + 社群答疑 + 作业批改的体系课。从选品、适配数据到跨境平台运营，讲方法也讲真实数据。扫码加企微即可获取，官网不处理支付。",
   path: "/courses",
   keywords: [KEYWORDS.knowledge, KEYWORDS.sop, KEYWORDS.data, KEYWORDS.compliance],
 });
@@ -155,7 +155,7 @@ export default async function CoursesPage() {
           </div>
           <p className="mt-6 flex items-center justify-center gap-1.5 text-xs text-muted-foreground">
             <ExternalLink className="h-3.5 w-3.5" />
-            课程在小鹅通 / 知识星球交付，官网不处理支付；点击购买会先引导加企微或留资。
+            课程与资料在企业微信内交付，官网不处理支付；点按钮只弹企微二维码，扫码即自动下发。
           </p>
         </div>
       </section>

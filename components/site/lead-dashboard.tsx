@@ -99,7 +99,7 @@ export function LeadDashboard({ data, demo = false }: { data: DashboardData; dem
           <CardContent className="p-5">
             <h3 className="mb-1 text-sm font-bold">事件漏斗</h3>
             <p className="mb-4 text-xs text-muted-foreground">
-              以留资数为分母。「第三方跳转」含购买意图点击与最终跳转。
+              以留资数为分母。「加微信点击」含企微二维码弹窗的打开次数。
             </p>
             <ul className="space-y-3">
               {data.funnel.map((f) => (

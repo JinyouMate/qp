@@ -44,7 +44,7 @@ export const FALLBACK_PRODUCTS: Product[] = [
     audience: "从业者日常查询、新人系统入门",
     deliverable: "名词库 / 适配库 / 政策库 / 避坑库 · Baklib / 飞书在线查阅",
     price: "基础版免费 · 进阶版随社群",
-    cta_type: "claim", third_party_url: null, third_party_platform: "Baklib / 飞书", planet_url: null,
+    cta_type: "claim", third_party_url: null, third_party_platform: "企业微信", planet_url: null,
   },
   {
     id: 5, slug: "templates", name: "模板库", icon: "table", layer: "trust", category: "knowledge", tier: "free",
@@ -53,7 +53,7 @@ export const FALLBACK_PRODUCTS: Product[] = [
     audience: "有现成业务、想立刻提效的团队",
     deliverable: "选品评分表 / 供应商评估表 / 库存周转表 / 客服话术库",
     price: "免费 · 留资即得",
-    cta_type: "claim", third_party_url: null, third_party_platform: "飞书", planet_url: null,
+    cta_type: "claim", third_party_url: null, third_party_platform: "企业微信", planet_url: null,
   },
   {
     id: 6, slug: "case-library", name: "案例库", icon: "folder-open", layer: "trust", category: "knowledge", tier: "free",
@@ -72,7 +72,7 @@ export const FALLBACK_PRODUCTS: Product[] = [
     audience: "每周要做选品决策的卖家与采购",
     deliverable: "五维评分表（自动算分）+ 测款记录表 + 复盘模板 · 飞书/Excel 双版本",
     price: "¥199",
-    cta_type: "buy", third_party_url: null, third_party_platform: "知识星球", planet_url: null,
+    cta_type: "buy", third_party_url: null, third_party_platform: "企业微信", planet_url: null,
   },
   {
     id: 15, slug: "toolkit-pricing", name: "核价毛利工具包", icon: "coins", layer: "conversion", category: "knowledge", tier: "toolkit",
@@ -81,7 +81,7 @@ export const FALLBACK_PRODUCTS: Product[] = [
     audience: "做跨境（Ozon/eBay/Temu）与多平台的卖家",
     deliverable: "成本核算表 + 汇率折算器 + 毛利校验表 + 定价决策卡",
     price: "¥299",
-    cta_type: "buy", third_party_url: null, third_party_platform: "知识星球", planet_url: null,
+    cta_type: "buy", third_party_url: null, third_party_platform: "企业微信", planet_url: null,
   },
   {
     id: 16, slug: "toolkit-fitment", name: "适配校验工具包", icon: "scan-search", layer: "conversion", category: "knowledge", tier: "toolkit",
@@ -90,7 +90,7 @@ export const FALLBACK_PRODUCTS: Product[] = [
     audience: "被适配问题反复拖住的团队与修理厂",
     deliverable: "交叉验证清单 + 存疑标记表 + 一线回测记录表 + 专家复核申请模板",
     price: "¥399",
-    cta_type: "buy", third_party_url: null, third_party_platform: "知识星球", planet_url: null,
+    cta_type: "buy", third_party_url: null, third_party_platform: "企业微信", planet_url: null,
   },
   {
     id: 17, slug: "toolkit-inventory", name: "库存周转工具包", icon: "boxes", layer: "conversion", category: "knowledge", tier: "toolkit",
@@ -99,7 +99,7 @@ export const FALLBACK_PRODUCTS: Product[] = [
     audience: "有现货库存的经销商与修理厂",
     deliverable: "安全库存模型 + 滞销分级表 + 渠道分流方案表 + 月度盘库 SOP",
     price: "¥199",
-    cta_type: "buy", third_party_url: null, third_party_platform: "知识星球", planet_url: null,
+    cta_type: "buy", third_party_url: null, third_party_platform: "企业微信", planet_url: null,
   },
   // ---------- 阶梯三：课程 / 订阅 999-4999（建立体系） ----------
   {
@@ -107,9 +107,9 @@ export const FALLBACK_PRODUCTS: Product[] = [
     positioning: "录播 + 社群答疑 + 作业批改的体系课",
     problem: "经验零散、体系缺失，学了很多干货还是不会干",
     audience: "0-5 年经验想系统建立方法论的卖家与团队",
-    deliverable: "小鹅通课程 · 录播 + 直播答疑 + 结课清单",
+    deliverable: "企微交付 · 录播 + 直播答疑 + 结课清单",
     price: "¥999 – ¥3,980 / 门",
-    cta_type: "buy", third_party_url: null, third_party_platform: "知识星球", planet_url: null,
+    cta_type: "buy", third_party_url: null, third_party_platform: "企业微信", planet_url: null,
   },
   {
     id: 8, slug: "full-reports", name: "完整行业报告", icon: "book", layer: "conversion", category: "reports", tier: "course",
@@ -118,7 +118,7 @@ export const FALLBACK_PRODUCTS: Product[] = [
     audience: "需要决策依据的经营者与平台团队",
     deliverable: "飞书文档 · 数据来源与口径全部注明",
     price: "¥899 – ¥1,999 / 份",
-    cta_type: "buy", third_party_url: null, third_party_platform: "知识星球", planet_url: null,
+    cta_type: "buy", third_party_url: null, third_party_platform: "企业微信", planet_url: null,
   },
   {
     id: 9, slug: "data-subscription", name: "订阅数据产品", icon: "line-chart", layer: "conversion", category: "reports", tier: "course",
@@ -127,16 +127,16 @@ export const FALLBACK_PRODUCTS: Product[] = [
     audience: "持续经营、需要盯盘的卖家与类目团队",
     deliverable: "飞书多维表格 / 看板 · 周更 · 支持 7 天试用",
     price: "¥699 起 / 月（年付 ¥4,999 起）",
-    cta_type: "consult", third_party_url: null, third_party_platform: "飞书", planet_url: null,
+    cta_type: "consult", third_party_url: null, third_party_platform: "企业微信", planet_url: null,
   },
   {
     id: 18, slug: "annual-pass", name: "年度知识通行证", icon: "badge-check", layer: "conversion", category: "courses", tier: "course",
     positioning: "一年内全部课程 + 全部工具包 + 报告更新 + 社群答疑",
     problem: "单买课程和工具包加起来太贵，又不想错过更新",
     audience: "打算长期在这个行业里做的个人与团队（可开多人席位）",
-    deliverable: "小鹅通年度权益 + 飞书资料库全权限 + 季度闭门直播",
+    deliverable: "年度权益 + 内部资料库全权限 + 季度闭门直播",
     price: "¥4,999 / 年",
-    cta_type: "buy", third_party_url: null, third_party_platform: "知识星球", planet_url: null,
+    cta_type: "buy", third_party_url: null, third_party_platform: "企业微信", planet_url: null,
   },
   // ---------- 阶梯四：咨询 / 内训 / 合作 1万+（解决你自己的问题） ----------
   {
@@ -164,7 +164,7 @@ export const FALLBACK_PRODUCTS: Product[] = [
     audience: "有成熟产品的 SaaS 团队",
     deliverable: "联合运营 / 内容共建 / 种子用户计划",
     price: "面议 · 分成或共建",
-    cta_type: "consult", third_party_url: null, third_party_platform: "合作方平台", planet_url: null,
+    cta_type: "consult", third_party_url: null, third_party_platform: "企业微信", planet_url: null,
   },
   {
     id: 13, slug: "ai-data", name: "AI 数据标注 / 模型训练", icon: "bot", layer: "delivery", category: "partners", tier: "enterprise",
@@ -173,7 +173,7 @@ export const FALLBACK_PRODUCTS: Product[] = [
     audience: "AI 公司、大模型厂商、研究机构",
     deliverable: "语料授权（签 DPA）/ 标注规则 / 评测标准共建",
     price: "定制报价 · 签正式协议",
-    cta_type: "consult", third_party_url: null, third_party_platform: "合作方平台", planet_url: null,
+    cta_type: "consult", third_party_url: null, third_party_platform: "企业微信", planet_url: null,
   },
 ];
 

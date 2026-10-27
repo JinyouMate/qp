@@ -87,7 +87,7 @@ export default async function KnowledgePage() {
           <SectionHeading
             tag="知识库"
             title="四个板块，覆盖你日常会查的东西"
-            desc="在线查阅（Baklib / 飞书），基础版免费开放，进阶版随社群。"
+            desc="在线查阅（企微内交付），基础版免费开放，进阶版随社群。"
           />
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
             {MODULES.map((m) => (
@@ -170,7 +170,7 @@ export default async function KnowledgePage() {
           </div>
           <p className="mt-6 flex items-center justify-center gap-1.5 text-xs text-muted-foreground">
             <ExternalLink className="h-3.5 w-3.5" />
-            知识库在线查阅在 Baklib / 飞书，加企微后由我们开通权限（官网不处理支付）
+            内部资料库在企业微信内查阅，扫码添加后自动下发链接（官网不处理支付、不跳第三方平台）
           </p>
         </div>
       </section>

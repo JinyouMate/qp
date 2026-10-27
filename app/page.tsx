@@ -1,6 +1,6 @@
 import Link from "next/link";
 import {
-  ArrowRight, Gift, CalendarClock, Building2, Store, Factory, Bot,
+  ArrowRight, CalendarClock, Building2, Store, Factory, Bot,
   CheckCircle2, ShieldCheck, Quote, Sparkles,
 } from "lucide-react";
 
@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { SectionHeading } from "@/components/site/section-heading";
+import { WecomCtaButton } from "@/components/site/wecom-dialog";
 import { LeadSection } from "@/components/site/lead-section";
 import { Faq } from "@/components/site/faq";
 import { ProductLadder } from "@/components/site/product-ladder";
@@ -99,8 +100,8 @@ const FAQS = [
     a: "免费的是「清单与结论」——你能直接照着做；付费的是「体系与数据」——包括完整方法论、持续更新的数据集、答疑与批改。前者给动作，后者给能力。",
   },
   {
-    q: "课程和知识库在哪个平台看？",
-    a: "课程在小鹅通/知识星球，知识库在 Baklib/飞书。官网不处理支付，所有第三方链接都会先引导你加企微或留资，确保后续能找到人。链接均已附加来源参数用于统计。",
+    q: "课程和内部资料库在哪看？",
+    a: "统一在企业微信。扫码添加后系统自动下发内部资料库链接，并邀请你加入行业交流群。官网不处理支付、不跳转任何第三方平台。",
   },
   {
     q: "AI 数据合作怎么保证合规？",
@@ -151,11 +152,7 @@ export default async function HomePage() {
                 整理成查得到、学得会、用得上的知识资产。
               </p>
               <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-                <Button asChild size="lg" variant="destructive">
-                  <Link href="/contact?intent=asset">
-                    <Gift /> 领取资料
-                  </Link>
-                </Button>
+                <WecomCtaButton size="lg" variant="destructive" from="home-hero" subject="首页" />
                 <Button asChild size="lg" variant="outline">
                   <Link href="/contact?intent=consult">
                     <CalendarClock /> 预约咨询

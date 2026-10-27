@@ -16,10 +16,9 @@ export type TrackEventName =
   | "asset_download" // 资料下载/领取
   | "consult_click" // 预约咨询
   | "ai_chat_open" // AI 问答打开
-  | "ladder_click" // 产品阶梯点击
-  | "planet_join_intent" // 点击【加入知识星球】/【获取星球入口】
-  | "planet_copy" // 复制知识星球链接
-  | "wecom_qr_view"; // 展开企微二维码
+  | "ladder_click"; // 产品阶梯点击
+
+/** 全站唯一的收口动作：扫码加企微（弹窗打开即上报 wechat_click） */
 
 export interface TrackProps {
   [key: string]: string | number | boolean | undefined;

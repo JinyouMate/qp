@@ -97,7 +97,7 @@ insert into public.products (slug,name,icon,layer,category,positioning,problem,a
   ('knowledge-base','基础知识库','book-open','trust','knowledge','12,000+ 条目的行业知识底座','查资料全靠到处问','从业者与新人','名词/适配/政策/避坑四库','基础版免费','claim','Baklib / 飞书',4),
   ('templates','模板库','table','trust','knowledge','一线在用的表格模板','想提效不知道好表格长什么样','有现成业务的团队','评分/评估/周转/话术模板','免费 · 留资即得','claim','飞书',5),
   ('case-library','案例库','folder-open','trust','knowledge','真实脱敏案例 + 动作清单','想知道别人怎么解决同类问题','想抄作业的务实派','图文案例专栏','免费 · 留资解锁','claim',null,6),
-  ('courses','培训课程','graduation-cap','conversion','courses','录播+社群+作业批改的体系课','学了很多干货还是不会干','0-5 年经验卖家与团队','知识星球课程','¥999–¥3,980/门','buy','知识星球',7),
+  ('courses','培训课程','graduation-cap','conversion','courses','录播+社群+作业批改的体系课','学了很多干货还是不会干','0-5 年经验卖家与团队','知识星球课程','¥999–¥3,980/门','buy','企业微信',7),
   ('full-reports','完整行业报告','book','conversion','reports','品类数据、价格带与趋势预判','决策缺数据支撑','经营者与平台团队','飞书文档','¥899–¥1,999/份','buy','飞书',8),
   ('data-subscription','订阅数据产品','line-chart','conversion','reports','价格监测/销量追踪/竞品周报','盯盘靠手工翻平台','持续经营的卖家与团队','飞书看板 · 周更 · 7天试用','¥699起/月','consult','飞书',9),
   ('consulting','咨询方案','compass','delivery','consulting','诊断+方案+陪跑','有明确问题缺外部视角','连锁/集团/成长期卖家','诊断报告+路线图+陪跑','¥30,000起/项目','consult',null,10),
@@ -135,11 +135,11 @@ update public.products set tier = 'free'
 
 -- 2. 阶梯二：工具包产品（99-499）种子数据 -----------------------
 insert into public.products (slug,name,icon,layer,category,tier,positioning,problem,audience,deliverable,price,cta_type,third_party_platform,sort) values
-  ('toolkit-selection','选品评分工具包','calculator','conversion','knowledge','toolkit','把「要不要进这批货」变成一张能算出分数的表','选品靠感觉，胜负说不清为什么','每周要做选品决策的卖家与采购','五维评分表+测款记录表+复盘模板','¥199','buy','小鹅通',20),
-  ('toolkit-pricing','核价毛利工具包','coins','conversion','knowledge','toolkit','算清楚到手多少钱','跨境与多平台定价漏算汇率佣金物流','做跨境与多平台的卖家','成本核算表+汇率折算器+毛利校验表','¥299','buy','小鹅通',21),
-  ('toolkit-fitment','适配校验工具包','scan-search','conversion','knowledge','toolkit','按三层校验法把适配数据过一遍','适配错误导致退货差评压货','被适配问题拖住的团队与修理厂','交叉验证清单+存疑标记表+回测记录表','¥399','buy','小鹅通',22),
-  ('toolkit-inventory','库存周转工具包','boxes','conversion','knowledge','toolkit','把压在仓库里的钱算清楚','滞销占压资金不知该清哪些','有现货库存的经销商与修理厂','安全库存模型+滞销分级表+分流方案','¥199','buy','小鹅通',23),
-  ('annual-pass','年度知识通行证','badge-check','conversion','courses','course','一年内全部课程+工具包+报告更新','单买太贵又不想错过更新','长期在这个行业做的个人与团队','年度权益+资料库全权限+闭门直播','¥4,999/年','buy','小鹅通',24)
+  ('toolkit-selection','选品评分工具包','calculator','conversion','knowledge','toolkit','把「要不要进这批货」变成一张能算出分数的表','选品靠感觉，胜负说不清为什么','每周要做选品决策的卖家与采购','五维评分表+测款记录表+复盘模板','¥199','buy','企业微信',20),
+  ('toolkit-pricing','核价毛利工具包','coins','conversion','knowledge','toolkit','算清楚到手多少钱','跨境与多平台定价漏算汇率佣金物流','做跨境与多平台的卖家','成本核算表+汇率折算器+毛利校验表','¥299','buy','企业微信',21),
+  ('toolkit-fitment','适配校验工具包','scan-search','conversion','knowledge','toolkit','按三层校验法把适配数据过一遍','适配错误导致退货差评压货','被适配问题拖住的团队与修理厂','交叉验证清单+存疑标记表+回测记录表','¥399','buy','企业微信',22),
+  ('toolkit-inventory','库存周转工具包','boxes','conversion','knowledge','toolkit','把压在仓库里的钱算清楚','滞销占压资金不知该清哪些','有现货库存的经销商与修理厂','安全库存模型+滞销分级表+分流方案','¥199','buy','企业微信',23),
+  ('annual-pass','年度知识通行证','badge-check','conversion','courses','course','一年内全部课程+工具包+报告更新','单买太贵又不想错过更新','长期在这个行业做的个人与团队','年度权益+资料库全权限+闭门直播','¥4,999/年','buy','企业微信',24)
 on conflict (slug) do nothing;
 
 -- 3. leads 增加来源渠道 ---------------------------------------

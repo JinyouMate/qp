@@ -52,10 +52,12 @@ export interface Product {
   audience: string; // 适合谁
   deliverable: string; // 交付什么
   price: string; // 怎么收费
-  cta_type: CtaType; // 下一步动作：免费领取 / 去第三方购买 / 预约咨询
-  third_party_url: string | null; // 第三方平台/内容入口（自动附加 UTM）
-  third_party_platform: string | null; // 小鹅通 / 知识星球 / 飞书 / Baklib / 合作方平台
-  /** 知识星球专属邀请链接。留资后才会下发（复制/跳转） */
+  cta_type: CtaType; // 下一步动作：扫码加企微 / 预约咨询（站内留资）
+  /** 历史字段，已废弃：不再跳转任何第三方平台链接，前端统一改弹企微二维码 */
+  third_party_url: string | null;
+  /** 历史字段，已废弃：交付平台统一为企业微信 */
+  third_party_platform: string | null;
+  /** 历史字段，已废弃（原知识星球邀请链接） */
   planet_url: string | null;
   tier: Tier; // 价格阶梯
 }

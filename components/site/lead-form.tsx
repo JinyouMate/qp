@@ -212,7 +212,7 @@ export function LeadForm({
         将自动附带来源渠道信息（仅用于统计哪个渠道的内容对你有用）。
         <br />
         联系方式填<strong className="font-semibold">手机号或邮箱</strong>，
-        购买链接与配套资料会发到这个联系方式上。
+        内部资料库链接与配套资料会发到这个联系方式上。
       </p>
 
       {serverError && <p className="text-sm text-destructive">{serverError}</p>}

@@ -3,9 +3,10 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { Menu, X, Gift, CalendarClock } from "lucide-react";
+import { Menu, X, CalendarClock } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { WecomCtaButton } from "./wecom-dialog";
 import { cn } from "@/lib/utils";
 
 const LINKS = [
@@ -52,18 +53,14 @@ export function Nav() {
           ))}
         </nav>
 
-        {/* 右上角固定 CTA：主按钮「领取资料」，次按钮「预约咨询」 */}
+        {/* 右上角固定 CTA：主按钮「扫码加企微」，次按钮「预约咨询」（站内） */}
         <div className="hidden items-center gap-2.5 lg:flex">
           <Button asChild size="sm" variant="ghost">
             <Link href="/contact?intent=consult">
               <CalendarClock /> 预约咨询
             </Link>
           </Button>
-          <Button asChild size="sm" variant="destructive">
-            <Link href="/contact?intent=asset">
-              <Gift /> 领取资料
-            </Link>
-          </Button>
+          <WecomCtaButton size="sm" variant="destructive" from="nav-desktop" subject="导航栏" />
         </div>
 
         {/* 移动端按钮 */}
@@ -93,12 +90,16 @@ export function Nav() {
                 {l.label}
               </Link>
             ))}
-            <div className="mt-3 grid grid-cols-2 gap-2">
+            <div className="mt-3 grid grid-cols-1 gap-2">
+              <WecomCtaButton
+                size="sm"
+                variant="destructive"
+                from="nav-mobile"
+                subject="移动导航"
+                className="w-full"
+              />
               <Button asChild size="sm" variant="outline" onClick={() => setOpen(false)}>
                 <Link href="/contact?intent=consult">预约咨询</Link>
-              </Button>
-              <Button asChild size="sm" variant="destructive" onClick={() => setOpen(false)}>
-                <Link href="/contact?intent=asset">领取资料</Link>
               </Button>
             </div>
           </div>

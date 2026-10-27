@@ -4,7 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { ProductIcon } from "./icon";
 import { ProductCta } from "./product-cta";
-import { PlanetNote } from "./planet-note";
+import { WecomNote } from "./wecom-note";
 import { LAYER_LABELS, TIERS, type Product } from "@/lib/types";
 
 const LAYER_BADGE: Record<string, string> = {
@@ -62,9 +62,7 @@ export function ProductCard({ product }: { product: Product }) {
             <span className="text-xs text-muted-foreground">下一步动作</span>
             <ProductCta product={product} />
           </div>
-          {product.cta_type === "buy" && (
-            <PlanetNote platform={product.third_party_platform} />
-          )}
+          {product.cta_type === "buy" && <WecomNote compact />}
         </div>
       </CardContent>
     </Card>

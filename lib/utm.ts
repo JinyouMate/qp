@@ -149,15 +149,6 @@ export function withUtm(url: string, campaign?: string, medium: string = "produc
   }
 }
 
-/**
- * 知识星球入口链接的 UTM 规范（三个参数固定）：
- *   ?utm_source=website&utm_medium=product&utm_campaign={product_id}
- *
- * - campaign 用**产品 id**（不是 slug），与后台 products.id 一一对应，便于对账
- * - URL 本身带 query 时自动用 & 连接，不会拼出两个 ?
- * - 非法 / 空链接返回空串，调用方自行判断
- */
-export function withPlanetUtm(url: string | null, productId: number | string): string {
-  if (!url || url === "#") return "";
-  return withUtm(url, String(productId), "product");
-}
+/* 注：原「知识星球入口 UTM」已下线。
+   全站不再跳转任何第三方平台链接，转化统一收口到企业微信二维码弹窗，
+   因此不再需要为站外链接拼装 UTM。本文件仅保留站内 UTM 相关能力。 */

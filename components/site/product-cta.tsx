@@ -1,26 +1,25 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import { ThirdPartyGate } from "./third-party-gate";
-import { PlanetDialog } from "./planet-dialog";
-import { PlanetNote } from "./planet-note";
+import { WecomDialog } from "./wecom-dialog";
+import { WecomNote } from "./wecom-note";
 import { TrackedLink } from "./tracked-link";
 import { trackEvent } from "@/lib/analytics";
-import { demandForProduct } from "@/lib/product-detail";
-import { PLANET } from "@/lib/brand";
+import { WECOM } from "@/lib/brand";
 import type { Product } from "@/lib/types";
 
-/**
- * 产品下一步动作（CTA）：
- * - claim   免费领取 → 留资后发资料
- * - consult 预约咨询 → 联系页留资（预选咨询）
- * - buy     加入知识星球 → 先弹留资窗，再下发【复制星球链接】/【加企微】
- *
- * 注意：本项目**不做任何站内支付与收银台**，成交与交付全部在知识星球完成。
- */
+/* ============================================================
+   产品下一步动作（CTA）
+
+   铁律（2026-10-27 改版）：
+   1. **不跳转任何外部链接**，官网不接支付、不做第三方平台跳转
+   2. claim / buy 一律弹企微二维码弹窗，文案统一【扫码加企微，获取内部资料库】
+   3. consult 是唯一的站内例外：跳 /contact 留资（内部页面，写入 Supabase leads）
+   ============================================================ */
+
 export function ProductCta({
   product,
   size = "sm",
@@ -28,31 +27,17 @@ export function ProductCta({
 }: {
   product: Product;
   size?: "sm" | "default" | "lg";
-  /** 覆盖按钮文案（默认：小按钮「获取星球入口」，大按钮「加入知识星球」） */
+  /** 覆盖按钮文案（默认全站统一 CTA） */
   label?: string;
 }) {
   const [open, setOpen] = useState(false);
-  const demand = demandForProduct(product);
 
-  if (product.cta_type === "claim") {
-    return (
-      <Button asChild size={size} variant="outline">
-        <TrackedLink
-          href={`/contact?demand=${encodeURIComponent(demand)}&intent=asset`}
-          event="asset_download"
-          data={{ from: "product", product: product.slug, tier: product.tier }}
-        >
-          免费领取 <ArrowRight />
-        </TrackedLink>
-      </Button>
-    );
-  }
-
+  // 预约咨询：站内留资页（不弹窗、不跳外链）
   if (product.cta_type === "consult") {
     return (
       <Button asChild size={size} variant="destructive">
         <TrackedLink
-          href={`/contact?demand=${encodeURIComponent(demand)}&intent=consult`}
+          href={`/contact?intent=consult&subject=${encodeURIComponent(product.name)}`}
           event="consult_click"
           data={{ from: "product", product: product.slug, tier: product.tier }}
         >
@@ -62,37 +47,23 @@ export function ProductCta({
     );
   }
 
-  // buy：先留资 → 再下发星球入口（复制链接 / 加企微），不直接跳转
-  const text = label ?? (size === "sm" ? "获取星球入口" : `加入${PLANET.name}`);
-
+  // claim（免费领取）/ buy：统一弹企微二维码，不跳转
   return (
     <>
-      <Button
-        size={size}
-        variant="orange"
-        onClick={() => {
-          trackEvent("planet_join_intent", {
-            stage: "intent",
-            product: product.slug,
-            platform: product.third_party_platform ?? PLANET.name,
-            tier: product.tier,
-          });
-          setOpen(true);
-        }}
-      >
-        {text} <ArrowRight />
+      <Button size={size} variant="orange" onClick={() => setOpen(true)}>
+        {label ?? WECOM.ctaLabel} <ArrowRight />
       </Button>
-      <PlanetDialog
-        product={product}
+      <WecomDialog
         open={open}
         onOpenChange={setOpen}
-        demand={demand}
+        from={`product:${product.slug}`}
+        subject={product.name}
       />
     </>
   );
 }
 
-/** 加入区下方的第三方平台声明小字（单独导出，详情页/卡片复用） */
+/** 产品卡 / 详情页下方的交付声明小字 */
 export function BuyNote({
   product,
   className,
@@ -100,67 +71,50 @@ export function BuyNote({
   product: Product;
   className?: string;
 }) {
-  return (
-    <PlanetNote
-      platform={product.third_party_platform ?? PLANET.name}
-      className={className}
-    />
-  );
+  return <WecomNote className={className} compact />;
 }
 
 /**
- * 通用第三方外链：点击前先过一次留资提示。
- * 用于平台入口表、账号矩阵等非产品卡的站外链接。
+ * 通用触发按钮（原「第三方外链」）。
+ * 现在不再持有任何 href：点击只弹企微二维码窗，避免任何站外跳转。
  */
 export function ExternalLink({
-  href,
   label,
   platform,
   demand,
   className,
 }: {
-  href: string | null;
-  label: string;
+  label?: string;
   platform?: string;
   demand?: string;
   className?: string;
 }) {
   const [open, setOpen] = useState(false);
 
-  if (!href || href === "#") {
-    return (
-      <button
-        type="button"
-        onClick={() => setOpen(true)}
-        className={
-          className ??
-          "inline-flex items-center gap-1 text-xs text-muted-foreground underline-offset-2 hover:text-primary hover:underline"
-        }
-      >
-        {label} <ArrowUpRight className="h-3 w-3" />
-      </button>
-    );
-  }
-
   return (
     <>
       <button
         type="button"
-        onClick={() => setOpen(true)}
+        onClick={() => {
+          trackEvent("wechat_click", {
+            from: "external",
+            platform: platform ?? "",
+            demand: demand ?? "",
+          });
+          setOpen(true);
+        }}
         className={
           className ??
           "inline-flex items-center gap-1 text-xs text-muted-foreground underline-offset-2 hover:text-primary hover:underline"
         }
       >
-        {label} <ArrowUpRight className="h-3 w-3" />
+        {label ?? WECOM.ctaLabel} <ArrowRight className="h-3 w-3" />
       </button>
-      <ThirdPartyGate
+      <WecomDialog
         open={open}
         onOpenChange={setOpen}
-        url={href}
-        title={`前往「${label}」`}
-        platform={platform}
-        demand={demand}
+        from="external"
+        subject={platform ?? demand ?? ""}
       />
     </>
   );

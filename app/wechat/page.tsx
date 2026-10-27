@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Suspense } from "react";
 import { CheckCircle2, Users, ExternalLink, ArrowRight, Quote } from "lucide-react";
 
-import { PLANET } from "@/lib/brand";
+import { WECOM } from "@/lib/brand";
 
 import { PageHero } from "@/components/site/page-hero";
 import { SectionHeading } from "@/components/site/section-heading";
@@ -18,7 +18,7 @@ import { WechatBanner } from "@/components/site/wechat-banner";
 
 export const metadata: Metadata = buildMetadata({
   title: "私域入口",
-  description: "加企微领资料，进对应身份的社群；知识库、课程、数据看板等第三方平台入口统一在这里开通。",
+  description: "加企微领资料，进对应身份的交流群；内部资料库链接由系统自动下发，官网不处理支付、不跳转任何第三方平台。",
   path: "/wechat",
   keywords: [KEYWORDS.knowledge, KEYWORDS.data],
 });
@@ -30,12 +30,13 @@ const GROUPS = [
   { name: "数据 / AI 合作群", focus: "数据口径、标注规则、评测标准", freq: "按项目不定期" },
 ];
 
-const PLATFORMS = [
-  { name: "小鹅通", use: "体系课程、工具包、年度通行证", how: "加企微后发课程链接与优惠码", demand: "课程" },
-  { name: "知识星球", use: "深度问答沉淀与同行交流", how: "加企微后拉你进星球", demand: "知识库" },
-  { name: "Baklib / 飞书", use: "基础知识库、SOP、模板库在线查阅", how: "加企微后开通阅读权限", demand: "知识库" },
-  { name: "飞书多维表格", use: "订阅数据看板（支持 7 天试用）", how: "留资后开通试用，到期不自动续费", demand: "数据产品" },
-  { name: "合作方平台", use: "SaaS 联合运营 / AI 数据合作交付", how: "签协议后由项目负责人开通", demand: "AI合作" },
+/** 加企微后统一开通的权益（不再列任何第三方平台入口） */
+const BENEFITS = [
+  { name: "内部资料库", use: "SOP、报告、模板库在线查阅", how: "扫码后系统自动下发链接", demand: "知识库" },
+  { name: "行业交流群", use: "按身份分组的同行交流与复盘", how: "添加后自动邀请入群", demand: "社群" },
+  { name: "体系课程 / 工具包", use: "录播、作业批改、选品核价等工具表", how: "企微内确认需求后交付", demand: "课程" },
+  { name: "订阅数据看板", use: "品类价格监测与竞品动态（支持 7 天试用）", how: "留资后开通试用，到期不自动续费", demand: "数据产品" },
+  { name: "AI 数据合作", use: "语料授权、标注规则与评测标准共建", how: "签协议后由项目负责人对接", demand: "AI合作" },
 ];
 
 const RULES = [
@@ -51,7 +52,7 @@ export default function WechatPage() {
       <PageHero
         tag="私域入口"
         title="加企微，备注「官网」优先通过"
-        desc="资料、社群、第三方平台权限，都从这一步开始。官网不处理支付，所有成交与交付都在第三方平台完成。"
+        desc="内部资料库、行业交流群、课程与工具包，都从这一步开始。官网不处理支付、不跳转第三方平台。"
       />
 
       {/* 提交表单后 / 拦截弹窗过来的落地提示 */}
@@ -66,7 +67,7 @@ export default function WechatPage() {
             <CardContent className="p-5 text-center">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src={PLANET.wecomQr}
+                src={WECOM.qr}
                 alt="企业微信活码：扫码添加，备注「官网」优先通过"
                 width={224}
                 height={224}
@@ -105,7 +106,7 @@ export default function WechatPage() {
                 "行业报告精华摘要（核心数据 + 趋势判断 + 一页决策建议）",
                 "一线在用的表格模板（飞书可直接复制）",
                 "按你的身份拉进对应社群，每周/每月有复盘",
-                "知识库、课程、工具包、数据看板的开通权限（第三方平台）",
+                "内部资料库、课程、工具包、数据看板的开通权限（企微内交付）",
               ].map((t) => (
                 <li key={t} className="flex gap-2.5 text-sm leading-relaxed">
                   <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-brand-green" />
@@ -148,9 +149,9 @@ export default function WechatPage() {
       <section id="platforms" className="section-pad">
         <div className="container-site">
           <SectionHeading
-            tag="第三方平台入口"
-            title="成交与交付都在第三方，统一在这里开通"
-            desc="官网不处理支付。点任何平台都会先提示「加微信领取完整资料/优惠链接」，再放行。"
+            tag="权益一览"
+            title="资料与交付都在企微，统一在这里开通"
+            desc="官网不处理支付、不跳转任何第三方平台。点任何一项都只弹企微二维码，扫码后自动下发。"
           />
           <div className="mx-auto max-w-3xl overflow-hidden rounded-xl border">
             <table className="w-full text-sm">
@@ -163,13 +164,13 @@ export default function WechatPage() {
                 </tr>
               </thead>
               <tbody>
-                {PLATFORMS.map((p) => (
+                {BENEFITS.map((p) => (
                   <tr key={p.name} className="border-t">
                     <td className="px-4 py-3 font-medium whitespace-nowrap">{p.name}</td>
                     <td className="px-4 py-3 text-muted-foreground">{p.use}</td>
                     <td className="hidden px-4 py-3 text-muted-foreground sm:table-cell">{p.how}</td>
                     <td className="px-4 py-3 text-right">
-                      <GuardedLink href="#" label="前往" platform={p.name} demand={p.demand} />
+                      <GuardedLink label="扫码获取" platform={p.name} demand={p.demand} />
                     </td>
                   </tr>
                 ))}
