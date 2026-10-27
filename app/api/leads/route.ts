@@ -2,7 +2,6 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 
 import { getSupabaseAdmin, isSupabaseConfigured } from "@/lib/supabase";
-import { cloudInsertLead } from "@/lib/cloud";
 import { CHANNEL_LABELS, type Channel } from "@/lib/types";
 import { parseContact } from "@/lib/contact";
 import { clientIp, rateLimit } from "@/lib/rate-limit";
@@ -213,42 +212,20 @@ export async function POST(req: Request) {
     console.info("[leads] demo 模式收到线索:", JSON.stringify(row));
   }
 
-  /* ---------- 云服务（WorkBuddy）留一份 ----------
-     与 Supabase 并存：Supabase 失败时仍有一条云端副本，线索不会丢。 */
-  const cloudRow = {
-    name: payload.name,
-    contact: payload.contact,
-    role: payload.role,
-    demand: payload.demand,
-    description: payload.description ?? null,
-    channel: payload.channel ?? "other",
-    identity,
-    utm_source: utmSource,
-    source: payload.source ?? null,
-    consent: payload.consent === true,
-    utm: payload.utm ?? {},
-    status: "new",
-  };
-
-  // 通知与云服务并行，任何一路失败都不影响用户看到成功
-  const [email, feishu, cloud] = await Promise.all([
+  // 通知并行发出，失败不影响用户看到成功
+  const [email, feishu] = await Promise.all([
     sendEmail(payload, { identity, utmSource }),
     sendFeishu(payload, { identity, utmSource }),
-    cloudInsertLead(cloudRow),
   ]);
-
-  const persisted = stored || cloud.ok;
-  const mode = stored && cloud.ok ? "supabase+cloud" : stored ? "supabase" : cloud.ok ? "cloud" : "demo";
 
   return NextResponse.json({
     ok: true,
-    stored: persisted,
-    mode,
+    stored,
+    mode: stored ? "supabase" : "demo",
     id: leadId,
     identity,
     utm_source: utmSource,
     degraded,
     notify: { email: email.ok, feishu: feishu.ok },
-    cloud: { ok: cloud.ok, error: cloud.error ?? null },
   });
 }

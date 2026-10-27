@@ -2,11 +2,9 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 
 import { getSupabaseAdmin, isSupabaseConfigured } from "@/lib/supabase";
-import { cloudInsertEvent } from "@/lib/cloud";
 
 export const runtime = "nodejs";
 
-/** 与 lib/analytics.ts 的 TrackEventName 保持一致，缺一个就会被静默丢弃 */
 const EVENTS = [
   "form_submit",
   "wechat_click",
@@ -15,9 +13,6 @@ const EVENTS = [
   "consult_click",
   "ai_chat_open",
   "ladder_click",
-  "planet_join_intent",
-  "planet_copy",
-  "wecom_qr_view",
 ] as const;
 
 const Schema = z.object({
@@ -46,30 +41,12 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: false, error: "事件格式不正确" }, { status: 422 });
   }
 
-  /* ---------- 云服务（WorkBuddy）events 表 ---------- */
-  const cloud = await cloudInsertEvent({
-    event: parsed.data.event,
-    props: { ...(parsed.data.props ?? {}), channel: parsed.data.channel ?? null },
-    path: parsed.data.path ?? null,
-  });
-
   if (!isSupabaseConfigured()) {
-    return NextResponse.json({
-      ok: true,
-      stored: cloud.ok,
-      demo: !cloud.ok,
-      cloud: { ok: cloud.ok, error: cloud.error ?? null },
-    });
+    return NextResponse.json({ ok: true, stored: false, demo: true });
   }
 
   const db = getSupabaseAdmin();
-  if (!db) {
-    return NextResponse.json({
-      ok: true,
-      stored: cloud.ok,
-      cloud: { ok: cloud.ok, error: cloud.error ?? null },
-    });
-  }
+  if (!db) return NextResponse.json({ ok: true, stored: false });
 
   const { error } = await db.from("events").insert({
     event: parsed.data.event,
@@ -81,18 +58,7 @@ export async function POST(req: Request) {
   });
 
   // 表不存在（未执行 0004 迁移）时不要让浏览器报错
-  if (error) {
-    return NextResponse.json({
-      ok: true,
-      stored: cloud.ok,
-      cloud: { ok: cloud.ok, error: cloud.error ?? null },
-      error: error.message,
-    });
-  }
+  if (error) return NextResponse.json({ ok: true, stored: false, error: error.message });
 
-  return NextResponse.json({
-    ok: true,
-    stored: true,
-    cloud: { ok: cloud.ok, error: cloud.error ?? null },
-  });
+  return NextResponse.json({ ok: true, stored: true });
 }
