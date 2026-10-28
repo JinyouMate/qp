@@ -52,7 +52,7 @@ export interface Product {
   audience: string; // 适合谁
   deliverable: string; // 交付什么
   price: string; // 怎么收费
-  cta_type: CtaType; // 下一步动作：扫码加企微 / 预约咨询（站内留资）
+  cta_type: CtaType; // 下一步动作：联系主理人 / 预约咨询（站内留资）
   /** 历史字段，已废弃：不再跳转任何第三方平台链接，前端统一改弹企微二维码 */
   third_party_url: string | null;
   /** 历史字段，已废弃：交付平台统一为企业微信 */

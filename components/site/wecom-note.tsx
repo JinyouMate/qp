@@ -22,7 +22,7 @@ export function WecomNote({
       <ShieldCheck className="mt-0.5 h-3 w-3 shrink-0 text-brand-green" strokeWidth={1.5} />
       <span>
         {compact
-          ? "扫码加企微，自动下发内部资料库链接。"
+          ? "添加主理人企微，自动下发内部资料库链接。"
           : "资料与交付全部在企业微信完成（扫码后自动下发内部资料库链接并邀请进群）。本站不收款、不做支付、不跳转任何第三方平台。"}
       </span>
     </p>

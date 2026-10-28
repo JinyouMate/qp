@@ -53,14 +53,20 @@ export function Nav() {
           ))}
         </nav>
 
-        {/* 右上角固定 CTA：主按钮「扫码加企微」，次按钮「预约咨询」（站内） */}
+        {/* 右上角固定 CTA：主按钮「联系主理人」，次按钮「预约咨询」（站内） */}
         <div className="hidden items-center gap-2.5 lg:flex">
           <Button asChild size="sm" variant="ghost">
             <Link href="/contact?intent=consult">
               <CalendarClock /> 预约咨询
             </Link>
           </Button>
-          <WecomCtaButton size="sm" variant="destructive" from="nav-desktop" subject="导航栏" />
+          <WecomCtaButton
+            size="sm"
+            variant="default"
+            label="联系主理人"
+            from="nav-desktop"
+            subject="导航栏"
+          />
         </div>
 
         {/* 移动端按钮 */}
@@ -93,7 +99,8 @@ export function Nav() {
             <div className="mt-3 grid grid-cols-1 gap-2">
               <WecomCtaButton
                 size="sm"
-                variant="destructive"
+                variant="default"
+                label="联系主理人"
                 from="nav-mobile"
                 subject="移动导航"
                 className="w-full"

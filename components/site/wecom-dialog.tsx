@@ -4,36 +4,38 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { MessageCircle, ShieldCheck } from "lucide-react";
+import { BadgeCheck, MessageCircle, ShieldCheck } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import {
   Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle,
 } from "@/components/ui/dialog";
-import { WECOM } from "@/lib/brand";
+import { ADVISOR, WECOM } from "@/lib/brand";
 import { trackEvent } from "@/lib/analytics";
 
 /* ============================================================
-   企微二维码弹窗（全站唯一的转化收口）
+   主理人名片弹窗（全站唯一的转化收口）
 
    规则（必须遵守）：
    1. 点击任何转化按钮**不跳转任何外部链接**，只弹这个窗
-   2. 弹窗内居中展示企微二维码（public/wecom-qr.png）
-   3. 弹窗下方固定提示：添加后自动下发内部资料库链接 + 邀请进群
-   4. 二维码打开即埋点 wechat_click（白名单事件，落 Supabase events 表）
+   2. 视觉上是「专家名片」：浅灰底 + 品牌绿，不用大红大橙
+   3. 二维码旁边配主理人头像（带呼吸感的占位 Logo）
+   4. 弹窗打开即埋点 wechat_click（落 Supabase events 表）
    ============================================================ */
 
 /**
- * 全站统一的 CTA 按钮：点一下就弹企微二维码，不跳转任何链接。
+ * 全站统一的 CTA 按钮：点一下就弹主理人名片，不跳转任何链接。
  * 服务端组件页面也可直接引用（自身是 client 组件）。
  */
 export function WecomCtaButton({
   label,
   size = "default",
-  variant = "orange",
+  variant = "default",
   from = "cta-button",
   subject,
   className,
+  iconOnly = false,
+  ariaLabel,
 }: {
   label?: string;
   size?: "sm" | "default" | "lg";
@@ -41,13 +43,22 @@ export function WecomCtaButton({
   from?: string;
   subject?: string;
   className?: string;
+  /** 只显示图标（用于悬浮圆钮等无文字位） */
+  iconOnly?: boolean;
+  ariaLabel?: string;
 }) {
   const [open, setOpen] = useState(false);
 
   return (
     <>
-      <Button size={size} variant={variant} className={className} onClick={() => setOpen(true)}>
-        <MessageCircle /> {label ?? WECOM.ctaLabel}
+      <Button
+        size={size}
+        variant={variant}
+        className={className}
+        aria-label={iconOnly ? (ariaLabel ?? label ?? WECOM.ctaLabel) : undefined}
+        onClick={() => setOpen(true)}
+      >
+        {iconOnly ? <MessageCircle className="h-5 w-5" /> : label ?? WECOM.ctaLabel}
       </Button>
       <WecomDialog open={open} onOpenChange={setOpen} from={from} subject={subject} />
     </>
@@ -67,7 +78,7 @@ export function WecomDialog({
   /** 触发主体（产品名 / 页面名），仅用于埋点与副标题 */
   subject?: string;
 }) {
-  // 弹窗打开即视为一次「加企微」意向
+  // 弹窗打开即视为一次「联系主理人」意向
   useEffect(() => {
     if (open) {
       trackEvent("wechat_click", { from, subject: subject ?? "" });
@@ -76,42 +87,83 @@ export function WecomDialog({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-sm">
-        <DialogHeader className="items-center text-center">
-          <span className="mb-1 flex h-11 w-11 items-center justify-center rounded-full bg-brand-orange-soft text-brand-orange">
-            <MessageCircle className="h-5 w-5" strokeWidth={1.75} />
-          </span>
-          <DialogTitle className="text-center text-lg">{WECOM.ctaLabel}</DialogTitle>
-          <DialogDescription className="text-center">
-            微信扫描下方二维码，备注「{WECOM.remark}」优先通过
-            {subject ? ` · ${subject}` : ""}
-          </DialogDescription>
-        </DialogHeader>
+      <DialogContent className="max-w-md gap-0 overflow-hidden p-0">
+        {/* 头部：浅灰底，不用大红大橙 */}
+        <div className="border-b bg-muted/60 px-6 pb-4 pt-6 text-center">
+          <DialogHeader className="items-center gap-1 text-center">
+            <span className="mb-1 flex h-10 w-10 items-center justify-center rounded-full bg-secondary text-primary">
+              <BadgeCheck className="h-5 w-5" strokeWidth={1.75} />
+            </span>
+            <DialogTitle className="text-center text-lg font-bold tracking-tight">
+              {WECOM.dialogTitle}
+            </DialogTitle>
+            <DialogDescription className="text-center text-xs text-muted-foreground">
+              {subject ? `来自：${subject}` : "汽配知识局 · 一对一顾问服务"}
+            </DialogDescription>
+          </DialogHeader>
+        </div>
 
-        <div className="flex flex-col items-center gap-3">
-          {/* 二维码：换真实活码时覆盖 public/wecom-qr.png 即可，文件名不变 */}
-          <div className="rounded-2xl border bg-white p-3 shadow-warm">
-            <img
-              src={WECOM.qr}
-              alt="企业微信二维码：扫码添加，自动下发内部资料库链接"
-              width={208}
-              height={208}
-              className="rounded-lg"
-              style={{ width: 208, height: 208 }}
-            />
+        <div className="px-6 pb-6 pt-5">
+          {/* 名片：头像与二维码并排（专家名片质感，不用大红大橙） */}
+          <div className="flex items-center justify-center gap-5 rounded-2xl border bg-muted/40 p-4">
+            <div className="flex shrink-0 flex-col items-center gap-1.5">
+              <img
+                src={ADVISOR.avatar}
+                alt="主理人头像"
+                width={88}
+                height={88}
+                className="breathe-ring rounded-2xl bg-white object-cover"
+                style={{ width: 88, height: 88 }}
+              />
+              <span className="text-[10px] leading-none text-muted-foreground">主理人</span>
+            </div>
+
+            <span className="h-24 w-px shrink-0 bg-border" aria-hidden />
+
+            <div className="flex shrink-0 flex-col items-center gap-1.5">
+              <div className="rounded-xl border bg-white p-1.5 shadow-sm">
+                <img
+                  src={WECOM.qr}
+                  alt="主理人企业微信二维码"
+                  width={124}
+                  height={124}
+                  className="rounded-md"
+                  style={{ width: 124, height: 124 }}
+                />
+              </div>
+              <span className="flex items-center gap-1 text-[10px] leading-none text-muted-foreground">
+                <MessageCircle className="h-3 w-3" strokeWidth={1.75} /> 微信扫一扫
+              </span>
+            </div>
           </div>
 
-          {/* 固定提示语 */}
-          <p className="rounded-xl bg-brand-green-soft px-4 py-3 text-center text-sm leading-relaxed text-foreground/90">
-            {WECOM.note}
+          {/* 身份与说明 */}
+          <div className="mt-4">
+            <p className="text-sm font-bold">{ADVISOR.name}</p>
+            <p className="text-xs text-primary">{ADVISOR.title}</p>
+            <ul className="mt-2 grid gap-1 sm:grid-cols-2">
+              {ADVISOR.creds.map((c) => (
+                <li
+                  key={c}
+                  className="flex items-start gap-1 text-[11px] leading-snug text-muted-foreground"
+                >
+                  <span className="mt-[5px] h-1 w-1 shrink-0 rounded-full bg-primary/60" />
+                  {c}
+                </li>
+              ))}
+            </ul>
+            <p className="mt-3 text-sm leading-relaxed text-foreground/85">{WECOM.note}</p>
+            <p className="mt-2 text-[11px] text-muted-foreground">
+              添加时备注「{WECOM.remark}」优先通过
+            </p>
+          </div>
+
+          <p className="mt-4 flex items-start gap-1.5 text-[11px] leading-relaxed text-muted-foreground">
+            <ShieldCheck className="mt-0.5 h-3 w-3 shrink-0 text-primary" strokeWidth={1.5} />
+            <span>官网不处理支付，资料与诊断均由主理人在企业微信一对一交付。</span>
           </p>
 
-          <p className="flex items-start gap-1.5 text-[11px] leading-relaxed text-muted-foreground">
-            <ShieldCheck className="mt-0.5 h-3 w-3 shrink-0 text-brand-green" strokeWidth={1.5} />
-            <span>官网不处理支付，资料与交付全部在企业微信完成。</span>
-          </p>
-
-          <p className="text-xs text-muted-foreground">
+          <p className="mt-2 text-xs text-muted-foreground">
             不方便扫码？
             <Link
               href={`/contact?intent=asset${subject ? `&subject=${encodeURIComponent(subject)}` : ""}`}
@@ -120,7 +172,7 @@ export function WecomDialog({
             >
               留下联系方式
             </Link>
-            ，我们主动加你。
+            ，我们会主动与你联系。
           </p>
         </div>
       </DialogContent>

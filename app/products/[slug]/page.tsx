@@ -141,14 +141,14 @@ export default function ProductDetailPage({ params }: { params: { slug: string }
               <ProductCta product={product} size="default" />
               <Button asChild variant="outline">
                 <Link href={`/contact?demand=${encodeURIComponent(demand)}&intent=wechat`}>
-                  加企微先问清楚
+                  联系主理人先问清楚
                 </Link>
               </Button>
             </div>
 
             <p className="mt-3 flex items-start gap-2 text-xs text-muted-foreground">
               <ShieldCheck className="mt-0.5 h-3.5 w-3.5 shrink-0 text-brand-green" />
-              本站不收款、不做支付、不跳转任何第三方平台。扫码加企微后，
+              本站不收款、不做支付、不跳转任何第三方平台。添联系主理人后，
               系统自动下发内部资料库链接并邀请你加入行业交流群。
             </p>
             {product.cta_type === "buy" && <WecomNote className="mt-2" />}

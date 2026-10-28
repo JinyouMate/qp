@@ -16,7 +16,7 @@ import { getProducts } from "@/lib/data";
 
 export const metadata: Metadata = buildMetadata({
   title: "培训课程",
-  description: "录播 + 社群答疑 + 作业批改的体系课。从选品、适配数据到跨境平台运营，讲方法也讲真实数据。扫码加企微即可获取，官网不处理支付。",
+  description: "录播 + 社群答疑 + 作业批改的体系课。从选品、适配数据到跨境平台运营，讲方法也讲真实数据。联系主理人即可获取，官网不处理支付。",
   path: "/courses",
   keywords: [KEYWORDS.knowledge, KEYWORDS.sop, KEYWORDS.data, KEYWORDS.compliance],
 });

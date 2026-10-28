@@ -169,7 +169,7 @@ function demoPayload(from: string | null, to: string | null) {
       events: [],
       funnel: [
         { key: "leads", label: "留资提交", count: total, rate: 100 },
-        { key: "wechat_click", label: "加微信点击", count: ratio(0.62), rate: 62 },
+        { key: "wechat_click", label: "联系主理人点击", count: ratio(0.62), rate: 62 },
         { key: "asset_download", label: "资料领取", count: ratio(0.41), rate: 41 },
         { key: "consult_click", label: "预约咨询", count: ratio(0.07), rate: 7 },
       ],
@@ -277,7 +277,7 @@ export async function GET(req: Request) {
       .sort((a, b) => b.count - a.count),
     funnel: [
       { key: "leads", label: "留资提交", count: leads, rate: 100 },
-      { key: "wechat_click", label: "加微信点击", count: wechat, rate: pct(wechat) },
+      { key: "wechat_click", label: "联系主理人点击", count: wechat, rate: pct(wechat) },
       { key: "asset_download", label: "资料领取", count: asset, rate: pct(asset) },
       { key: "consult_click", label: "预约咨询", count: consult, rate: pct(consult) },
     ],

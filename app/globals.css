@@ -129,3 +129,28 @@
 .mdx-body hr {
   @apply my-10 border-border;
 }
+
+/* ============================================================
+   主理人名片：头像呼吸感（弱化营销感，强化顾问感）
+   ============================================================ */
+@layer utilities {
+  .breathe-ring {
+    animation: breathe-ring 3s ease-in-out infinite;
+  }
+}
+
+@keyframes breathe-ring {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 hsl(var(--primary) / 0.3);
+  }
+  50% {
+    box-shadow: 0 0 0 10px hsl(var(--primary) / 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .breathe-ring {
+    animation: none;
+  }
+}

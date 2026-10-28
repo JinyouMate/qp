@@ -1,10 +1,11 @@
 /* ============================================================
-   五类访客身份 → 产品推荐路由
+   四类访客身份 → 产品推荐路由
    首页入口点击后跳 /products?role=xxx，产品中心据此把该身份
    该看的产品排到最前并打「为你推荐」标。
+   repair / dealer 为历史身份（已合并为 shop，仅保留兼容）。
    ============================================================ */
 
-export type PersonaKey = "repair" | "dealer" | "enterprise" | "ai" | "seller";
+export type PersonaKey = "seller" | "shop" | "repair" | "dealer" | "enterprise" | "ai";
 
 export interface Persona {
   key: PersonaKey;
@@ -23,6 +24,32 @@ export interface Persona {
 }
 
 export const PERSONAS: Record<PersonaKey, Persona> = {
+  seller: {
+    key: "seller",
+    identity: "零售/跨境卖家",
+    label: "零售 / 跨境卖家",
+    need: "想少踩坑多出单",
+    pain: "卖汽配退货率太高？选品总踩坑？平台规则合规搞不清？",
+    give: "爆款选品数据 + OE 码匹配工具 + 平台合规 SOP",
+    recommended: ["toolkit-selection", "toolkit-fitment", "sop-checklists", "knowledge-base"],
+    demand: "选品数据",
+    intent: "asset",
+  },
+  /**修理厂 + 汽配商合并后的身份（首页第 2 张卡） */
+  shop: {
+    key: "shop",
+    identity: "修理厂/汽配商",
+    label: "修理厂 / 汽配商",
+    need: "想解决具体业务问题 / 想系统搭建体系",
+    pain: "采购乱、压资金？干货看了没体系、没方法？",
+    give: "SOP 清单 + 库存周转模板 + 体系课 + 复盘社群",
+    recommended: [
+      "sop-checklists", "toolkit-inventory", "toolkit-fitment", "templates",
+      "knowledge-base", "courses", "annual-pass", "case-library",
+    ],
+    demand: "SOP",
+    intent: "asset",
+  },
   repair: {
     key: "repair",
     identity: "修理厂",
@@ -67,20 +94,10 @@ export const PERSONAS: Record<PersonaKey, Persona> = {
     demand: "AI合作",
     intent: "consult",
   },
-  seller: {
-    key: "seller",
-    identity: "零售/跨境卖家",
-    label: "零售 / 跨境卖家",
-    need: "想少踩坑多出单",
-    pain: "卖汽配退货率太高？选品总踩坑？平台规则合规搞不清？",
-    give: "爆款选品数据 + OE 码匹配工具 + 平台合规 SOP",
-    recommended: ["toolkit-selection", "toolkit-fitment", "sop-checklists", "knowledge-base"],
-    demand: "选品数据",
-    intent: "asset",
-  },
 };
 
-export const PERSONA_ORDER: PersonaKey[] = ["repair", "dealer", "enterprise", "ai", "seller"];
+/** 首页入口的展示顺序（第 1 张是转化主路径） */
+export const PERSONA_ORDER: PersonaKey[] = ["seller", "shop", "enterprise", "ai"];
 
 /** 从 URL 参数解析身份，非法值返回 null（不报错，退化为无推荐） */
 export function getPersona(key?: string | string[] | null): Persona | null {

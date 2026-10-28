@@ -65,7 +65,7 @@ export default async function ProductsPage({
                 href={personaLeadHref(persona)}
                 className="rounded-full bg-brand-red px-4 py-2 text-xs font-semibold text-white"
               >
-                {persona.intent === "consult" ? "预约沟通" : "领取资料"}
+                {persona.intent === "consult" ? "预约沟通" : "获取资料"}
               </Link>
               <Link
                 href="/products"

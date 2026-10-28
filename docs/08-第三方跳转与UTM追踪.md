@@ -17,9 +17,9 @@
 
 ```
 ┌────────────────────────────────────────┐
-│  加微信领取完整资料 / 优惠链接              │
+│  联系主理人领取完整资料 / 优惠链接              │
 │                                        │
-│  [ 加企业微信（推荐）]  ← 主按钮，去 /wechat  │
+│  [ 添加企业微信（推荐）]  ← 主按钮，去 /wechat  │
 │  [ 填表留资 ]          ← 去 /contact       │
 │  ─────────────────────────────────    │
 │  已经加过了？继续前往第三方 →   ← 始终保留    │
@@ -102,7 +102,7 @@ trackEvent("wechat_click", { from: "floating", page: "/products" });
 | 事件 | 触发点 |
 |---|---|
 | `form_submit` | 留资表单提交成功 |
-| `wechat_click` | 点击加企微 / 复制微信号（浮动条、拦截弹窗、加微页） |
+| `wechat_click` | 点击联系主理人 / 复制微信号（浮动条、拦截弹窗、加微页） |
 | `third_party_click` | 第三方跳转（`props.stage`：`intent` 点按钮 / `go` 真跳） |
 | `asset_download` | 免费资料领取 |
 | `consult_click` | 预约咨询 |
@@ -112,7 +112,7 @@ trackEvent("wechat_click", { from: "floating", page: "/products" });
 
 ```tsx
 <TrackedLink href="/contact?intent=asset" event="asset_download" data={{ from: "home" }}>
-  领取资料
+  获取资料
 </TrackedLink>
 ```
 

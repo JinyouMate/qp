@@ -47,7 +47,7 @@ export function AiChat() {
     } catch {
       setMessages((m) => [
         ...m,
-        { role: "assistant", content: "网络异常，请稍后再试。也可以直接加企微找真人解答：/wechat" },
+        { role: "assistant", content: "网络异常，请稍后再试。也可以直接联系主理人找真人解答：/wechat" },
       ]);
     } finally {
       setLoading(false);

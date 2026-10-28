@@ -7,7 +7,7 @@ import { LeadForm } from "./lead-form";
 import { Card, CardContent } from "@/components/ui/card";
 
 const INTENT_TITLE: Record<string, string> = {
-  asset: "领取资料",
+  asset: "获取资料",
   consult: "预约咨询",
   buy: "资料领取前留资",
 };

@@ -11,14 +11,14 @@ import { getStoredUtm } from "./utm";
 
 export type TrackEventName =
   | "form_submit" // 表单提交
-  | "wechat_click" // 点击加企微 / 复制微信号
+  | "wechat_click" // 点击联系主理人 / 复制微信号
   | "third_party_click" // 跳转第三方成交页
   | "asset_download" // 资料下载/领取
   | "consult_click" // 预约咨询
   | "ai_chat_open" // AI 问答打开
   | "ladder_click"; // 产品阶梯点击
 
-/** 全站唯一的收口动作：扫码加企微（弹窗打开即上报 wechat_click） */
+/** 全站唯一的收口动作：联系主理人（弹窗打开即上报 wechat_click） */
 
 export interface TrackProps {
   [key: string]: string | number | boolean | undefined;

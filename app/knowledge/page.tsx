@@ -160,7 +160,7 @@ export default async function KnowledgePage() {
                     <span className="text-sm font-bold text-brand-red">{p.price}</span>
                     <Button asChild size="sm" variant="outline">
                       <Link href={`/contact?intent=asset&demand=SOP`}>
-                        免费领取 <ArrowRight />
+                        获取资料 <ArrowRight />
                       </Link>
                     </Button>
                   </div>

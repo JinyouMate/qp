@@ -106,7 +106,7 @@ export default function InsightDetailPage({ params }: { params: { slug: string }
             <h2 className="text-lg font-bold">这篇里提到的方法，都做成了可填写的工具</h2>
             <p className="mt-2 text-sm text-muted-foreground">
               适配校验工具包、选品评分工具包、核价毛利工具包——留个联系方式，我们把对应模板发你，
-              加微信后回复【汽配数据】直接领。
+              联系主理人后回复【汽配数据】直接领。
             </p>
             <div className="mt-4 flex flex-wrap gap-3">
               <Button asChild>
@@ -115,7 +115,7 @@ export default function InsightDetailPage({ params }: { params: { slug: string }
                 </Link>
               </Button>
               <Button asChild variant="outline">
-                <Link href="/wechat?from=insight">加企微进同行社群</Link>
+                <Link href="/wechat?from=insight">加入同行社群</Link>
               </Button>
             </div>
           </div>

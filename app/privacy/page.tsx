@@ -119,7 +119,7 @@ export default function PrivacyPage() {
                 <Mail className="h-4 w-4 text-brand-green" /> 有疑问直接问
               </p>
               <p className="mt-2 text-muted-foreground">
-                隐私相关的任何问题，发邮件或加企微说明即可，我们会在 7 个工作日内回复。
+                隐私相关的任何问题，发邮件或联系主理人说明即可，我们会在 7 个工作日内回复。
                 也可以一并查看
                 <Link href="/terms" className="mx-1 text-primary underline underline-offset-2">
                   服务条款

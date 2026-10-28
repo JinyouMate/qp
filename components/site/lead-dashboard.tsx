@@ -20,7 +20,7 @@ export interface DashboardData {
 
 const EVENT_LABELS: Record<string, string> = {
   form_submit: "表单提交",
-  wechat_click: "加微信点击",
+  wechat_click: "联系主理人点击",
   third_party_click: "第三方跳转",
   asset_download: "资料领取",
   consult_click: "预约咨询",
@@ -99,7 +99,7 @@ export function LeadDashboard({ data, demo = false }: { data: DashboardData; dem
           <CardContent className="p-5">
             <h3 className="mb-1 text-sm font-bold">事件漏斗</h3>
             <p className="mb-4 text-xs text-muted-foreground">
-              以留资数为分母。「加微信点击」含企微二维码弹窗的打开次数。
+              以留资数为分母。「联系主理人点击」含企微二维码弹窗的打开次数。
             </p>
             <ul className="space-y-3">
               {data.funnel.map((f) => (

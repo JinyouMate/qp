@@ -25,12 +25,12 @@ export function WechatBanner() {
           </span>
           <div className="flex-1">
             <p className="text-lg font-bold">
-              {fromContact ? "提交成功，最后一步：加微信" : "资料与优惠链接都在微信这边"}
+              {fromContact ? "提交成功，最后一步：联系主理人" : "资料与诊断结论都在微信这边"}
             </p>
             <p className="mt-1 text-sm text-white/85">
-              扫码添加企微（备注「官网」优先通过），发送
+              添加主理人企微（备注「官网」优先通过），发送
               <span className="mx-1 rounded bg-white/20 px-2 py-0.5 font-semibold">汽配数据</span>
-              四个字即可领取。
+              四个字即可获取。
             </p>
           </div>
           <a

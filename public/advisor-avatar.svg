@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" width="160" height="160" role="img" aria-label="主理人头像占位">
+  <defs>
+    <linearGradient id="adv-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2E8F62" />
+      <stop offset="1" stop-color="#1F6F4A" />
+    </linearGradient>
+    <linearGradient id="adv-fg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.96" />
+      <stop offset="1" stop-color="#EAF5EE" stop-opacity="0.9" />
+    </linearGradient>
+  </defs>
+
+  <rect width="160" height="160" rx="36" fill="url(#adv-bg)" />
+
+  <!-- 品牌标记：书本/智库剪影 -->
+  <path d="M34 58h92v56a10 10 0 0 1-10 10H44a10 10 0 0 1-10-10V58Z" fill="url(#adv-fg)" opacity="0.16" />
+  <path d="M80 58v66" stroke="url(#adv-fg)" stroke-width="3" opacity="0.35" />
+
+  <!-- 专业人士剪影 -->
+  <circle cx="80" cy="66" r="22" fill="url(#adv-fg)" />
+  <path d="M38 132c0-23.2 18.8-42 42-42s42 18.8 42 42v6a4 4 0 0 1-4 4H42a4 4 0 0 1-4-4v-6Z" fill="url(#adv-fg)" />
+
+  <!-- 领带/细节，弱化营销感、强化顾问感 -->
+  <path d="M74 100l6 8 6-8 3 4-9 12-9-12 3-4Z" fill="#1F6F4A" opacity="0.55" />
+
+  <circle cx="80" cy="80" r="78" fill="none" stroke="#FFFFFF" stroke-opacity="0.18" stroke-width="2" />
+</svg>

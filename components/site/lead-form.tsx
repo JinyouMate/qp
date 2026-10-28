@@ -100,7 +100,7 @@ export function LeadForm({
       });
 
       setDone(true);
-      // 提交后跳转到「加微信领资料」页面
+      // 提交后跳转到「联系主理人领资料」页面
       setTimeout(() => router.push("/wechat?from=contact"), 1400);
     } catch (e) {
       setServerError(e instanceof Error ? e.message : "提交失败，请稍后再试");
@@ -113,11 +113,11 @@ export function LeadForm({
         <CheckCircle2 className="mb-4 h-14 w-14 text-brand-green" strokeWidth={1.5} />
         <h3 className="text-xl font-bold">提交成功！</h3>
         <p className="mt-2 text-sm text-muted-foreground">
-          正在跳转…加微信后回复
+          正在跳转…联系主理人后回复
           <span className="mx-1 rounded bg-brand-orange-soft px-2 py-0.5 font-semibold text-accent-foreground">
             【汽配数据】
           </span>
-          领取资料。
+          获取资料。
         </p>
       </div>
     );
@@ -219,7 +219,7 @@ export function LeadForm({
 
       <Button type="submit" variant="destructive" className="w-full" disabled={isSubmitting}>
         {isSubmitting && <Loader2 className="animate-spin" />}
-        {variant === "full" ? "提交，领取资料" : "领取资料 + 获取社群邀请"}
+        {variant === "full" ? "提交并获取资料" : "获取资料 + 社群邀请"}
       </Button>
     </form>
   );

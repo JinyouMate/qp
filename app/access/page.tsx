@@ -17,13 +17,13 @@ import { Card, CardContent } from "@/components/ui/card";
 
    本站不接入任何支付、不跳转任何第三方平台，因此没有站内订单、没有交易流水。
    资料与交付全部在企业微信完成：扫码添加后自动下发内部资料库链接并邀请进群。
-   查不到 → 加企微客服人工核对。
+   查不到 → 联系主理人人工核对。
    ============================================================ */
 
 export const metadata: Metadata = buildMetadata({
   title: "查询我的资料权限",
   description:
-    "本站不收款、没有站内订单。资料与交付全部在企业微信完成：扫码添加后自动下发内部资料库链接并邀请进群；找不到就加企微客服人工核对。",
+    "本站不收款、没有站内订单。资料与交付全部在企业微信完成：扫码添加后自动下发内部资料库链接并邀请进群；找不到就联系主理人人工核对。",
   path: "/access",
   keywords: [KEYWORDS.knowledge, KEYWORDS.sop],
   noindex: true,
@@ -52,7 +52,7 @@ const WAYS = [
     icon: Search,
     title: "还是找不到？找客服核对",
     steps: [
-      "加企业微信，报你留资时填的手机号 / 微信号",
+      "添加企业微信，报你留资时填的手机号 / 微信号",
       "我们按后台记录核对开通状态（一般当天回复）",
       "确认漏发的，人工补发；重复提交的，合并处理",
     ],
@@ -65,7 +65,7 @@ const FAQS = [
     a: "本站不处理支付，也没有站内收银台、不跳转任何第三方平台。资料与交付全部在企业微信完成，所以权益以企微后台与资料库记录为准。",
   },
   {
-    q: "加企微后多久能收到资料？",
+    q: "联系主理人后多久能收到资料？",
     a: "扫码添加后系统自动发送，一般几分钟内。若超过当天仍未收到，多半是微信号与留资号不一致，在企微里报一下手机号即可核对补发。",
   },
   {
@@ -122,7 +122,7 @@ export default function AccessPage() {
                   {w.title.startsWith("还是找不到") && (
                     <Button asChild variant="orange" className="mt-auto w-full">
                       <Link href={`${WECOM.path}?from=access`}>
-                        <MessageCircle /> 加企微客服核对
+                        <MessageCircle /> 联系主理人核对
                       </Link>
                     </Button>
                   )}
@@ -138,7 +138,7 @@ export default function AccessPage() {
           <SectionHeading
             tag="常见问题"
             title="关于权限，大家最常问的五件事"
-            desc="答不了的，直接加企微问人。"
+            desc="答不了的，直接联系主理人问人。"
           />
           <Faq items={FAQS} />
           <div className="mt-6">
@@ -152,7 +152,7 @@ export default function AccessPage() {
             </Button>
             <Button asChild variant="outline">
               <Link href={`${WECOM.path}?from=access`}>
-                <MessageCircle /> 加企微，人工查权限
+                <MessageCircle /> 联系主理人，人工查权限
               </Link>
             </Button>
           </div>

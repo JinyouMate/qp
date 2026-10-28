@@ -148,7 +148,7 @@ export default async function ContentPage() {
           <div className="mt-6 flex flex-wrap justify-center gap-3">
             <Button asChild variant="default">
               <Link href="/wechat">
-                加企微，进对应身份的社群 <ArrowRight />
+                联系主理人，进对应身份的社群 <ArrowRight />
               </Link>
             </Button>
             <Button asChild variant="outline">

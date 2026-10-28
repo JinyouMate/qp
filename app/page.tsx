@@ -1,6 +1,6 @@
 import Link from "next/link";
 import {
-  ArrowRight, CalendarClock, Building2, Store, Factory, Bot, ShoppingCart,
+  ArrowRight, CalendarClock, Building2, Factory, Bot, ShoppingCart,
   CheckCircle2, ShieldCheck, Quote, Sparkles,
 } from "lucide-react";
 
@@ -23,26 +23,28 @@ const TRUST_STATS = [
   { value: "3", label: "层数据校验法（独家方法论）" },
 ];
 
-/* ---------- 五类入口（点击后进入对应身份的产品筛选 / 或直接弹企微码） ---------- */
+/* ---------- 四类入口（点击后进入对应身份的产品筛选 / 或直接弹企微码） ----------
+   排序原则：把「零售/跨境卖家」放第一位（转化主路径，橙色高亮 + 专属按钮），
+   修理厂与汽配商已合并为一张卡，避免同类身份重复占位。                       */
 const ENTRIES = [
   {
-    icon: Building2,
-    role: "repair" as const,
-    title: "修理厂 / 经销商",
-    need: "想解决具体问题",
-    pain: "散采价格乱、断货频繁、滞销压资金、报价靠拍脑袋。",
-    give: "SOP 清单 + 供应商分级方法 + 库存周转模板",
-    cta: "看给我的产品",
-    action: "link" as const,
+    icon: ShoppingCart,
+    role: "seller" as const,
+    title: "零售 / 跨境卖家",
+    need: "退货率、选品、合规三重压力",
+    pain: "卖汽配退货率太高？选品总踩坑？平台规则合规搞不清？",
+    give: "爆款选品数据 + OE 码匹配工具 + 平台合规 SOP",
+    cta: "获取完整方案",
+    action: "wecom" as const,
   },
   {
-    icon: Store,
-    role: "dealer" as const,
-    title: "汽配商 / 从业者",
-    need: "想系统学习",
-    pain: "干货看了一堆，轮到自己干还是没体系、没方法。",
-    give: "基础知识库 + 体系课 + 每周复盘社群",
-    cta: "看给我的产品",
+    icon: Building2,
+    role: "shop" as const,
+    title: "修理厂 / 汽配商",
+    need: "解决具体业务问题 / 系统搭建认知体系",
+    pain: "采购乱、压资金？干货看了没体系、没方法？",
+    give: "SOP 清单 + 库存周转模板 + 体系课 + 复盘社群",
+    cta: "查看适配方案",
     action: "link" as const,
   },
   {
@@ -52,7 +54,7 @@ const ENTRIES = [
     need: "想合作数据产品",
     pain: "类目评估靠人工翻平台，慢、口径乱、结论不可复用。",
     give: "订阅数据看板 + 评估模板 + 定制报告",
-    cta: "看给我的产品",
+    cta: "申请内测席位",
     action: "link" as const,
   },
   {
@@ -62,18 +64,8 @@ const ENTRIES = [
     need: "想合作行业数据",
     pain: "通用模型答不准汽配问题，缺语料、缺标注规则、缺评测尺子。",
     give: "语料授权（签 DPA）+ 标注规则 + 评测集共建",
-    cta: "看给我的产品",
+    cta: "获取完整方案",
     action: "link" as const,
-  },
-  {
-    icon: ShoppingCart,
-    role: "seller" as const,
-    title: "零售 / 跨境卖家",
-    need: "想少踩坑多出单",
-    pain: "卖汽配退货率太高？选品总踩坑？平台规则合规搞不清？",
-    give: "爆款选品数据 + OE 码匹配工具 + 平台合规 SOP",
-    cta: "获取卖家避坑指南",
-    action: "wecom" as const,
   },
 ];
 
@@ -106,7 +98,7 @@ const FAQS = [
     a: "不卖货。我们是知识资产运营商，只做知识、数据、方法与工具。不代运营、不碰交易、不收佣金。文中出现的品牌与数据都是为说明方法服务，不构成推荐。",
   },
   {
-    q: "为什么领取资料还要留联系方式？",
+    q: "为什么获取资料需要留联系方式？",
     a: "两件事：一是资料本身要发给你；二是我们想知道哪类内容对哪类人有用，好决定下一步做什么。信息只用于资料发送与业务联系，可以随时要求删除，详见隐私政策。",
   },
   {
@@ -166,7 +158,13 @@ export default async function HomePage() {
                 整理成查得到、学得会、用得上的知识资产。
               </p>
               <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-                <WecomCtaButton size="lg" variant="destructive" from="home-hero" subject="首页" />
+                <WecomCtaButton
+                  size="lg"
+                  variant="default"
+                  label="获取完整方案"
+                  from="home-hero"
+                  subject="首页"
+                />
                 <Button asChild size="lg" variant="outline">
                   <Link href="/contact?intent=consult">
                     <CalendarClock /> 预约咨询
@@ -215,32 +213,31 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ========== 五类入口 ========== */}
+      {/* ========== 四类入口 ========== */}
       <section className="section-pad">
         <div className="container-site">
           <SectionHeading
-            tag="五类访客入口"
+            tag="四类访客入口"
             title="你是谁，直接走对应的路"
             desc="不用在九类产品里翻。选一个身份，我们把你该看的、该拿的、该问的排好顺序。"
           />
 
           {/*
-            排版（5 个卡片在不同屏幕下的排法）：
-            - 手机（<640px）：横向滑动卡片，snap 对齐，右侧露出下一张，不拥挤
-            - 平板（sm~lg）：两列，最后一张单出来时自动居中
-            - 桌面（lg+）：一排三张 + 第二排两张居中
+            排版：手机 1 列纵向 4 张；≥640px 起 2×2 宫格。
+            第 1 张（零售/跨境卖家）固定在左上角，是视线第一落点。
           */}
-          <div className="-mx-4 flex snap-x snap-mandatory gap-3 overflow-x-auto px-4 pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:mx-0 sm:flex-wrap sm:justify-center sm:gap-4 sm:overflow-visible sm:px-0 sm:pb-0">
+          <div className="grid gap-4 sm:grid-cols-2">
             {ENTRIES.map((e) => (
               <Card
                 key={e.title}
-                className={`flex w-[82%] shrink-0 snap-center flex-col sm:w-[calc(50%-0.5rem)] sm:shrink lg:w-[calc(33.333%-0.667rem)] ${
+                className={`flex h-full flex-col ${
                   e.action === "wecom" ? "border-brand-orange/40 shadow-warm" : ""
                 }`}
               >
-                <CardContent className="flex flex-1 flex-col gap-3 p-5">
+                {/* 手机：图标→文案→按钮纵向；≥lg：图标 | 文案 | 按钮 横向，避免宽卡留白 */}
+                <CardContent className="flex flex-1 flex-col gap-3 p-5 lg:flex-row lg:items-center lg:gap-5">
                   <span
-                    className={`flex h-11 w-11 items-center justify-center rounded-xl ${
+                    className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl ${
                       e.action === "wecom"
                         ? "bg-brand-orange-soft text-brand-orange"
                         : "bg-secondary text-primary"
@@ -248,15 +245,19 @@ export default async function HomePage() {
                   >
                     <e.icon className="h-5 w-5" strokeWidth={1.75} />
                   </span>
-                  <div>
-                    <h3 className="text-base font-bold">{e.title}</h3>
-                    <p className="text-xs text-brand-orange">{e.need}</p>
+
+                  <div className="flex flex-1 flex-col gap-2">
+                    <div>
+                      <h3 className="text-base font-bold">{e.title}</h3>
+                      <p className="text-xs text-brand-orange">{e.need}</p>
+                    </div>
+                    <p className="text-sm leading-relaxed text-muted-foreground">{e.pain}</p>
+                    <p className="rounded-lg bg-brand-cream p-3 text-xs leading-relaxed">
+                      <span className="font-semibold">你会拿到：</span>
+                      {e.give}
+                    </p>
                   </div>
-                  <p className="text-sm leading-relaxed text-muted-foreground">{e.pain}</p>
-                  <p className="rounded-lg bg-brand-cream p-3 text-xs leading-relaxed">
-                    <span className="font-semibold">你会拿到：</span>
-                    {e.give}
-                  </p>
+
                   {e.action === "wecom" ? (
                     <WecomCtaButton
                       label={e.cta}
@@ -264,10 +265,15 @@ export default async function HomePage() {
                       variant="orange"
                       from={`entry-${e.role}`}
                       subject={e.title}
-                      className="mt-auto w-full"
+                      className="mt-auto w-full lg:mt-0 lg:w-40 lg:shrink-0"
                     />
                   ) : (
-                    <Button asChild size="sm" variant="default" className="mt-auto w-full">
+                    <Button
+                      asChild
+                      size="sm"
+                      variant="default"
+                      className="mt-auto w-full lg:mt-0 lg:w-40 lg:shrink-0"
+                    >
                       <Link href={`/products?role=${e.role}`}>
                         {e.cta} <ArrowRight />
                       </Link>
@@ -277,10 +283,6 @@ export default async function HomePage() {
               </Card>
             ))}
           </div>
-
-          <p className="mt-1 flex items-center justify-center gap-1 text-xs text-muted-foreground sm:hidden">
-            ← 左右滑动查看全部 5 个身份 →
-          </p>
         </div>
       </section>
 

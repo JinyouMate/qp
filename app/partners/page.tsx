@@ -170,7 +170,7 @@ export default async function PartnersPage() {
             <Link href="/wechat#platforms" className="mx-1 text-primary underline underline-offset-2">
               私域入口页
             </Link>
-            ，开通前需先加企微或留资。
+            ，开通前需先联系主理人或留资。
           </div>
         </div>
       </section>

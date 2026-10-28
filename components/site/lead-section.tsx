@@ -50,13 +50,13 @@ export function LeadSection({
                 ))}
               </ul>
               <div className="rounded-xl bg-white/10 p-4 text-sm">
-                <p className="font-semibold">更快的路：直接加企微</p>
+                <p className="font-semibold">更快的路：直接联系主理人</p>
                 <p className="mt-1 text-white/80">
                   备注「官网」秒通过，资料直接发你，还能进对应身份的社群。
                 </p>
                 <Button asChild variant="orange" size="sm" className="mt-3">
                   <Link href="/wechat">
-                    <MessageCircle /> 去加企微
+                    <MessageCircle /> 联系主理人
                   </Link>
                 </Button>
               </div>
