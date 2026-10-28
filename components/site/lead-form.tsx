@@ -174,7 +174,7 @@ export function LeadForm({
           <Label htmlFor="lf-desc">具体问题描述</Label>
           <Textarea
             id="lf-desc"
-            placeholder="例如：我们在 Ozon 卖刹车片，毛利率一直上不去，想做个诊断"
+            placeholder="例如：我们在做汽配出海，退货率一直降不下来，想做个数据诊断。"
             {...register("description")}
           />
         </div>

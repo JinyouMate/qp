@@ -70,7 +70,12 @@ export default function ContactPage() {
                 <h3 className="text-base font-bold">其他方式</h3>
                 <p className="flex items-start gap-2 text-muted-foreground">
                   <Mail className="mt-0.5 h-4 w-4 shrink-0 text-brand-green" />
-                  <span>partner@qipeizhishiju.com（示例邮箱，请替换）</span>
+                  <a
+                    href="mailto:service@qipeizhishiju.com"
+                    className="underline-offset-2 hover:text-primary hover:underline"
+                  >
+                    service@qipeizhishiju.com
+                  </a>
                 </p>
                 <p className="flex items-start gap-2 text-muted-foreground">
                   <Clock className="mt-0.5 h-4 w-4 shrink-0 text-brand-green" />

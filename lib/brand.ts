@@ -9,8 +9,8 @@ export const BRAND = {
   english: "AUTO PARTS KNOWLEDGE",
   /** 运营主体（工商登记全称，用于版权与发票主体） */
   legalEntity: "深圳市元卦科技有限公司",
-  /** 联系邮箱 */
-  email: "partner@qipeizhishiju.com",
+  /** 联系邮箱（官方对外邮箱） */
+  email: "service@qipeizhishiju.com",
   /** ICP 备案号（上线前替换为真实备案号） */
   icp: "粤ICP备XXXXXXXX号",
   /** 公网安备号 */

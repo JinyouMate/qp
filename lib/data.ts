@@ -78,7 +78,7 @@ export const FALLBACK_PRODUCTS: Product[] = [
     id: 15, slug: "toolkit-pricing", name: "核价毛利工具包", icon: "coins", layer: "conversion", category: "knowledge", tier: "toolkit",
     positioning: "算清楚到手多少钱，别再卖一单亏一单",
     problem: "跨境与多平台定价时漏算汇率、佣金、物流与退货，账面赚钱实际亏",
-    audience: "做跨境（Ozon/eBay/Temu）与多平台的卖家",
+    audience: "做出海与多平台经营的卖家",
     deliverable: "成本核算表 + 汇率折算器 + 毛利校验表 + 定价决策卡",
     price: "¥299",
     cta_type: "buy", third_party_url: null, third_party_platform: "企业微信", planet_url: null,
@@ -179,8 +179,8 @@ export const FALLBACK_PRODUCTS: Product[] = [
 
 export const FALLBACK_CONTENTS: ContentItem[] = [
   { id: 1, title: "刹车片选品避坑：这 3 种货打死不能进", type: "短视频", platform: "抖音", link: "#", summary: "选品避坑、货源鉴别。", metric: "42万播放", date: "3 天前" },
-  { id: 2, title: "俄罗斯 Ozon 汽配爆款拆解：利润藏在适配数据里", type: "短视频", platform: "B站", link: "#", summary: "跨境选品逻辑拆解。", metric: "18万播放", date: "1 周前" },
-  { id: 3, title: "拼多多汽配类目 2026 价格带全景图", type: "图文", platform: "公众号", link: "#", summary: "价格带分析与决策参考。", metric: "1.2万阅读", date: "2 天前" },
+  { id: 2, title: "跨境汽配爆款拆解：利润藏在适配数据里", type: "短视频", platform: "B站", link: "#", summary: "跨境选品逻辑拆解。", metric: "18万播放", date: "1 周前" },
+  { id: 3, title: "电商渠道汽配类目 2026 价格带全景图", type: "图文", platform: "公众号", link: "#", summary: "价格带分析与决策参考。", metric: "1.2万阅读", date: "2 天前" },
   { id: 4, title: "修理厂供应链怎么理：一场直播讲透", type: "直播回放", platform: "视频号", link: "#", summary: "供应链全流程直播。", metric: "8600 观看", date: "上周" },
   { id: 5, title: "适配数据踩坑实录：一个 SKU 赔掉 2 万块", type: "图文", platform: "公众号", link: "#", summary: "真实踩坑复盘。", metric: "2.4万阅读", date: "1 周前" },
   { id: 6, title: "和修理厂老板聊进货：他一年省了 18 万", type: "短视频", platform: "抖音", link: "#", summary: "真实对话访谈。", metric: "65万播放", date: "2 周前" },
@@ -200,7 +200,7 @@ export const FALLBACK_CASES: CaseStudy[] = [
     metrics: [{ label: "滞销清空率", value: "68%" }, { label: "资金周转率", value: "+35%" }],
   },
   {
-    id: 3, client: "Ozon 跨境团队", group: "从业者与团队",
+    id: 3, client: "跨境平台团队", group: "从业者与团队",
     problem: "按人民币售价核算，实际持续亏损。",
     solution: "汇率折算修正 + 适配数据三层校验 + SKU 精简。",
     metrics: [{ label: "毛利率", value: "-5%→+21%" }, { label: "SKU 数量", value: "-60%" }],
@@ -250,6 +250,14 @@ const DELIVERY_REPLACERS: Array<[RegExp, string]> = [
   [/小鹅通/g, "企业微信"],
   [/Baklib\s*\/?\s*飞书/g, "内部资料库"],
   [/Baklib/g, "内部资料库"],
+  // —— 去具体平台化（2026-10-28）：官网保持中立，不点名任何销售渠道 ——
+  // 先折叠「Ozon / eBay / Temu」这类并列列举，避免变成「跨境平台 / 跨境平台 / 跨境平台」
+  [
+    /(?:Ozon|eBay|Temu|Jumia|Amazon|亚马逊|速卖通|Shopee|Lazada|Walmart|Wish|SHEIN)(?:\s*(?:\/|、|,|，|与|和)\s*(?:Ozon|eBay|Temu|Jumia|Amazon|亚马逊|速卖通|Shopee|Lazada|Walmart|Wish|SHEIN))+/gi,
+    "多个跨境平台",
+  ],
+  [/(?:Ozon|eBay|Temu|Jumia|Amazon|亚马逊|速卖通|Shopee|Lazada|Walmart|Wish|SHEIN)/gi, "跨境平台"],
+  [/拼多多|淘宝|天猫|京东/g, "电商渠道"],
 ];
 
 function sanitizeText<T>(v: T): T {
@@ -283,5 +291,6 @@ export async function getCases(): Promise<CaseStudy[]> {
   return rows.map((r) => sanitizeRow(r as unknown as Record<string, unknown>) as unknown as CaseStudy);
 }
 export async function getPartners(): Promise<Partner[]> {
-  return (await fetchTable<Partner>("partners")) ?? FALLBACK_PARTNERS;
+  const rows = (await fetchTable<Partner>("partners")) ?? FALLBACK_PARTNERS;
+  return rows.map((r) => sanitizeRow(r as unknown as Record<string, unknown>) as unknown as Partner);
 }

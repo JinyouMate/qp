@@ -83,7 +83,7 @@ const SECTIONS = [
     title: "九、政策更新与联系方式",
     body: [
       "本政策如有更新，会在本页面标注更新日期，重大变更会通过官网公告。",
-      "隐私相关问题请联系：partner@qipeizhishiju.com（示例邮箱，请替换为真实邮箱）。",
+      "隐私相关问题请联系：service@qipeizhishiju.com。",
     ],
   },
 ];
