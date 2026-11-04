@@ -1,13 +1,14 @@
 import Link from "next/link";
 import {
   ArrowRight, CalendarClock, Building2, Factory, Bot, ShoppingCart,
-  CheckCircle2, ShieldCheck, Quote, Sparkles,
+  CheckCircle2, ShieldCheck, Quote,
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { SectionHeading } from "@/components/site/section-heading";
+import { HeroDataBoard } from "@/components/site/hero-data-board";
 import { WecomCtaButton } from "@/components/site/wecom-dialog";
 import { LeadSection } from "@/components/site/lead-section";
 import { Faq } from "@/components/site/faq";
@@ -211,15 +212,8 @@ export default async function HomePage() {
               </ul>
             </div>
 
-            {/* 真实工作场景占位：替换为数据截图 / 工作现场照片 */}
-            <div className="figure-ph aspect-[4/3] w-full">
-              <Sparkles className="h-7 w-7 text-brand-orange" />
-              <p className="px-6 text-center text-sm">
-                此处放真实工作场景图：云仓盘点 / 数据看板截图 / 课程现场
-                <br />
-                <span className="text-xs opacity-70">不使用通用 stock photo</span>
-              </p>
-            </div>
+            {/* 右侧视觉：纯前端绘制的悬浮数据看板（无图片、无截图） */}
+            <HeroDataBoard />
           </div>
         </div>
       </section>

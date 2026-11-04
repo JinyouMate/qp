@@ -59,10 +59,6 @@
   .section-pad {
     @apply py-12 md:py-20;
   }
-  /* 图占位：用于替换为真实工作场景 / 数据截图 / 课程现场照片 */
-  .figure-ph {
-    @apply flex flex-col items-center justify-center gap-2 rounded-xl border border-dashed bg-card text-muted-foreground;
-  }
 }
 
 /* ============================================================
@@ -151,6 +147,40 @@
 
 @media (prefers-reduced-motion: reduce) {
   .breathe-ring {
+    animation: none;
+  }
+}
+
+/* ============================================================
+   首屏「悬浮数据看板」：3 张毛玻璃卡片轻微上下呼吸浮动
+   不同周期 / 负延迟，避免三张卡同步跳动
+   ============================================================ */
+@layer utilities {
+  .hero-float-a {
+    animation: hero-float 6s ease-in-out infinite;
+  }
+  .hero-float-b {
+    animation: hero-float 7.4s ease-in-out -2.1s infinite;
+  }
+  .hero-float-c {
+    animation: hero-float 5.6s ease-in-out -1.2s infinite;
+  }
+}
+
+@keyframes hero-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -5px, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-float-a,
+  .hero-float-b,
+  .hero-float-c {
     animation: none;
   }
 }
