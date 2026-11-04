@@ -15,12 +15,42 @@ import { ProductLadder } from "@/components/site/product-ladder";
 import { JsonLd, faqSchema } from "@/components/site/json-ld";
 import { getProducts, getContents, getCases } from "@/lib/data";
 
-/* ---------- 数字统计信任区（只用自有数据，不展示任何第三方品牌 Logo） ---------- */
+/* ---------- 数字统计信任区（底层数据资产口径，只用自有数据） ---------- */
 const TRUST_STATS = [
-  { value: "10,000+", label: "条汽配 OE 码解析" },
-  { value: "300+", label: "家修理厂与门店调研" },
-  { value: "500+", label: "页 SOP 与实操模板" },
-  { value: "3", label: "层数据校验法（独家方法论）" },
+  { value: "3,124,045+", label: "底层 SKU 库" },
+  { value: "931+", label: "源头供应商直连" },
+  { value: "2,219+", label: "主流品牌覆盖" },
+  { value: "28.03%", label: "平均毛利空间" },
+];
+
+/* ---------- 底层数据资产看板：4 个硬核指标 + 3 张图 + 转化 CTA ---------- */
+const DATA_METRICS = [
+  { value: "3,124,045+", label: "SKU 底层明细总数" },
+  { value: "1,618,701+", label: "去重商品数" },
+  { value: "2,219+", label: "覆盖主流汽配品牌" },
+  { value: "28.03%", label: "大盘平均毛利率" },
+];
+
+/* 图片位：直接覆盖 public/data/ 下的同名文件即可换成真实截图，代码不用改 */
+const DATA_CHARTS = [
+  {
+    src: "/data/chart-monthly-sku.png",
+    title: "月度 SKU 与供应商趋势",
+    caption: "实时监控上千家源头供应商的上架与淘汰动态。",
+    alt: "月度 SKU 与供应商趋势图：11 个月大盘 SKU 规模与供应商数量走势",
+  },
+  {
+    src: "/data/chart-top-brands.png",
+    title: "Top 15 主流品牌覆盖",
+    caption: "深度解析丰田、宝马、MEKEDE 等核心品牌的适配逻辑。",
+    alt: "Top 15 主流品牌覆盖图：SKU 覆盖量排名前 15 的品牌",
+  },
+  {
+    src: "/data/chart-margin-distribution.png",
+    title: "黄金毛利区间分布",
+    caption: "精准锁定 40%-50% 利润带，帮你避开高退货率雷区。",
+    alt: "黄金毛利区间分布图：各毛利率区间的商品数量分布",
+  },
 ];
 
 /* ---------- 四类入口（点击后进入对应身份的产品筛选 / 或直接弹企微码） ----------
@@ -30,10 +60,11 @@ const ENTRIES = [
   {
     icon: ShoppingCart,
     role: "seller" as const,
+    highlight: true, // C 位：核心获客人群，橙色高亮
     title: "零售 / 跨境卖家",
     need: "退货率、选品、合规三重压力",
-    pain: "卖汽配退货率太高？选品总踩坑？平台规则合规搞不清？",
-    give: "爆款选品数据 + OE 码匹配工具 + 平台合规 SOP",
+    pain: "还在盲选选品？还在被高退货率折磨？我们的数据能帮你提前排雷。",
+    give: "包含 312 万+ SKU 的选品逻辑、黄金毛利区间表与平台合规 SOP。",
     cta: "获取完整方案",
     action: "wecom" as const,
   },
@@ -43,9 +74,9 @@ const ENTRIES = [
     title: "修理厂 / 汽配商",
     need: "解决具体业务问题 / 系统搭建认知体系",
     pain: "采购乱、压资金？干货看了没体系、没方法？",
-    give: "SOP 清单 + 库存周转模板 + 体系课 + 复盘社群",
-    cta: "查看适配方案",
-    action: "link" as const,
+    give: "源头供应商白名单、库存周转模板与真实大盘定价参考。",
+    cta: "获取完整方案",
+    action: "wecom" as const,
   },
   {
     icon: Factory,
@@ -55,7 +86,7 @@ const ENTRIES = [
     pain: "类目评估靠人工翻平台，慢、口径乱、结论不可复用。",
     give: "订阅数据看板 + 评估模板 + 定制报告",
     cta: "申请内测席位",
-    action: "link" as const,
+    action: "wecom" as const,
   },
   {
     icon: Bot,
@@ -65,7 +96,7 @@ const ENTRIES = [
     pain: "通用模型答不准汽配问题，缺语料、缺标注规则、缺评测尺子。",
     give: "语料授权（签 DPA）+ 标注规则 + 评测集共建",
     cta: "获取完整方案",
-    action: "link" as const,
+    action: "wecom" as const,
   },
 ];
 
@@ -153,9 +184,8 @@ export default async function HomePage() {
                 </span>
               </h1>
               <p className="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
-                从数据到决策，从知识到工具。
-                我们把一线汽配人的经验、踩过的坑和真实交易数据，
-                整理成查得到、学得会、用得上的知识资产。
+                基于 312 万条真实汽配交易数据与 900+ 家源头供应商，
+                我们为你拆解出锁定 40%-50% 黄金毛利区间的选品逻辑与合规 SOP。
               </p>
               <div className="mt-7 flex flex-col gap-3 sm:flex-row">
                 <WecomCtaButton
@@ -198,13 +228,15 @@ export default async function HomePage() {
       <section className="border-y bg-white/60">
         <div className="container-site py-10">
           <p className="mb-6 text-center text-sm font-semibold tracking-wide text-muted-foreground">
-            真实数据沉淀，不讲空话
+            底层数据资产 · 自有库全量盘点口径，不讲空话
           </p>
           <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
             {TRUST_STATS.map((s) => (
               <Card key={s.label} className="h-full">
                 <CardContent className="flex flex-col items-center justify-center gap-1.5 p-5 text-center">
-                  <div className="text-3xl font-bold text-brand-green md:text-4xl">{s.value}</div>
+                  <div className="whitespace-nowrap font-bold text-brand-green text-[clamp(20px,5.2vw,36px)] leading-tight">
+                    {s.value}
+                  </div>
                   <div className="text-xs text-muted-foreground md:text-sm">{s.label}</div>
                 </CardContent>
               </Card>
@@ -231,14 +263,14 @@ export default async function HomePage() {
               <Card
                 key={e.title}
                 className={`flex h-full flex-col ${
-                  e.action === "wecom" ? "border-brand-orange/40 shadow-warm" : ""
+                  e.highlight ? "border-brand-orange/40 shadow-warm" : ""
                 }`}
               >
                 {/* 手机：图标→文案→按钮纵向；≥lg：图标 | 文案 | 按钮 横向，避免宽卡留白 */}
                 <CardContent className="flex flex-1 flex-col gap-3 p-5 lg:flex-row lg:items-center lg:gap-5">
                   <span
                     className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl ${
-                      e.action === "wecom"
+                      e.highlight
                         ? "bg-brand-orange-soft text-brand-orange"
                         : "bg-secondary text-primary"
                     }`}
@@ -262,7 +294,7 @@ export default async function HomePage() {
                     <WecomCtaButton
                       label={e.cta}
                       size="sm"
-                      variant="orange"
+                      variant={e.highlight ? "orange" : "default"}
                       from={`entry-${e.role}`}
                       subject={e.title}
                       className="mt-auto w-full lg:mt-0 lg:w-40 lg:shrink-0"
@@ -282,6 +314,110 @@ export default async function HomePage() {
                 </CardContent>
               </Card>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ========== 底层数据资产看板 ========== */}
+      <section className="section-pad border-y border-brand-green/10 bg-brand-green-soft/35">
+        <div className="container-site">
+          <SectionHeading
+            tag="数据中台 · 11 个月真实大盘"
+            title="底层数据资产看板"
+            desc="我们不打价格战，我们用数据帮你找蓝海。"
+          />
+
+          {/* 模块 1：四大硬核指标（手机 2×2，PC 一排 4 个） */}
+          <div className="grid grid-cols-2 gap-3 md:gap-4 lg:grid-cols-4">
+            {DATA_METRICS.map((m) => (
+              <Card
+                key={m.label}
+                className="h-full border-brand-green/10 bg-white/90 shadow-[0_1px_2px_rgba(16,45,32,0.04)]"
+              >
+                <CardContent className="flex h-full flex-col items-center justify-center gap-2 px-3 py-7 text-center">
+                  <div className="whitespace-nowrap font-bold leading-none tracking-tight text-brand-green text-[clamp(22px,5.6vw,34px)]">
+                    {m.value}
+                  </div>
+                  <div className="text-[11px] leading-snug text-muted-foreground md:text-xs">
+                    {m.label}
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          {/*
+            模块 2：数据洞察图表
+            排版：手机纵向依次排列（自然滑动）；≥lg 三张并列。
+            图片位：public/data/chart-monthly-sku.png / chart-top-brands.png / chart-margin-distribution.png
+            直接覆盖同名文件即可替换成真实高清截图，代码无需改动。
+          */}
+          <div className="mt-10 grid gap-5 lg:grid-cols-3">
+            {DATA_CHARTS.map((c) => (
+              <Card
+                key={c.src}
+                className="flex h-full flex-col overflow-hidden rounded-2xl border-brand-green/10 bg-white shadow-[0_2px_10px_rgba(16,45,32,0.06)] transition-shadow hover:shadow-[0_6px_20px_rgba(16,45,32,0.10)]"
+              >
+                <div className="relative aspect-[16/10] w-full overflow-hidden border-b border-brand-green/10 bg-white">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={c.src}
+                    alt={c.alt}
+                    width={960}
+                    height={600}
+                    loading="lazy"
+                    className="h-full w-full object-contain"
+                  />
+                </div>
+                <CardContent className="flex flex-1 flex-col gap-2 p-5">
+                  <h3 className="text-[15px] font-bold text-brand-green">{c.title}</h3>
+                  <p className="text-sm leading-relaxed text-muted-foreground">{c.caption}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          <p className="mt-6 flex items-center justify-center gap-2 text-center text-xs text-muted-foreground">
+            <ShieldCheck className="h-4 w-4 shrink-0 text-brand-green" />
+            数据口径：11 个月连续观测 · 161.8 万+ 去重商品 · 312 万条底层 SKU · 每条结论均可回溯原始记录
+          </p>
+
+          {/* 模块 3：全宽深色转化 Banner */}
+          <div className="relative mt-10 overflow-hidden rounded-2xl bg-[#102A20] px-6 py-10 text-white md:px-12 md:py-12">
+            {/* 极淡网格纹理，做出数据中台质感 */}
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-0 opacity-[0.14]"
+              style={{
+                backgroundImage:
+                  "linear-gradient(to right, rgba(255,255,255,.35) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,.35) 1px, transparent 1px)",
+                backgroundSize: "44px 44px",
+                maskImage: "radial-gradient(120% 100% at 80% 0%, #000 20%, transparent 75%)",
+                WebkitMaskImage: "radial-gradient(120% 100% at 80% 0%, #000 20%, transparent 75%)",
+              }}
+            />
+            <div className="relative flex flex-col items-start gap-6 md:flex-row md:items-center md:justify-between md:gap-10">
+              <div className="max-w-2xl">
+                <h3 className="text-xl font-bold leading-snug md:text-2xl">
+                  想要获取基于这套系统的完整选品清单？
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-white/75 md:text-[15px]">
+                  {"我们已为你打包好 "}
+                  <span className="font-semibold text-brand-orange">
+                    【本周 Top 50 高毛利（&gt;40%）汽配选品包（脱敏版）】
+                  </span>
+                  {"，涵盖真实适配车型与建议售价。"}
+                </p>
+              </div>
+              <WecomCtaButton
+                label="申请获取数据内测席位"
+                size="lg"
+                variant="orange"
+                from="data-board-banner"
+                subject="底层数据资产看板"
+                className="w-full shrink-0 shadow-none md:w-auto"
+              />
+            </div>
           </div>
         </div>
       </section>
