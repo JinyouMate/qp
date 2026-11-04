@@ -193,7 +193,7 @@ export default function AdminPage() {
                   onClick={() => setPreset(p.key)}
                   className={`rounded-full border px-3.5 py-1.5 text-xs font-medium transition-colors ${
                     preset === p.key
-                      ? "border-brand-green bg-brand-green text-white"
+                      ? "border-brand-orange bg-brand-orange text-white"
                       : "hover:bg-muted"
                   }`}
                 >

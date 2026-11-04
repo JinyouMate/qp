@@ -91,7 +91,7 @@ export default async function KnowledgePage() {
           />
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
             {MODULES.map((m) => (
-              <Card key={m.name} className="h-full">
+              <Card key={m.name} className="card-hover h-full">
                 <CardContent className="flex h-full flex-col gap-2 p-5">
                   <div className="flex items-center justify-between">
                     <h3 className="text-base font-bold">{m.name}</h3>
@@ -142,7 +142,7 @@ export default async function KnowledgePage() {
           <SectionHeading tag="相关产品" title="知识库与 SOP 相关产品" />
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {items.map((p) => (
-              <Card key={p.id} className="h-full">
+              <Card key={p.id} className="card-hover h-full">
                 <CardContent className="flex h-full flex-col gap-3 p-5">
                   <h3 className="text-base font-bold">{p.name}</h3>
                   <p className="text-sm text-muted-foreground">{p.positioning}</p>

@@ -60,7 +60,7 @@ export function AiChat() {
       {/* 悬浮按钮 */}
       <button
         onClick={() => setOpen(!open)}
-        className="fixed bottom-20 right-5 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-brand-green text-white shadow-warm-lg transition-transform hover:scale-105 sm:bottom-5"
+        className="fixed bottom-20 right-5 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-brand-orange text-white shadow-sun-lg transition-transform hover:scale-105 sm:bottom-5"
         aria-label="AI 问答"
       >
         {open ? <X className="h-5 w-5" /> : <Bot className="h-6 w-6" />}
@@ -80,7 +80,7 @@ export function AiChat() {
                 className={cn(
                   "max-w-[85%] rounded-xl px-3.5 py-2.5 text-sm leading-relaxed",
                   m.role === "user"
-                    ? "ml-auto bg-brand-green text-white"
+                    ? "ml-auto bg-brand-orange text-white"
                     : "bg-muted text-foreground"
                 )}
               >

@@ -170,7 +170,7 @@ export default async function HomePage() {
       <JsonLd data={faqSchema(FAQS)} />
 
       {/* ========== Hero ========== */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-brand-green-soft via-background to-background">
+      <section className="relative overflow-hidden bg-gradient-to-b from-[#FFF7EE] via-[#FCFAF6] to-background">
         <div className="container-site py-14 md:py-20">
           <div className="grid items-center gap-10 md:grid-cols-[1.15fr_1fr]">
             <div>
@@ -203,9 +203,12 @@ export default async function HomePage() {
                 </Button>
               </div>
               <ul className="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-sm text-muted-foreground">
-                {["不卖货 · 不代运营", "官网不处理支付", "数据合规第一天就有"].map((t) => (
+                {["不卖货 · 不代运营", "官网不处理支付", "数据合规第一天就有"].map((t, i) => (
                   <li key={t} className="flex items-center gap-1.5">
-                    <CheckCircle2 className="h-4 w-4 text-brand-green" />
+                    {/* 木 / 火交替：小图标不要再一片冷绿 */}
+                    <CheckCircle2
+                      className={`h-4 w-4 ${i % 2 === 0 ? "text-brand-green" : "text-brand-orange"}`}
+                    />
                     {t}
                   </li>
                 ))}
@@ -226,7 +229,7 @@ export default async function HomePage() {
           </p>
           <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
             {TRUST_STATS.map((s) => (
-              <Card key={s.label} className="h-full">
+              <Card key={s.label} className="card-hover h-full">
                 <CardContent className="flex flex-col items-center justify-center gap-1.5 p-5 text-center">
                   <div className="whitespace-nowrap font-bold text-brand-green text-[clamp(20px,5.2vw,36px)] leading-tight">
                     {s.value}
@@ -256,7 +259,7 @@ export default async function HomePage() {
             {ENTRIES.map((e) => (
               <Card
                 key={e.title}
-                className={`flex h-full flex-col ${
+                className={`card-hover flex h-full flex-col ${
                   e.highlight ? "border-brand-orange/40 shadow-warm" : ""
                 }`}
               >
@@ -265,7 +268,7 @@ export default async function HomePage() {
                   <span
                     className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl ${
                       e.highlight
-                        ? "bg-brand-orange-soft text-brand-orange"
+                        ? "bg-brand-orange-soft text-brand-orange-ink"
                         : "bg-secondary text-primary"
                     }`}
                   >
@@ -275,7 +278,7 @@ export default async function HomePage() {
                   <div className="flex flex-1 flex-col gap-2">
                     <div>
                       <h3 className="text-base font-bold">{e.title}</h3>
-                      <p className="text-xs text-brand-orange">{e.need}</p>
+                      <p className="text-xs text-brand-orange-ink">{e.need}</p>
                     </div>
                     <p className="text-sm leading-relaxed text-muted-foreground">{e.pain}</p>
                     <p className="rounded-lg bg-brand-cream p-3 text-xs leading-relaxed">
@@ -326,7 +329,7 @@ export default async function HomePage() {
             {DATA_METRICS.map((m) => (
               <Card
                 key={m.label}
-                className="h-full border-brand-green/10 bg-white/90 shadow-[0_1px_2px_rgba(16,45,32,0.04)]"
+                className="card-hover card-hover-green h-full border-brand-green/10 bg-white/90 shadow-[0_1px_2px_rgba(16,45,32,0.04)]"
               >
                 <CardContent className="flex h-full flex-col items-center justify-center gap-2 px-3 py-7 text-center">
                   <div className="whitespace-nowrap font-bold leading-none tracking-tight text-brand-green text-[clamp(22px,5.6vw,34px)]">
@@ -350,9 +353,9 @@ export default async function HomePage() {
             {DATA_CHARTS.map((c) => (
               <Card
                 key={c.src}
-                className="flex h-full flex-col overflow-hidden rounded-2xl border-brand-green/10 bg-white shadow-[0_2px_10px_rgba(16,45,32,0.06)] transition-shadow hover:shadow-[0_6px_20px_rgba(16,45,32,0.10)]"
+                className="card-hover flex h-full flex-col overflow-hidden rounded-2xl border-border bg-white shadow-warm"
               >
-                <div className="relative aspect-[16/10] w-full overflow-hidden border-b border-brand-green/10 bg-white">
+                <div className="relative aspect-[16/10] w-full overflow-hidden border-b border-border bg-white">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={c.src}
@@ -376,28 +379,29 @@ export default async function HomePage() {
             数据口径：11 个月连续观测 · 161.8 万+ 去重商品 · 312 万条底层 SKU · 每条结论均可回溯原始记录
           </p>
 
-          {/* 模块 3：全宽深色转化 Banner */}
-          <div className="relative mt-10 overflow-hidden rounded-2xl bg-[#102A20] px-6 py-10 text-white md:px-12 md:py-12">
-            {/* 极淡网格纹理，做出数据中台质感 */}
+          {/* 模块 3：全宽浅暖色转化 Banner（洗去深色，保留火系焦点） */}
+          <div className="relative mt-10 overflow-hidden rounded-2xl border border-brand-orange/20 bg-gradient-to-br from-[#FFF7EE] via-[#FDFAF5] to-[#F1F7F2] px-6 py-10 md:px-12 md:py-12">
+            {/* 极淡暖色网格纹理，做出数据中台质感 */}
             <div
               aria-hidden
-              className="pointer-events-none absolute inset-0 opacity-[0.14]"
+              className="pointer-events-none absolute inset-0"
               style={{
                 backgroundImage:
-                  "linear-gradient(to right, rgba(255,255,255,.35) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,.35) 1px, transparent 1px)",
+                  "linear-gradient(to right, rgba(31,111,74,0.07) 1px, transparent 1px), linear-gradient(to bottom, rgba(31,111,74,0.07) 1px, transparent 1px)",
                 backgroundSize: "44px 44px",
                 maskImage: "radial-gradient(120% 100% at 80% 0%, #000 20%, transparent 75%)",
                 WebkitMaskImage: "radial-gradient(120% 100% at 80% 0%, #000 20%, transparent 75%)",
               }}
             />
+            <div aria-hidden className="absolute -right-16 -top-20 h-52 w-52 rounded-full bg-brand-orange/[0.07] blur-3xl" />
             <div className="relative flex flex-col items-start gap-6 md:flex-row md:items-center md:justify-between md:gap-10">
               <div className="max-w-2xl">
                 <h3 className="text-xl font-bold leading-snug md:text-2xl">
                   想要获取基于这套系统的完整选品清单？
                 </h3>
-                <p className="mt-3 text-sm leading-relaxed text-white/75 md:text-[15px]">
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground md:text-[15px]">
                   {"我们已为你打包好 "}
-                  <span className="font-semibold text-brand-orange">
+                  <span className="font-semibold text-brand-orange-ink">
                     【本周 Top 50 高毛利（&gt;40%）汽配选品包（脱敏版）】
                   </span>
                   {"，涵盖真实适配车型与建议售价。"}
@@ -445,12 +449,12 @@ export default async function HomePage() {
           />
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {contents.slice(0, 6).map((c) => (
-              <Card key={c.id} className="h-full">
+              <Card key={c.id} className="card-hover h-full">
                 <CardContent className="flex h-full flex-col gap-2 p-5">
                   <div className="flex items-center gap-2 text-xs">
                     <Badge variant="secondary">{c.type}</Badge>
                     <span className="text-muted-foreground">{c.platform}</span>
-                    <span className="ml-auto font-semibold text-brand-orange">{c.metric}</span>
+                    <span className="ml-auto font-semibold text-brand-orange-ink">{c.metric}</span>
                   </div>
                   <h3 className="text-[15px] font-bold leading-snug">{c.title}</h3>
                   <p className="text-sm text-muted-foreground">{c.summary}</p>
@@ -484,7 +488,7 @@ export default async function HomePage() {
           />
           <div className="grid gap-4 md:grid-cols-3">
             {homeCases.map((c) => (
-              <Card key={c.id} className="h-full">
+              <Card key={c.id} className="card-hover h-full">
                 <CardContent className="flex h-full flex-col gap-3 p-5">
                   <div className="flex items-center gap-2 text-sm font-semibold text-brand-green">
                     <Quote className="h-4 w-4" />
@@ -522,34 +526,34 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ========== 方法论 ========== */}
-      <section className="section-pad bg-brand-green text-white">
+      {/* ========== 方法论：浅绿底 + 白卡，洗去深墨绿 ========== */}
+      <section className="section-pad border-y border-brand-green/10 bg-brand-green-soft/45">
         <div className="container-site">
           <div className="mx-auto mb-10 max-w-2xl text-center">
-            <span className="mb-2 block text-xs font-semibold tracking-[0.25em] text-brand-orange">
+            <span className="mb-2 block text-xs font-semibold tracking-[0.25em] text-brand-orange-ink">
               命名化方法论
             </span>
             <h2 className="text-2xl font-bold md:text-3xl">
               汽配数据三层校验法
             </h2>
-            <p className="mt-3 text-sm text-white/80 md:text-[15px]">
+            <p className="mt-3 text-sm text-muted-foreground md:text-[15px]">
               汽配数据的坑不在「有没有」，而在「准不准」。一条适配数据错了，
               后面选品、报价、客服全错。三层校验是我们所有数据产品的底座。
             </p>
           </div>
           <div className="grid gap-4 md:grid-cols-3">
             {METHOD_STEPS.map((s) => (
-              <div key={s.step} className="rounded-xl bg-white/10 p-5">
-                <span className={`mb-3 inline-block rounded-full ${s.color} px-3 py-1 text-xs font-bold`}>
+              <div key={s.step} className="card-hover card-hover-green rounded-xl border border-brand-green/10 bg-white p-5 shadow-warm">
+                <span className={`mb-3 inline-block rounded-full ${s.color} px-3 py-1 text-xs font-bold text-white`}>
                   {s.step}
                 </span>
                 <h3 className="text-lg font-bold">{s.name}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-white/85">{s.desc}</p>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.desc}</p>
               </div>
             ))}
           </div>
-          <p className="mt-6 flex items-center justify-center gap-2 text-xs text-white/70">
-            <ShieldCheck className="h-4 w-4" />
+          <p className="mt-6 flex items-center justify-center gap-2 text-xs text-muted-foreground">
+            <ShieldCheck className="h-4 w-4 text-brand-green" />
             完整方法论与校验记录模板，留资后随知识库一并开放
           </p>
         </div>

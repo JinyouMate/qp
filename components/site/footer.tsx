@@ -38,15 +38,16 @@ const COLS: { title: string; links: { href: string; label: string }[] }[] = [
 
 export function Footer() {
   return (
-    <footer className="border-t bg-[#2C3A31] text-[#C2CEC6]">
+    <footer className="border-t border-brand-green/10 bg-brand-cream text-muted-foreground">
       <div className="container-site py-12">
         <div className="grid gap-10 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
           <div>
             <div className="mb-3 flex items-center gap-2.5">
-              <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-brand-green text-base font-bold text-white">
+              {/* 木：Logo 保留品牌绿 */}
+              <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-brand-green text-base font-bold text-white shadow-warm">
                 配
               </span>
-              <span className="text-base font-bold text-white">{BRAND.name}</span>
+              <span className="text-base font-bold text-foreground">{BRAND.name}</span>
             </div>
             <p className="text-sm leading-relaxed">
               汽配行业知识资产运营商——把隐性知识变成可交易资产。
@@ -57,11 +58,11 @@ export function Footer() {
           </div>
           {COLS.map((col) => (
             <div key={col.title}>
-              <h4 className="mb-3 text-sm font-semibold text-white">{col.title}</h4>
+              <h4 className="mb-3 text-sm font-semibold text-foreground">{col.title}</h4>
               <ul className="space-y-1.5">
                 {col.links.map((l) => (
                   <li key={l.href + l.label}>
-                    <Link href={l.href} className="text-sm transition-colors hover:text-white">
+                    <Link href={l.href} className="text-sm transition-colors hover:text-brand-orange-ink">
                       {l.label}
                     </Link>
                   </li>
@@ -70,21 +71,21 @@ export function Footer() {
             </div>
           ))}
         </div>
-        <div className="mt-10 space-y-2 border-t border-white/10 pt-6">
-          <p className="text-center text-sm text-gray-400">
+        <div className="mt-10 space-y-2 border-t border-border pt-6">
+          <p className="text-center text-sm text-muted-foreground">
             © 2026 {BRAND.name} · {BRAND.legalEntity} · 保留所有权利
           </p>
-          <p className="text-center text-sm text-gray-400">
+          <p className="text-center text-sm text-muted-foreground">
             <a
               href="https://beian.miit.gov.cn/"
               target="_blank"
               rel="noopener noreferrer"
-              className="transition-colors hover:text-gray-200 hover:underline"
+              className="transition-colors hover:text-brand-orange-ink hover:underline"
             >
               粤ICP备XXXXXXXX号-1
             </a>
           </p>
-          <p className="text-center text-[11px] leading-relaxed text-[#93A399] opacity-80">
+          <p className="text-center text-[11px] leading-relaxed text-muted-foreground/80">
             本站为知识资产展示与留资站点，不销售汽车配件、不代运营店铺、不代收货款。
             课程、知识库与数据产品由第三方平台完成交易与交付，站内所有第三方链接均已附加来源参数用于统计。
           </p>

@@ -48,17 +48,17 @@ export default function ContactPage() {
           <ContactForm />
 
           <div className="space-y-4">
-            <Card className="bg-brand-green text-white">
+            <Card className="border-brand-green/15 bg-brand-green-soft/55">
               <CardContent className="space-y-3 p-6">
                 <h3 className="flex items-center gap-2 text-lg font-bold">
-                  <MessageCircle className="h-5 w-5" /> 最快的路：联系主理人
+                  <MessageCircle className="h-5 w-5 text-brand-green" /> 最快的路：联系主理人
                 </h3>
-                <p className="text-sm text-white/85">
+                <p className="text-sm text-muted-foreground">
                   备注「官网」秒通过。资料直接发你，还能进对应身份的社群，每周有复盘。
                 </p>
                 <Link
                   href="/wechat"
-                  className="inline-flex items-center gap-1.5 text-sm font-semibold underline underline-offset-4"
+                  className="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-orange-ink underline-offset-4 hover:underline"
                 >
                   联系主理人 <ArrowRight className="h-4 w-4" />
                 </Link>

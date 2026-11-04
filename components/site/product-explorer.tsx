@@ -64,7 +64,7 @@ export function ProductExplorer({
       {hasRole && (
         <div className="mb-8 flex flex-col gap-3 rounded-xl border border-brand-green/30 bg-brand-green-soft/70 p-4 sm:flex-row sm:items-center sm:justify-between">
           <p className="flex items-start gap-2 text-sm">
-            <Sparkles className="mt-0.5 h-4 w-4 shrink-0 text-brand-orange" />
+            <Sparkles className="mt-0.5 h-4 w-4 shrink-0 text-brand-orange-ink" />
             <span>
               已按「<b className="text-brand-green">{roleLabel}</b>」把该看的产品排到最前，
               带 <span className="rounded bg-brand-orange px-1.5 py-0.5 text-[10px] font-bold text-white">为你推荐</span> 标的优先看。
@@ -74,7 +74,7 @@ export function ProductExplorer({
             {leadHref && (
               <Link
                 href={leadHref}
-                className="rounded-full bg-brand-red px-4 py-1.5 text-xs font-semibold text-white"
+                className="rounded-full bg-brand-orange px-4 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-brand-orange-dark"
               >
                 直接领资料
               </Link>

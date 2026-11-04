@@ -171,7 +171,7 @@ export default function ProductDetailPage({ params }: { params: { slug: string }
                     { icon: Sparkles, k: "交付方式", v: "企业微信（扫码即发）" },
                   ].map((row) => (
                     <div key={row.k} className="flex gap-2">
-                      <row.icon className="mt-0.5 h-4 w-4 shrink-0 text-brand-orange" strokeWidth={1.5} />
+                      <row.icon className="mt-0.5 h-4 w-4 shrink-0 text-brand-orange-ink" strokeWidth={1.5} />
                       <div>
                         <dt className="text-xs text-muted-foreground">{row.k}</dt>
                         <dd>{row.v}</dd>
@@ -209,9 +209,12 @@ export default function ProductDetailPage({ params }: { params: { slug: string }
           <div>
             <h2 className="text-xl font-bold sm:text-2xl">拿到手是什么</h2>
             <ul className="mt-4 grid gap-3 sm:grid-cols-2">
-              {detail.checklist.map((c) => (
-                <li key={c} className="flex gap-2 rounded-lg border bg-card p-4 text-sm leading-relaxed">
-                  <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-brand-green" strokeWidth={1.5} />
+              {detail.checklist.map((c, i) => (
+                <li key={c} className="card-hover flex gap-2 rounded-lg border bg-card p-4 text-sm leading-relaxed">
+                  <CheckCircle2
+                    className={`mt-0.5 h-4 w-4 shrink-0 ${i % 2 === 0 ? "text-brand-green" : "text-brand-orange"}`}
+                    strokeWidth={1.5}
+                  />
                   {c}
                 </li>
               ))}

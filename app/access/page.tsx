@@ -103,7 +103,7 @@ export default function AccessPage() {
 
           <div className="grid gap-4 md:grid-cols-3">
             {WAYS.map((w) => (
-              <Card key={w.title} className="h-full">
+              <Card key={w.title} className="card-hover h-full">
                 <CardContent className="flex h-full flex-col gap-3 p-5">
                   <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-secondary text-primary">
                     <w.icon className="h-5 w-5" strokeWidth={1.75} />
@@ -112,7 +112,7 @@ export default function AccessPage() {
                   <ol className="space-y-2 text-sm leading-relaxed text-muted-foreground">
                     {w.steps.map((s, i) => (
                       <li key={s} className="flex gap-2">
-                        <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand-orange-soft text-[11px] font-semibold text-brand-orange">
+                        <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand-orange-soft text-[11px] font-semibold text-brand-orange-ink">
                           {i + 1}
                         </span>
                         <span>{s}</span>

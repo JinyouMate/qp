@@ -36,22 +36,22 @@ export function LeadSection({
       <div className="container-site">
         <SectionHeading tag={tag} title={title} desc={desc} />
         <div className="mx-auto grid max-w-4xl gap-6 md:grid-cols-[1fr_1.1fr]">
-          <Card className="h-fit bg-brand-green text-white">
+          <Card className="h-fit border-brand-green/15 bg-brand-green-soft/55">
             <CardContent className="space-y-4 p-6">
               <h3 className="flex items-center gap-2 text-lg font-bold">
-                <Gift className="h-5 w-5" /> 现在留资可以拿走
+                <Gift className="h-5 w-5 text-brand-orange" /> 现在留资可以拿走
               </h3>
-              <ul className="space-y-2.5 text-sm leading-relaxed text-white/90">
-                {list.map((b) => (
+              <ul className="space-y-2.5 text-sm leading-relaxed text-foreground/85">
+                {list.map((b, i) => (
                   <li key={b} className="flex gap-2">
-                    <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-orange" />
+                    <span className={`mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full ${i % 2 === 0 ? "bg-brand-orange" : "bg-brand-green"}`} />
                     {b}
                   </li>
                 ))}
               </ul>
-              <div className="rounded-xl bg-white/10 p-4 text-sm">
+              <div className="rounded-xl border border-brand-orange/15 bg-white/85 p-4 text-sm shadow-warm">
                 <p className="font-semibold">更快的路：直接联系主理人</p>
-                <p className="mt-1 text-white/80">
+                <p className="mt-1 text-muted-foreground">
                   备注「官网」秒通过，资料直接发你，还能进对应身份的社群。
                 </p>
                 <Button asChild variant="orange" size="sm" className="mt-3">
@@ -60,8 +60,8 @@ export function LeadSection({
                   </Link>
                 </Button>
               </div>
-              <p className="flex items-start gap-2 text-xs text-white/70">
-                <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0" />
+              <p className="flex items-start gap-2 text-xs text-muted-foreground">
+                <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-brand-green" />
                 信息只用于资料发送与业务联系，可随时要求删除，详见
                 <Link href="/privacy" className="underline underline-offset-2">
                   隐私政策

@@ -91,7 +91,7 @@ export default async function ReportsPage() {
           <SectionHeading tag="行业报告" title="每份报告都写清口径、样本和动作" />
           <div className="grid gap-4 md:grid-cols-3">
             {REPORTS.map((r) => (
-              <Card key={r.name} className="flex h-full flex-col">
+              <Card key={r.name} className="card-hover flex h-full flex-col">
                 <CardContent className="flex flex-1 flex-col gap-3 p-5">
                   <Badge variant="accent" className="w-fit">{r.metric}</Badge>
                   <h3 className="text-base font-bold leading-snug">{r.name}</h3>
@@ -153,9 +153,9 @@ export default async function ReportsPage() {
         <div className="container-site">
           <SectionHeading tag="我们的数据原则" title="数据可以错一次，口径不能含糊一次" />
           <div className="mx-auto max-w-3xl space-y-3">
-            {METHOD.map((m) => (
-              <div key={m} className="flex gap-3 rounded-xl border bg-card p-4 text-sm leading-relaxed">
-                <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-brand-green" />
+            {METHOD.map((m, i) => (
+              <div key={m} className="card-hover flex gap-3 rounded-xl border bg-card p-4 text-sm leading-relaxed">
+                <span className={`mt-1.5 h-2 w-2 shrink-0 rounded-full ${i % 2 === 0 ? "bg-brand-green" : "bg-brand-orange"}`} />
                 {m}
               </div>
             ))}

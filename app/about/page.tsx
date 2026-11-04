@@ -115,7 +115,7 @@ export default function AboutPage() {
           <SectionHeading tag="三条铁律" title="我们给自己定的规矩" desc="不写在墙上，写在每个决策里。" />
           <div className="grid gap-4 md:grid-cols-3">
             {PRINCIPLES.map((p, i) => (
-              <Card key={p.title} className="h-full">
+              <Card key={p.title} className="card-hover h-full">
                 <CardContent className="flex h-full flex-col gap-2 p-5">
                   <span className="flex h-8 w-8 items-center justify-center rounded-full bg-brand-green text-sm font-bold text-white">
                     {i + 1}
@@ -152,15 +152,15 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* 流量路径 */}
-      <section className="section-pad bg-brand-green text-white">
+      {/* 流量路径：浅色暖底 + 白胶囊，不再用深墨绿 */}
+      <section className="section-pad border-y border-brand-green/10 bg-brand-green-soft/45">
         <div className="container-site">
           <div className="mx-auto mb-10 max-w-2xl text-center">
-            <span className="mb-2 block text-xs font-semibold tracking-[0.25em] text-brand-orange">
+            <span className="mb-2 block text-xs font-semibold tracking-[0.25em] text-brand-orange-ink">
               FLOW
             </span>
             <h2 className="text-2xl font-bold md:text-3xl">流量必须经过官网或私域</h2>
-            <p className="mt-3 text-sm text-white/80">
+            <p className="mt-3 text-sm text-muted-foreground">
               内容平台只负责让人认识我们，不直接跳到第三方成交页。
               这条路径是我们所有运营动作的前提。
             </p>
@@ -174,8 +174,10 @@ export default function AboutPage() {
               "官网品牌资产",
             ].map((s, i, arr) => (
               <div key={s} className="flex items-center gap-2">
-                <span className="rounded-full bg-white/15 px-4 py-2 font-medium">{s}</span>
-                {i < arr.length - 1 && <ArrowRight className="h-4 w-4 shrink-0 text-brand-orange md:rotate-0 rotate-90" />}
+                <span className="card-hover rounded-full border border-brand-green/15 bg-white px-4 py-2 font-medium shadow-warm">
+                  {s}
+                </span>
+                {i < arr.length - 1 && <ArrowRight className="h-4 w-4 shrink-0 text-brand-orange-ink md:rotate-0 rotate-90" />}
               </div>
             ))}
           </div>

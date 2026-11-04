@@ -63,7 +63,7 @@ export default async function ProductsPage({
             <div className="flex shrink-0 gap-2">
               <Link
                 href={personaLeadHref(persona)}
-                className="rounded-full bg-brand-red px-4 py-2 text-xs font-semibold text-white"
+                className="rounded-full bg-brand-orange px-4 py-2 text-xs font-semibold text-white transition-colors hover:bg-brand-orange-dark"
               >
                 {persona.intent === "consult" ? "预约沟通" : "获取资料"}
               </Link>
@@ -115,7 +115,7 @@ export default async function ProductsPage({
               <div key={l} className="rounded-xl border bg-card p-4">
                 <div className="text-sm font-bold">{LAYER_LABELS[l].name}</div>
                 <p className="mt-1 text-xs text-muted-foreground">{LAYER_LABELS[l].desc}</p>
-                <p className="mt-2 text-xs font-semibold text-brand-orange">
+                <p className="mt-2 text-xs font-semibold text-brand-orange-ink">
                   目标：{LAYER_LABELS[l].goal}
                 </p>
               </div>

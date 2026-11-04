@@ -57,7 +57,7 @@ export default async function CasesPage() {
               {cases
                 .filter((c) => c.group === g)
                 .map((c) => (
-                  <Card key={c.id} className="h-full">
+                  <Card key={c.id} className="card-hover h-full">
                     <CardContent className="flex h-full flex-col gap-3 p-5">
                       <div className="flex items-center gap-2 text-sm font-semibold text-brand-green">
                         <Quote className="h-4 w-4" />
@@ -97,9 +97,9 @@ export default async function CasesPage() {
               "不做无口径表述：不写「提升 300%」，写清楚基线、周期与统计方式。",
               "不做无法核实的归因：属于客户自身努力的部分，就说是客户的功劳。",
               "失败也记：踩过的坑进了避坑库，方法不对的地方会写明我们后来怎么改的。",
-            ].map((t) => (
-              <div key={t} className="flex gap-3 rounded-xl border bg-card p-4">
-                <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-brand-green" />
+            ].map((t, i) => (
+              <div key={t} className="card-hover flex gap-3 rounded-xl border bg-card p-4">
+                <span className={`mt-1.5 h-2 w-2 shrink-0 rounded-full ${i % 2 === 0 ? "bg-brand-green" : "bg-brand-orange"}`} />
                 {t}
               </div>
             ))}

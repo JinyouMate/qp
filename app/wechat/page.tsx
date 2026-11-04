@@ -91,7 +91,7 @@ export default function WechatPage() {
                 把 SOP 清单、报告摘要、模板库一次性发你，并问你一句——
               </p>
               <p className="mt-3 flex items-start gap-2 rounded-lg bg-white/70 p-3 text-sm font-semibold">
-                <Quote className="mt-0.5 h-4 w-4 shrink-0 text-brand-orange" />
+                <Quote className="mt-0.5 h-4 w-4 shrink-0 text-brand-orange-ink" />
                 你平时遇到这类问题一般怎么处理？
               </p>
               <p className="mt-2 text-xs text-muted-foreground">
@@ -107,9 +107,11 @@ export default function WechatPage() {
                 "一线在用的表格模板（飞书可直接复制）",
                 "按你的身份拉进对应社群，每周/每月有复盘",
                 "内部资料库、课程、工具包、数据看板的开通权限（企微内交付）",
-              ].map((t) => (
+              ].map((t, i) => (
                 <li key={t} className="flex gap-2.5 text-sm leading-relaxed">
-                  <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-brand-green" />
+                  <CheckCircle2
+                    className={`mt-0.5 h-4 w-4 shrink-0 ${i % 2 === 0 ? "text-brand-green" : "text-brand-orange"}`}
+                  />
                   {t}
                 </li>
               ))}
@@ -131,7 +133,7 @@ export default function WechatPage() {
           <SectionHeading tag="社群矩阵" title="四个群，按身份进" desc="不用全进，选你对应的那个。" />
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
             {GROUPS.map((g) => (
-              <Card key={g.name} className="h-full">
+              <Card key={g.name} className="card-hover h-full">
                 <CardContent className="flex h-full flex-col gap-2 p-5">
                   <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-secondary text-primary">
                     <Users className="h-5 w-5" strokeWidth={1.75} />

@@ -120,7 +120,7 @@ export default async function CoursesPage() {
           <SectionHeading tag="课程列表" title="三门课，按你的阶段选" />
           <div className="grid gap-4 lg:grid-cols-3">
             {COURSES.map((c) => (
-              <Card key={c.name} className="flex h-full flex-col">
+              <Card key={c.name} className="card-hover flex h-full flex-col">
                 <CardContent className="flex flex-1 flex-col gap-3 p-5">
                   <div className="flex items-center gap-2">
                     <Badge variant="secondary">{c.level}</Badge>

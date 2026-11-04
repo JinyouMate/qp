@@ -15,10 +15,10 @@ export function PageHero({
   className?: string;
 }) {
   return (
-    <section className={cn("border-b bg-gradient-to-b from-brand-green-soft to-background", className)}>
+    <section className={cn("border-b border-brand-orange/10 bg-gradient-to-b from-[#FFF7EE] via-[#FCFAF6] to-background", className)}>
       <div className="container-site py-12 md:py-16">
         {tag && (
-          <span className="mb-3 inline-block rounded-full bg-white px-3 py-1 text-xs font-semibold tracking-[0.2em] text-brand-orange">
+          <span className="mb-3 inline-block rounded-full bg-white px-3 py-1 text-xs font-semibold tracking-[0.2em] text-brand-orange-ink">
             {tag}
           </span>
         )}

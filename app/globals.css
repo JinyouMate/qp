@@ -3,38 +3,39 @@
 @tailwind utilities;
 
 /* ============================================================
-   汽配知识局 · 品牌主题（设计系统 V2）
-   主色 深绿 #1F6F4A · 行动色 砖红 #C44536 · 强调 暖橙 #E07A3F
-   辅助 米白 #F7F4EF · 浅灰 #E8E5DF
-   圆角 12-16px · 阴影轻暖柔和 · 移动端优先
+   汽配知识局 · 品牌主题（设计系统 V3 · 扶木生火）
+   木（结构）品牌绿 #1F6F4A — 仅 Logo / 标题 / 辅助标签
+   火（行动）阳光橙 #EA580C — 全站主 CTA / 关键数字，hover #C2410C
+   金/水（底）米白 #F9F9F8 · 纯白卡 · 浅暖灰边框
+   严禁大面积深黑 / 深蓝 / 极深墨绿；整体向阳、生发、有行动力
    ============================================================ */
 
 @layer base {
   :root {
-    --background: 38 33% 95%;          /* #F7F4EF 米白 */
-    --foreground: 32 15% 20%;          /* #3A332B 暖炭 */
+    --background: 40 14% 98%;          /* #FAF9F6 米白 / 极浅暖灰 */
+    --foreground: 30 14% 18%;          /* #342E28 暖炭（不用纯黑） */
 
-    --card: 42 50% 98%;                /* #FCFAF6 */
-    --card-foreground: 32 15% 20%;
+    --card: 0 0% 100%;                 /* 纯白卡片 */
+    --card-foreground: 30 14% 18%;
 
-    --primary: 152 56% 28%;            /* #1F6F4A 深绿 */
-    --primary-foreground: 38 33% 97%;
+    --primary: 152 56% 28%;            /* 木 · #1F6F4A 品牌绿（结构支撑） */
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 148 30% 92%;          /* #E5F0E9 浅绿 */
+    --secondary: 148 30% 93%;          /* 浅绿辅助标签 */
     --secondary-foreground: 152 50% 24%;
 
-    --muted: 40 16% 93%;               /* #EDEAE3 */
-    --muted-foreground: 36 9% 48%;     /* #857C6F */
+    --muted: 36 14% 95%;               /* 浅暖灰 */
+    --muted-foreground: 36 8% 46%;     /* 暖灰文字 */
 
-    --accent: 26 85% 95%;              /* #FBEFE2 浅橙 */
-    --accent-foreground: 24 72% 42%;   /* 深暖橙 */
+    --accent: 28 100% 96%;             /* 火 · 极浅橙底 */
+    --accent-foreground: 24 76% 38%;   /* 浅底可读的深橙小字 */
 
-    --destructive: 6 57% 49%;          /* #C44536 砖红（主 CTA） */
-    --destructive-foreground: 38 33% 97%;
+    --destructive: 6 57% 49%;          /* 仅用于错误态 */
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 40 22% 87%;              /* #E5E0D6 */
-    --input: 40 22% 87%;
-    --ring: 152 56% 28%;
+    --border: 36 14% 89%;              /* #E7E3DB 浅暖灰（近 border-gray-200） */
+    --input: 36 14% 89%;
+    --ring: 24 90% 52%;                /* 火 · 聚焦环用阳光橙 */
 
     --radius: 1rem;                    /* 16px */
   }
@@ -58,6 +59,24 @@
   }
   .section-pad {
     @apply py-12 md:py-20;
+  }
+
+  /* 卡片悬停：从冷灰改为「微弱的橙（火）或绿（木）」，禁止硬阴影 */
+  .card-hover {
+    transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+  }
+  .card-hover:hover {
+    border-color: rgba(234, 88, 12, 0.32);
+    box-shadow:
+      0 12px 30px -16px rgba(234, 88, 12, 0.28),
+      0 4px 12px -8px rgba(31, 111, 74, 0.12);
+    transform: translateY(-2px);
+  }
+  .card-hover-green:hover {
+    border-color: rgba(31, 111, 74, 0.30);
+    box-shadow:
+      0 12px 30px -16px rgba(31, 111, 74, 0.24),
+      0 4px 12px -8px rgba(234, 88, 12, 0.08);
   }
 }
 
@@ -93,7 +112,7 @@
   @apply font-bold text-brand-green;
 }
 .mdx-body a {
-  @apply font-medium text-primary underline underline-offset-2 hover:text-brand-orange;
+  @apply font-medium text-primary underline underline-offset-2 hover:text-brand-orange-ink;
 }
 .mdx-body blockquote {
   @apply my-6 rounded-r-lg border-l-4 border-brand-orange bg-brand-orange-soft px-4 py-3 text-sm text-accent-foreground;

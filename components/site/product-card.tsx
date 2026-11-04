@@ -23,7 +23,7 @@ export function ProductCard({ product }: { product: Product }) {
   ];
 
   return (
-    <Card className="flex h-full flex-col">
+    <Card className="card-hover flex h-full flex-col">
       <CardHeader className="pb-3">
         <div className="flex items-center justify-between">
           <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-secondary text-primary">

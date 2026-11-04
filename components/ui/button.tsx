@@ -9,13 +9,17 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground shadow-warm hover:bg-primary/90",
-        destructive: "bg-destructive text-destructive-foreground shadow-warm hover:bg-destructive/90",
-        orange: "bg-brand-orange text-white shadow-warm hover:bg-brand-orange/90",
-        outline: "border border-primary bg-transparent text-primary hover:bg-secondary",
+        /* 火：全站主 CTA 统一阳光橙，白字，hover 加深到 orange-700 */
+        default: "bg-brand-orange text-white shadow-warm hover:bg-brand-orange-dark",
+        /* 站内 CTA（预约咨询 / 领取资料）历史上也用 destructive，一并收口到行动色 */
+        destructive: "bg-brand-orange text-white shadow-warm hover:bg-brand-orange-dark",
+        orange: "bg-brand-orange text-white shadow-warm hover:bg-brand-orange-dark",
+        /* 次级按钮：暖橙描边而不是冷绿，保持火系但不与主按钮抢焦点 */
+        outline: "border border-brand-orange/35 bg-transparent text-brand-orange-ink hover:border-brand-orange/60 hover:bg-brand-orange-soft",
+        /* 木：浅绿辅助标签保留品牌绿 */
         secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-muted hover:text-foreground",
-        link: "text-primary underline-offset-4 hover:underline",
+        link: "text-brand-orange-ink underline-offset-4 hover:underline",
       },
       size: {
         default: "h-11 px-6",

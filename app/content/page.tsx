@@ -79,14 +79,14 @@ export default async function ContentPage() {
           <SectionHeading tag="三个栏目" title="我们只做三类内容" />
           <div className="grid gap-4 md:grid-cols-3">
             {COLUMNS.map((c) => (
-              <Card key={c.name} className="h-full">
+              <Card key={c.name} className="card-hover h-full">
                 <CardContent className="flex h-full flex-col gap-2 p-5">
                   <div className="flex items-center gap-2">
                     <Badge variant="secondary">{c.type}</Badge>
                     <span className="text-xs text-muted-foreground">{c.freq}</span>
                   </div>
                   <h3 className="text-base font-bold">{c.name}</h3>
-                  <p className="text-xs text-brand-orange">{c.platform}</p>
+                  <p className="text-xs text-brand-orange-ink">{c.platform}</p>
                   <p className="text-sm leading-relaxed text-muted-foreground">{c.desc}</p>
                 </CardContent>
               </Card>
@@ -100,12 +100,12 @@ export default async function ContentPage() {
           <SectionHeading tag="近期内容" title="最近我们在讲什么" />
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {contents.map((c) => (
-              <Card key={c.id} className="h-full">
+              <Card key={c.id} className="card-hover h-full">
                 <CardContent className="flex h-full flex-col gap-2 p-5">
                   <div className="flex items-center gap-2 text-xs">
                     <Badge variant="secondary">{c.type}</Badge>
                     <span className="text-muted-foreground">{c.platform}</span>
-                    <span className="ml-auto font-semibold text-brand-orange">{c.metric}</span>
+                    <span className="ml-auto font-semibold text-brand-orange-ink">{c.metric}</span>
                   </div>
                   <h3 className="text-[15px] font-bold leading-snug">{c.title}</h3>
                   <p className="text-sm text-muted-foreground">{c.summary}</p>

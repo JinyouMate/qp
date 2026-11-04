@@ -60,7 +60,7 @@ export default function InsightsPage() {
 
           <div className="grid gap-4 md:grid-cols-2">
             {items.map((i) => (
-              <Card key={i.slug} className="group transition-shadow hover:shadow-warm-md">
+              <Card key={i.slug} className="card-hover group">
                 <Link href={`/insights/${i.slug}`} className="block h-full">
                   <CardContent className="flex h-full flex-col p-5">
                     <div className="mb-2 flex flex-wrap gap-1.5">

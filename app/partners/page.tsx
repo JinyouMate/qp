@@ -83,7 +83,7 @@ export default async function PartnersPage() {
           <SectionHeading tag="合作形态" title="两种合作，走两条路" />
           <div className="grid gap-4 md:grid-cols-2">
             {items.map((p) => (
-              <Card key={p.id} className="h-full">
+              <Card key={p.id} className="card-hover h-full">
                 <CardContent className="flex h-full flex-col gap-3 p-5">
                   <div className="flex items-center gap-2">
                     <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-secondary text-primary">
@@ -135,11 +135,11 @@ export default async function PartnersPage() {
           <SectionHeading tag="AI 合作能交付什么" title="四样东西，都可以单独谈" />
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
             {AI_DELIVERABLES.map((d) => (
-              <Card key={d.name} className="h-full">
+              <Card key={d.name} className="card-hover h-full">
                 <CardContent className="flex h-full flex-col gap-2 p-5">
                   <h3 className="text-base font-bold">{d.name}</h3>
                   <p className="text-sm leading-relaxed text-muted-foreground">{d.desc}</p>
-                  <p className="mt-auto pt-2 text-xs font-semibold text-brand-orange">{d.note}</p>
+                  <p className="mt-auto pt-2 text-xs font-semibold text-brand-orange-ink">{d.note}</p>
                 </CardContent>
               </Card>
             ))}

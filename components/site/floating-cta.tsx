@@ -68,7 +68,7 @@ export function FloatingCta() {
           href="/contact?intent=consult"
           event="consult_click"
           data={{ from: "float-mobile" }}
-          className="flex shrink-0 items-center justify-center gap-1.5 rounded-full border border-brand-red px-3 py-2.5 text-sm font-semibold text-brand-red"
+          className="flex shrink-0 items-center justify-center gap-1.5 rounded-full border border-brand-orange/40 px-3 py-2.5 text-sm font-semibold text-brand-orange-ink transition-colors hover:bg-brand-orange-soft"
         >
           <CalendarClock className="h-4 w-4" /> 预约咨询
         </TrackedLink>

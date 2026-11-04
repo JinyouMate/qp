@@ -64,7 +64,7 @@ export default async function ConsultingPage() {
           <SectionHeading tag="咨询怎么做的" title="诊断 → 方案 → 陪跑，三步都不跳" />
           <div className="grid gap-4 md:grid-cols-3">
             {STEPS.map((s) => (
-              <Card key={s.name} className="h-full">
+              <Card key={s.name} className="card-hover h-full">
                 <CardContent className="flex h-full flex-col gap-3 p-5">
                   <div className="flex items-center gap-2">
                     <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-secondary text-primary">
@@ -100,7 +100,7 @@ export default async function ConsultingPage() {
           <SectionHeading tag="产品与收费" title="两种交付形态，收费方式不同" />
           <div className="grid gap-4 md:grid-cols-2">
             {items.map((p) => (
-              <Card key={p.id} className="h-full">
+              <Card key={p.id} className="card-hover h-full">
                 <CardContent className="flex h-full flex-col gap-3 p-5">
                   <div className="flex items-center gap-2">
                     <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-secondary text-primary">

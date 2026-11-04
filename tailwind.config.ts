@@ -39,17 +39,29 @@ const config: Config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        /* 品牌色：深绿(主) / 砖红(行动) / 暖橙(强调) / 米白 / 浅灰 */
+        /* ==========================================================
+           扶木生火 · 色彩系统 V3
+           木 = 品牌绿（Logo / 结构 / 辅助标签，知识的支撑）
+           火 = 阳光橙（主 CTA / 关键数字，行动与生发）
+           金/水 = 米白暖灰（背景与边框，克制不抢戏）
+           严禁大面积深黑 / 深蓝 / 极深墨绿
+           ========================================================== */
         brand: {
+          /* 木：品牌绿，保留给 Logo、标题、标签、结构 */
           green: "#1F6F4A",
           "green-mid": "#2F8F5B",
-          "green-soft": "#E5F0E9",
+          "green-soft": "#EAF3ED",
+          /* 火：阳光橙（= orange-600），全站唯一行动色 */
+          orange: "#EA580C",
+          "orange-dark": "#C2410C",   /* hover = orange-700 */
+          "orange-ink": "#B45309",    /* 浅底上的小字橙，保证可读 */
+          "orange-soft": "#FFF2E7",
+          /* 少量结果数字用的朱砂红（非行动色） */
           red: "#C44536",
           "red-soft": "#F8E9E5",
-          orange: "#E07A3F",
-          "orange-soft": "#FBEFE2",
-          cream: "#F7F4EF",
-          gray: "#E8E5DF",
+          /* 金/水：暖白与浅暖灰 */
+          cream: "#F8F6F1",
+          gray: "#EDE9E2",
         },
       },
       borderRadius: {
@@ -72,6 +84,9 @@ const config: Config = {
         warm: "0 4px 16px rgba(122, 98, 62, 0.08)",
         "warm-md": "0 8px 24px rgba(122, 98, 62, 0.11)",
         "warm-lg": "0 12px 32px rgba(122, 98, 62, 0.14)",
+        /* 火：阳光橙弥散阴影，用于悬浮数据卡与卡片 hover */
+        "sun": "0 10px 28px -12px rgba(234, 88, 12, 0.22), 0 3px 10px -6px rgba(234, 88, 12, 0.10)",
+        "sun-lg": "0 18px 40px -18px rgba(234, 88, 12, 0.28), 0 4px 12px -6px rgba(234, 88, 12, 0.10)",
       },
       keyframes: {
         "accordion-down": {

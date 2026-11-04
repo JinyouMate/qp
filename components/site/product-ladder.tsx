@@ -138,7 +138,7 @@ export function ProductLadder({
       {showFooter && (
         <div className="flex flex-col items-center gap-2 rounded-xl border border-dashed bg-card p-5 text-center sm:flex-row sm:justify-between sm:text-left">
           <p className="flex items-start gap-2 text-sm">
-            <Sparkles className="mt-0.5 h-4 w-4 shrink-0 text-brand-orange" />
+            <Sparkles className="mt-0.5 h-4 w-4 shrink-0 text-brand-orange-ink" />
             <span>
               不确定从哪一档开始？<b>先领免费的</b>——清单和模板能直接照着做，
               用得上再考虑工具包，别一上来就买课。
@@ -146,7 +146,7 @@ export function ProductLadder({
           </p>
           <Link
             href="/contact?intent=asset"
-            className="shrink-0 rounded-full bg-brand-green px-4 py-2 text-sm font-semibold text-white"
+            className="shrink-0 rounded-full bg-brand-orange px-4 py-2 text-sm font-semibold text-white shadow-warm transition-colors hover:bg-brand-orange-dark"
           >
             先领免费资料
           </Link>
