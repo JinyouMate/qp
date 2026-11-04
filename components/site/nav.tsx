@@ -6,6 +6,7 @@ import { useState } from "react";
 import { Menu, X, CalendarClock } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { BrandLogo } from "./brand-logo";
 import { WecomCtaButton } from "./wecom-dialog";
 import { cn } from "@/lib/utils";
 
@@ -25,16 +26,8 @@ export function Nav() {
   return (
     <header className="sticky top-0 z-40 border-b bg-card/90 backdrop-blur">
       <div className="container-site flex h-16 items-center justify-between gap-4">
-        <Link href="/" className="flex items-center gap-2.5" onClick={() => setOpen(false)}>
-          <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-brand-green text-base font-bold text-white shadow-warm">
-            配
-          </span>
-          <span className="leading-tight">
-            <span className="block text-base font-bold tracking-wide">汽配知识局</span>
-            <span className="block text-[10px] tracking-[0.2em] text-muted-foreground">
-              AUTO PARTS KNOWLEDGE
-            </span>
-          </span>
+        <Link href="/" className="flex items-center" onClick={() => setOpen(false)}>
+          <BrandLogo />
         </Link>
 
         {/* 桌面导航 */}

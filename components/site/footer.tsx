@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { BRAND } from "@/lib/brand";
+import { BrandLogo } from "./brand-logo";
 
 const COLS: { title: string; links: { href: string; label: string }[] }[] = [
   {
@@ -42,13 +43,9 @@ export function Footer() {
       <div className="container-site py-12">
         <div className="grid gap-10 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
           <div>
-            <div className="mb-3 flex items-center gap-2.5">
-              {/* 木：Logo 保留品牌绿 */}
-              <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-brand-green text-base font-bold text-white shadow-warm">
-                配
-              </span>
-              <span className="text-base font-bold text-foreground">{BRAND.name}</span>
-            </div>
+            <Link href="/" className="mb-4 inline-flex items-center">
+              <BrandLogo />
+            </Link>
             <p className="text-sm leading-relaxed">
               汽配行业知识资产运营商——把隐性知识变成可交易资产。
               从数据到决策，从知识到工具。
