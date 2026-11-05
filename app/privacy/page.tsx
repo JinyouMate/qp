@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
+import type { ReactNode } from "react";
 
 import { buildMetadata, KEYWORDS } from "@/lib/seo";
+import { BRAND } from "@/lib/brand";
 import Link from "next/link";
 import { Mail } from "lucide-react";
 
@@ -14,7 +16,9 @@ export const metadata: Metadata = buildMetadata({
   keywords: [KEYWORDS.compliance],
 });
 
-const SECTIONS = [
+type Section = { title: string; body: ReactNode[] };
+
+const SECTIONS: Section[] = [
   {
     title: "一、我们收集哪些信息",
     body: [
@@ -83,7 +87,16 @@ const SECTIONS = [
     title: "九、政策更新与联系方式",
     body: [
       "本政策如有更新，会在本页面标注更新日期，重大变更会通过官网公告。",
-      "隐私相关问题请联系：service@qipeizhishiju.com。",
+      <span>
+        {"隐私相关问题请联系："}
+        <a
+          href={BRAND.emailHref}
+          className="text-primary underline underline-offset-2 hover:text-brand-orange-ink"
+        >
+          {BRAND.email}
+        </a>
+        {"。"}
+      </span>,
     ],
   },
 ];
@@ -104,8 +117,8 @@ export default function PrivacyPage() {
               <div key={s.title}>
                 <h2 className="text-lg font-bold text-brand-green">{s.title}</h2>
                 <ul className="mt-3 space-y-2">
-                  {s.body.map((b) => (
-                    <li key={b} className="flex gap-2.5 text-sm leading-relaxed text-foreground/85">
+                  {s.body.map((b, i) => (
+                    <li key={i} className="flex gap-2.5 text-sm leading-relaxed text-foreground/85">
                       <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-orange" />
                       {b}
                     </li>
@@ -119,7 +132,14 @@ export default function PrivacyPage() {
                 <Mail className="h-4 w-4 text-brand-green" /> 有疑问直接问
               </p>
               <p className="mt-2 text-muted-foreground">
-                隐私相关的任何问题，发邮件或联系主理人说明即可，我们会在 7 个工作日内回复。
+                隐私相关的任何问题，发邮件至
+                <a
+                  href={BRAND.emailHref}
+                  className="mx-1 text-primary underline underline-offset-2 hover:text-brand-orange-ink"
+                >
+                  {BRAND.email}
+                </a>
+                或联系主理人说明即可，我们会在 7 个工作日内回复。
                 也可以一并查看
                 <Link href="/terms" className="mx-1 text-primary underline underline-offset-2">
                   服务条款

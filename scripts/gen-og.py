@@ -20,7 +20,7 @@ CONTENT = ROOT / "content" / "insights"
 # ---------- 品牌常量（改这里，全站 OG 同步） ----------
 BRAND = "汽配知识局"
 SLOGAN = "汽配行业知识资产运营商"
-DOMAIN = "qipeizhishi.com"
+DOMAIN = "jinyoudata.com"
 GREEN = (31, 111, 74)       # #1F6F4A
 RED = (196, 69, 54)         # #C44536
 ORANGE = (224, 122, 63)     # #E07A3F

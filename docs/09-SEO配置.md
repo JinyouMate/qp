@@ -6,7 +6,7 @@
 
 ```ts
 export const SITE_NAME = "汽配知识局";
-export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://qipeizhishi.com";
+export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://jinyoudata.com";
 export const KEYWORDS = { data:"汽配数据", oe:"OE号匹配", vin:"VIN解析", nev:"新能源汽配",
   knowledge:"汽配知识库", sop:"汽配SOP", compliance:"汽配出海数据合规", ai:"汽配AI数据标注" };
 ```
@@ -141,7 +141,7 @@ tags: ["OE号匹配", "汽配数据"]
 
 ## 7. 上线前 SEO 必改
 
-1. **`NEXT_PUBLIC_SITE_URL` 改成真实域名**——canonical、sitemap、OG 绝对地址全靠它，现在还是占位 `qipeizhishi.com`
+1. **`NEXT_PUBLIC_SITE_URL` 改成真实域名**——canonical、sitemap、OG 绝对地址全靠它，代码默认值已是 `https://jinyoudata.com`，Cloudflare Pages 控制台仍要显式填一份
 2. 补 `organizationSchema()` 里的 `sameAs`（抖音/视频号/知乎/公众号主页 URL），有助于品牌实体识别
 3. Google Search Console 提交 sitemap；Bing/百度站长平台同样提交
 4. 用 [Google 富媒体测试工具](https://search.google.com/test/rich-results) 验证 Product / Course / FAQPage / Article 无报错

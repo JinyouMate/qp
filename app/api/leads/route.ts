@@ -6,7 +6,8 @@ import { CHANNEL_LABELS, type Channel } from "@/lib/types";
 import { parseContact } from "@/lib/contact";
 import { clientIp, rateLimit } from "@/lib/rate-limit";
 
-export const runtime = "nodejs";
+// Cloudflare Pages（next-on-pages）只支持 Edge Runtime
+export const runtime = "edge";
 
 const CHANNELS = Object.keys(CHANNEL_LABELS) as [Channel, ...Channel[]];
 
@@ -60,8 +61,6 @@ async function sendEmail(payload: LeadPayload, extra: { identity: string; utmSou
   if (!apiKey || !to || !from) return { ok: false, reason: "未配置 Resend" };
 
   try {
-    const { Resend } = await import("resend");
-    const resend = new Resend(apiKey);
     const kind = parseContact(payload.contact).kind;
     const kindText = kind === "phone" ? "手机" : kind === "email" ? "邮箱" : "微信/其他";
     const utmText = payload.utm
@@ -69,22 +68,35 @@ async function sendEmail(payload: LeadPayload, extra: { identity: string; utmSou
           .map(([k, v]) => `${k}=${v}`)
           .join(" · ")
       : "无";
-    await resend.emails.send({
-      from,
-      to,
-      subject: `【新线索·${channelLabel(payload.channel)}】${payload.name} · ${payload.role} · ${payload.demand}`,
-      text: [
-        `姓名：${payload.name}`,
-        `联系方式：${payload.contact}（${kindText}）`,
-        `身份：${payload.role}`,
-        `需求：${payload.demand}`,
-        `来源渠道：${channelLabel(payload.channel)} · utm_source=${extra.utmSource}`,
-        `描述：${payload.description || "（未填写）"}`,
-        `来源：${payload.source || "（未知）"}`,
-        `UTM：${utmText}`,
-        `时间：${new Date().toLocaleString("zh-CN", { timeZone: "Asia/Shanghai" })}`,
-      ].join("\n"),
+    // Cloudflare Pages（Edge Runtime）不加载 resend SDK，直接走官方 REST 接口，
+    // 只用全局 fetch，避免把 Node 依赖打进边缘 Worker。
+    const res = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        from,
+        to,
+        subject: `【新线索·${channelLabel(payload.channel)}】${payload.name} · ${payload.role} · ${payload.demand}`,
+        text: [
+          `姓名：${payload.name}`,
+          `联系方式：${payload.contact}（${kindText}）`,
+          `身份：${payload.role}`,
+          `需求：${payload.demand}`,
+          `来源渠道：${channelLabel(payload.channel)} · utm_source=${extra.utmSource}`,
+          `描述：${payload.description || "（未填写）"}`,
+          `来源：${payload.source || "（未知）"}`,
+          `UTM：${utmText}`,
+          `时间：${new Date().toLocaleString("zh-CN", { timeZone: "Asia/Shanghai" })}`,
+        ].join("\n"),
+      }),
     });
+    if (!res.ok) {
+      console.error("[leads] Resend 返回", res.status);
+      return { ok: false, reason: `Resend 返回 ${res.status}` };
+    }
     return { ok: true };
   } catch (e) {
     console.error("[leads] Resend 发送失败:", e);

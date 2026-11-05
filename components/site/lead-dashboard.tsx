@@ -39,8 +39,8 @@ export function LeadDashboard({ data, demo = false }: { data: DashboardData; dem
         <div className="flex items-start gap-2 rounded-xl border border-brand-orange/40 bg-brand-orange-soft p-4 text-xs text-accent-foreground">
           <Info className="mt-0.5 h-3.5 w-3.5 shrink-0" />
           <span>
-            <b>当前是演示数据</b>：还没配置 Supabase（或未执行迁移），下面的数字是按日期生成的示例，
-            用来预览看板形态。接上数据库后自动切换为真实数据。
+            <b>数据连接未就绪</b>：尚未配置 Supabase（或未执行迁移），看板暂用本地预览数据。
+            接入数据库后自动切换为线上真实数据。
           </span>
         </div>
       )}

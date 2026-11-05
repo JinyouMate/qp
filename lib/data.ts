@@ -258,24 +258,28 @@ const DELIVERY_REPLACERS: Array<[RegExp, string]> = [
   ],
   [/(?:Ozon|eBay|Temu|Jumia|Amazon|亚马逊|速卖通|Shopee|Lazada|Walmart|Wish|SHEIN)/gi, "跨境平台"],
   [/拼多多|淘宝|天猫|京东/g, "电商渠道"],
+  // —— 官方邮箱统一（2026-11-05）：数据库历史文案里的旧域名/占位邮箱一律改写 ——
+  [/[A-Za-z0-9._%+-]+@(?:qipeizhishiju|qipeizhishi)\.com/gi, "service@jinyoudata.com"],
+  [/[A-Za-z0-9._%+-]+@yourdomain\.com/gi, "service@jinyoudata.com"],
 ];
 
 function sanitizeText<T>(v: T): T {
   if (typeof v !== "string") return v;
+  const text = String(v);
   return DELIVERY_REPLACERS.reduce(
     (acc, [re, to]) => acc.replace(re, to),
-    v
-  ) as unknown as T;
+    text
+  ) as T;
 }
 
 /** 对一行的所有字符串字段做清洗（只动 string，其他原样返回） */
 function sanitizeRow<T extends Record<string, unknown>>(row: T): T {
-  const out = { ...row };
+  const out: Record<string, unknown> = { ...row };
   for (const k of Object.keys(out)) {
     const v = out[k];
     if (typeof v === "string") out[k] = sanitizeText(v);
   }
-  return out;
+  return out as T;
 }
 
 export async function getProducts(): Promise<Product[]> {

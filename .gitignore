@@ -37,8 +37,10 @@ yarn-error.log*
 # 本地自检脚本（仅本机用，不入库）
 *.command
 
-# vercel
+# vercel / cloudflare 构建产物
 .vercel
+.wrangler/
+.dev.vars
 
 # typescript
 *.tsbuildinfo

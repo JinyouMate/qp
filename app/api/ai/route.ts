@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 
-export const runtime = "nodejs";
-export const maxDuration = 30;
+// Cloudflare Pages（next-on-pages）只支持 Edge Runtime
+export const runtime = "edge";
 
 const BodySchema = z.object({
   messages: z

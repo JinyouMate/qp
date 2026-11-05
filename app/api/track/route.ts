@@ -3,7 +3,8 @@ import { z } from "zod";
 
 import { getSupabaseAdmin, isSupabaseConfigured } from "@/lib/supabase";
 
-export const runtime = "nodejs";
+// Cloudflare Pages（next-on-pages）只支持 Edge Runtime
+export const runtime = "edge";
 
 const EVENTS = [
   "form_submit",

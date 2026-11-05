@@ -3,7 +3,8 @@ import { NextResponse } from "next/server";
 import { getSupabaseAdmin, isSupabaseConfigured } from "@/lib/supabase";
 import { CHANNEL_LABELS, type Channel } from "@/lib/types";
 
-export const runtime = "nodejs";
+// Cloudflare Pages（next-on-pages）只支持 Edge Runtime
+export const runtime = "edge";
 
 /** 简单的后台口令校验（header x-admin-token 或 ?token=） */
 function authorized(req: Request): boolean {

@@ -62,8 +62,8 @@ git push -u origin main
 | `SUPABASE_SERVICE_ROLE_KEY` | `eyJ...` | **敏感**，不能加 NEXT_PUBLIC_ 前缀 |
 | `ADMIN_TOKEN` | 强随机串 | 用 `openssl rand -hex 32` 生成 |
 | `RESEND_API_KEY` | `re_xxxxxx` | 敏感 |
-| `RESEND_FROM_EMAIL` | `汽配知识局 <no-reply@yourdomain.com>` | |
-| `LEAD_NOTIFY_EMAIL` | `you@yourdomain.com` | |
+| `RESEND_FROM_EMAIL` | `汽配知识局 <service@jinyoudata.com>` | 需在 Resend 验证 jinyoudata.com 发信域 |
+| `LEAD_NOTIFY_EMAIL` | `service@jinyoudata.com` | 官方服务邮箱 |
 | `FEISHU_WEBHOOK_URL` | `https://open.feishu.cn/...` | 可选 |
 | `AI_API_KEY` / `AI_BASE_URL` / `AI_MODEL` | 可选 | 不配则 AI 问答走关键词兜底 |
 | `NEXT_PUBLIC_GA4_ID` | `G-XXXXXXXXXX` | 可选 |
@@ -112,7 +112,7 @@ git push -u origin main
 - [ ] Google Search Console 提交 sitemap；富媒体测试 Product/Course/FAQPage/Article 无报错
 
 ### 合规
-- [ ] 隐私政策与条款里的品牌名、邮箱、ICP 备案号已替换
+- [ ] ICP 备案号（官方邮箱已统一为 `service@jinyoudata.com`）
 - [ ] 备案号放在页脚（国内上线必需）
 
 ### 移动端

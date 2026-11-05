@@ -1,0 +1,18 @@
+# ============================================================
+# Cloudflare Pages 项目配置
+# 文档：https://developers.cloudflare.com/pages/configuration/wrangler-configuration/
+# ============================================================
+
+# 项目名（与 Cloudflare Pages 控制台里的项目名保持一致）
+name = "qipei-web"
+
+# 运行时兼容日期：必须 >= 2022-11-30 才能开启 nodejs_compat
+compatibility_date = "2025-09-01"
+
+# next-on-pages 生成的 _worker.js 需要 Node.js 兼容层
+# 注意：通过 Git 集成部署时，控制台 Settings > Functions 里
+#       仍要给 Production 和 Preview 各加一次 nodejs_compat（见部署文档）
+compatibility_flags = ["nodejs_compat"]
+
+# @cloudflare/next-on-pages 的构建产物目录，也是 Pages 要上传的目录
+pages_build_output_dir = ".vercel/output/static"

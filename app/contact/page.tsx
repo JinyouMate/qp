@@ -5,6 +5,8 @@ import { JsonLd, breadcrumbSchema } from "@/components/site/json-ld";
 import Link from "next/link";
 import { MessageCircle, Mail, Clock, ShieldCheck, ArrowRight } from "lucide-react";
 
+import { BRAND } from "@/lib/brand";
+
 import { PageHero } from "@/components/site/page-hero";
 import { ContactForm } from "@/components/site/contact-form";
 import { Card, CardContent } from "@/components/ui/card";
@@ -71,10 +73,10 @@ export default function ContactPage() {
                 <p className="flex items-start gap-2 text-muted-foreground">
                   <Mail className="mt-0.5 h-4 w-4 shrink-0 text-brand-green" />
                   <a
-                    href="mailto:service@qipeizhishiju.com"
+                    href={BRAND.emailHref}
                     className="underline-offset-2 hover:text-primary hover:underline"
                   >
-                    service@qipeizhishiju.com
+                    {BRAND.email}
                   </a>
                 </p>
                 <p className="flex items-start gap-2 text-muted-foreground">

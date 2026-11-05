@@ -15,6 +15,7 @@ import { Faq } from "@/components/site/faq";
 import { ProductLadder } from "@/components/site/product-ladder";
 import { JsonLd, faqSchema } from "@/components/site/json-ld";
 import { getProducts, getContents, getCases } from "@/lib/data";
+import { BRAND } from "@/lib/brand";
 
 /* ---------- 数字统计信任区（底层数据资产口径，只用自有数据） ---------- */
 const TRUST_STATS = [
@@ -213,6 +214,15 @@ export default async function HomePage() {
                   </li>
                 ))}
               </ul>
+              <p className="mt-4 text-xs text-muted-foreground">
+                商务合作与咨询：
+                <a
+                  href={BRAND.emailHref}
+                  className="ml-1 font-medium text-foreground underline-offset-2 transition-colors hover:text-brand-orange-ink hover:underline"
+                >
+                  {BRAND.email}
+                </a>
+              </p>
             </div>
 
             {/* 右侧视觉：纯前端绘制的悬浮数据看板（无图片、无截图） */}

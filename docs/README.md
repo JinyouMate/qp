@@ -35,6 +35,6 @@ cp .env.example .env.local    # 然后填真实值
 ## 上线前必改
 
 1. `NEXT_PUBLIC_SITE_URL` → 真实域名（canonical / sitemap / OG 都依赖它）
-2. 品牌名、企微活码、邮箱、ICP 备案号
+2. 企微活码、ICP 备案号（官方邮箱已统一为 `service@jinyoudata.com`，见 `lib/brand.ts`）
 3. 第三方购买链接（`products.third_party_url`）
 4. `ADMIN_TOKEN` 换成强随机串

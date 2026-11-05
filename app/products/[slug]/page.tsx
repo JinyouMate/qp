@@ -35,6 +35,10 @@ const LAYER_BADGE: Record<string, string> = {
   delivery: "destructive",
 };
 
+// Cloudflare Pages：只发布预渲染页，未列出的 slug 直接 404，
+// 避免生成 Node Runtime 的兜底函数（next-on-pages 不支持）
+export const dynamicParams = false;
+
 export function generateStaticParams() {
   return FALLBACK_PRODUCTS.map((p) => ({ slug: p.slug }));
 }

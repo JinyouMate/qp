@@ -50,7 +50,15 @@ export function Footer() {
               汽配行业知识资产运营商——把隐性知识变成可交易资产。
               从数据到决策，从知识到工具。
             </p>
-            <p className="mt-3 text-xs">📮 {BRAND.email}</p>
+            <p className="mt-3 text-xs">
+              📮
+              <a
+                href={BRAND.emailHref}
+                className="ml-1 underline-offset-2 transition-colors hover:text-brand-orange-ink hover:underline"
+              >
+                {BRAND.email}
+              </a>
+            </p>
             <p className="mt-1 text-xs">💬 企微：官网扫码添加，备注「官网」优先通过</p>
           </div>
           {COLS.map((col) => (
@@ -71,16 +79,6 @@ export function Footer() {
         <div className="mt-10 space-y-2 border-t border-border pt-6">
           <p className="text-center text-sm text-muted-foreground">
             © 2026 {BRAND.name} · {BRAND.legalEntity} · 保留所有权利
-          </p>
-          <p className="text-center text-sm text-muted-foreground">
-            <a
-              href="https://beian.miit.gov.cn/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="transition-colors hover:text-brand-orange-ink hover:underline"
-            >
-              粤ICP备XXXXXXXX号-1
-            </a>
           </p>
           <p className="text-center text-[11px] leading-relaxed text-muted-foreground/80">
             本站为知识资产展示与留资站点，不销售汽车配件、不代运营店铺、不代收货款。

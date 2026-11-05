@@ -9,12 +9,14 @@ export const BRAND = {
   english: "AUTO PARTS KNOWLEDGE",
   /** 运营主体（工商登记全称，用于版权与发票主体） */
   legalEntity: "深圳市元卦科技有限公司",
-  /** 联系邮箱（官方对外邮箱） */
-  email: "service@qipeizhishiju.com",
-  /** ICP 备案号（上线前替换为真实备案号） */
-  icp: "粤ICP备XXXXXXXX号",
-  /** 公网安备号 */
-  police: "粤公网安备 XXXXXXXXXXXXX号",
+  /** 腾讯企业邮箱 · 官方对外服务邮箱（全站唯一来源，勿在页面里硬编码） */
+  email: "service@jinyoudata.com",
+  /** 标准 mailto 链接，所有页面统一用它渲染 <a href="mailto:..."> */
+  emailHref: "mailto:service@jinyoudata.com",
+  /** 备案号：当前走 Cloudflare Pages 免备案，未取得真实号前不要在页面展示 */
+  icp: "",
+  /** 公网安备号：同上，未取得真实号前不要在页面展示 */
+  police: "",
   /** 主体所在地 */
   address: "广东省深圳市",
 } as const;

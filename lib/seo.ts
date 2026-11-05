@@ -9,7 +9,7 @@ import type { Metadata } from "next";
 
 export const SITE_NAME = "汽配知识局";
 export const SITE_URL = (
-  process.env.NEXT_PUBLIC_SITE_URL || "https://qipeizhishi.com"
+  process.env.NEXT_PUBLIC_SITE_URL || "https://jinyoudata.com"
 ).replace(/\/$/, "");
 export const SITE_SLOGAN = "汽配行业知识资产运营商——把隐性知识变成可交易资产";
 export const SITE_SUB = "从数据到决策，从知识到工具";

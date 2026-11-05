@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
+import type { ReactNode } from "react";
 
 import { buildMetadata, KEYWORDS } from "@/lib/seo";
+import { BRAND } from "@/lib/brand";
 import Link from "next/link";
 
 import { PageHero } from "@/components/site/page-hero";
@@ -14,7 +16,9 @@ export const metadata: Metadata = buildMetadata({
   keywords: [KEYWORDS.compliance],
 });
 
-const SECTIONS = [
+type Section = { title: string; body: ReactNode[] };
+
+const SECTIONS: Section[] = [
   {
     title: "一、服务范围与边界",
     body: [
@@ -38,7 +42,16 @@ const SECTIONS = [
       "本站原创内容（文章、视频、报告、SOP、模板、图表、方法论）的著作权归我们所有，未经书面许可不得整体复制、转载、摘编后署名发布或用于商业用途。",
       "个人学习与非商业分享：可以引用，需注明出处与作者，且引用比例不得超过原文的三分之一，不得改动原意。",
       "你留资获取的 SOP、模板与资料，授权范围为「你本人及你所在企业/团队内部使用」，不得对外销售、分发或打包进其他产品。",
-      "发现侵权可通过官网联系方式告知，我们会在核实后要求删除并保留追责权利。",
+      <span>
+        {"发现侵权请联系："}
+        <a
+          href={BRAND.emailHref}
+          className="text-primary underline underline-offset-2 hover:text-brand-orange-ink"
+        >
+          {BRAND.email}
+        </a>
+        {"，我们会在核实后要求删除并保留追责权利。"}
+      </span>,
     ],
   },
   {
@@ -71,6 +84,16 @@ const SECTIONS = [
       "本条款如有更新，将在本页面标注更新日期。继续使用本站视为接受更新后的条款。",
       "因本条款引起的争议，双方应友好协商；协商不成的，提交本站运营主体所在地有管辖权的人民法院处理。",
       "本条款适用中华人民共和国法律（不含港澳台地区法律）。",
+      <span>
+        {"条款与商务咨询邮箱："}
+        <a
+          href={BRAND.emailHref}
+          className="text-primary underline underline-offset-2 hover:text-brand-orange-ink"
+        >
+          {BRAND.email}
+        </a>
+        {"（工作日 9:30–18:30，一般 2 小时内回复）。"}
+      </span>,
     ],
   },
 ];
@@ -91,8 +114,8 @@ export default function TermsPage() {
               <div key={s.title}>
                 <h2 className="text-lg font-bold text-brand-green">{s.title}</h2>
                 <ul className="mt-3 space-y-2">
-                  {s.body.map((b) => (
-                    <li key={b} className="flex gap-2.5 text-sm leading-relaxed text-foreground/85">
+                  {s.body.map((b, i) => (
+                    <li key={i} className="flex gap-2.5 text-sm leading-relaxed text-foreground/85">
                       <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-orange" />
                       {b}
                     </li>

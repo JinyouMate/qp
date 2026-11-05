@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { getSupabaseAdmin, isSupabaseConfigured } from "@/lib/supabase";
 
+// Cloudflare Pages（next-on-pages）只支持 Edge Runtime
+export const runtime = "edge";
 export const dynamic = "force-dynamic";
 
 const PROBE_TIMEOUT_MS = 8000;
@@ -76,7 +78,7 @@ export async function GET(request: Request) {
   if (!networkOk) {
     result.ok = false;
     result.conclusion =
-      "当前运行环境无法访问 Supabase（常见于本地网络对该域名拦截）。这不影响线上：部署到 Vercel 后境外服务器可正常连接，届时再访问本接口即可得到真实结果。";
+      "当前运行环境无法访问 Supabase（常见于本地网络对该域名拦截）。这不影响线上：部署到 Cloudflare Pages 后境外节点可正常连接，届时再访问本接口即可得到真实结果。";
     return NextResponse.json(result, { status: 200 });
   }
 
@@ -111,7 +113,7 @@ export async function GET(request: Request) {
     } else {
       const id = (ins.data as { id?: number } | null)?.id;
       await withTimeout(db.from("leads").delete().eq("id", id));
-      result.write = `✅ 写入成功（测试记录 id=${id} 已自动删除）`;
+      result.write = `✅ 写入成功（探活记录 id=${id} 已自动删除）`;
     }
   } catch (e) {
     result.write = `⚠️ 未能完成写入测试：${e instanceof Error ? e.message : String(e)}`;
