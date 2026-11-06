@@ -7,6 +7,28 @@
 
 ---
 
+## ✅ 实际进展（2026-11-06 已执行完，此节优先于下文）
+
+| 事项 | 状态 |
+| --- | --- |
+| 代码推 GitHub | **已完成**，`JinyouMate/qp` 分支 `main`，HEAD `6115a17`（SSH 密钥 `~/.ssh/id_ed25519_github_qipei`） |
+| Cloudflare Pages 项目 | **已创建**：`qipei-web`，账号 `c8887f012b943118493574f8268764e7` |
+| 首次部署 | **已上线**：<https://qipei-web.pages.dev>（裸链直达，**无 sharecode**） |
+| 环境变量 | **已配置 6 个 secrets**：`NEXT_PUBLIC_SITE_URL`、`NEXT_PUBLIC_SUPABASE_URL`、`SUPABASE_SERVICE_ROLE_KEY`、`ADMIN_TOKEN`、`RESEND_FROM_EMAIL`、`LEAD_NOTIFY_EMAIL` |
+| 自定义域名 | 已在 Pages 项目里添加 `jinyoudata.com` 与 `www.jinyoudata.com`，状态 `pending`，等待 DNS 指向 |
+| **待你操作** | ① 在 Cloudflare 添加 `jinyoudata.com` zone 并把腾讯云 NS 改过去（或只给 www 加 CNAME 到 `qipei-web.pages.dev`）；② Supabase 项目域名已 NXDOMAIN，需恢复或换新项目 |
+
+### 构建期踩到的三个坑（已修好，别再改回去）
+
+1. `/products` 读取 `searchParams` 属动态路由 → 必须 `export const runtime = "edge";`
+2. `app/favicon.ico` 会被 Next 当成动态路由 → 已移到 `public/favicon.ico`，并在 `layout.tsx` 用 `icons` 声明
+3. 动态详情页只写 `dynamicParams = false` 不够，Next 14 仍会生成 Node 兜底函数 → 必须同时 `export const dynamic = "force-static";`
+
+本地可复现：`npm run pages:build` → 应输出 `84 prerendered routes` + 5 个 Edge 函数，exit 0。
+部署：`npx wrangler pages deploy .vercel/output/static --project-name=qipei-web --branch=main`
+
+---
+
 ## 0. 先看这里：本机已经改好的东西
 
 以下改动**已经在本地改好**（工作区已就绪，但受本机工具环境的文件锁限制**还没能提交成 commit**）。
