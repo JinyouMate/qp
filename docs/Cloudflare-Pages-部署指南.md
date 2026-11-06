@@ -426,3 +426,55 @@ Pages：每月 500 次构建、无限带宽、无限静态请求；Functions 每
 本地改代码 → `git push origin main` → Cloudflare 自动触发构建 → 几分钟后线上生效。
 改环境变量 → 控制台改完 → Deployments → **Retry deployment**（不会自动重跑）。
 本地想预览 Pages 运行时：`npm run pages:dev`（需要 wrangler 登录 `npx wrangler login`）。
+
+---
+
+## 6. 实际上线状态（2026-11-06 复核）
+
+### 域名：没有切 NS，走顶点 CNAME
+
+`jinyoudata.com` 的权威 NS 仍在 DNSPod（`tulip.dnspod.net` / `net.dnspod.net`），
+在 DNSPod 直接加了一条顶点 CNAME 指向 `qipei-web.pages.dev`，Pages 自定义域已 **active**（HTTP 验证通过）。
+
+| 主机记录 | 类型 | 记录值 | 状态 |
+| --- | --- | --- | --- |
+| `@` | CNAME | `qipei-web.pages.dev.` | ✅ 生效，证书 CN=jinyoudata.com（Google Trust Services，至 2027-02-04） |
+| `www` | CNAME | `qipei-web.pages.dev.` | ⏳ 尚未添加，Pages 侧报 `CNAME record not set`、状态 pending |
+| `@` | MX 5 | `mxbiz1.qq.com.` | ✅ 2026-11-06 补齐 |
+| `@` | MX 10 | `mxbiz2.qq.com.` | ✅ |
+| `@` | TXT | `v=spf1 include:spf.mail.qq.com ~all` | ✅ |
+
+验证命令：
+
+```bash
+host -t MX jinyoudata.com
+host www.jinyoudata.com
+host jinyoudata.com                        # 应看到 alias → qipei-web.pages.dev
+curl -sI https://jinyoudata.com | head -5  # server: cloudflare
+```
+
+注意：顶点 CNAME 与 MX 共存不符合 RFC 2181。DNSPod 对 MX 查询做了特殊处理（本地与阿里 DoH 均能正确返回两条 MX），
+当前收发信可用；若后续出现个别解析器查不到 MX 的情况，把 NS 切到 Cloudflare（CNAME Flattening）即可彻底解决。
+
+### Git 自动部署：GitHub Actions → 现有项目
+
+`qipei-web` 是 Direct Upload 项目（`source: null`），Cloudflare 不允许原地改接 Git。
+为避免重建项目、迁移自定义域、再改 CNAME，采用 GitHub Actions 部署到**同一个项目**：
+
+- 工作流：`.github/workflows/deploy.yml`（push `main` 或手动 `workflow_dispatch` 触发）
+- 流程：`npm ci` → `npm run pages:build` → `wrangler pages deploy .vercel/output/static --project-name=qipei-web --branch=main`
+- 构建期公开变量写死在工作流 `env` 里（`NEXT_PUBLIC_SUPABASE_URL`、`NEXT_PUBLIC_SITE_URL`、`CLOUDFLARE_ACCOUNT_ID`），
+  因为 `NEXT_PUBLIC_*` 会被 Next.js 在构建时内联，缺失会导致运行时读不到
+- 运行时 6 个 secrets 仍留在 Cloudflare 项目配置里，**不需要**同步到 GitHub：
+  `ADMIN_TOKEN`、`SUPABASE_SERVICE_ROLE_KEY`、`NEXT_PUBLIC_SUPABASE_URL`、
+  `NEXT_PUBLIC_SITE_URL`、`RESEND_FROM_EMAIL`、`LEAD_NOTIFY_EMAIL`
+- 唯一需要在 GitHub 配的 Secret：`CLOUDFLARE_API_TOKEN`
+  （Cloudflare → My Profile → API Tokens → Create Token → 权限 `Account / Cloudflare Pages / Edit`）
+- 未配置该 Secret 时工作流会打印 warning 并跳过，不会报红
+
+### 端到端验证结果
+
+- `https://jinyoudata.com` 及 `/products` `/insights` `/contact` `/privacy` `/admin` 全部 200
+- 首页 `service@jinyoudata.com` 出现 10 处，全站无 `sharecode`
+- `/api/health?token=<ADMIN_TOKEN>`：`"mode":"supabase"`，6 表 / 4 列 / 写入探活全绿
+
