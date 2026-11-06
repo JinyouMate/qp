@@ -41,6 +41,11 @@ function normalizeIdentity(role: string): string {
     企业: "平台企业",
     AI公司: "AI公司",
     "AI 公司": "AI公司",
+    // 首页 persona seller 的三种常见写法统一归一
+    "零售/跨境卖家": "零售/跨境卖家",
+    零售卖家: "零售/跨境卖家",
+    跨境卖家: "零售/跨境卖家",
+    卖家: "零售/跨境卖家",
   };
   return map[role.trim()] ?? role.trim();
 }

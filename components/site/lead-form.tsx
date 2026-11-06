@@ -19,7 +19,22 @@ import {
 import { getStoredUtm } from "@/lib/utm";
 import { trackEvent } from "@/lib/analytics";
 
-const ROLES = ["修理厂", "汽配商", "平台企业", "AI公司", "其他"] as const;
+const ROLES = ["零售/跨境卖家", "修理厂", "汽配商", "平台企业", "AI公司", "其他"] as const;
+
+/**
+ * 首页入口传来的 persona.identity 可能不等于表单选项：
+ * - "零售/跨境卖家" 现在已是选项，直接命中
+ * - "修理厂/汽配商" 是合并卡，按 "/" 拆开后取第一个可用选项
+ */
+function pickRole(role?: string): string {
+  if (!role) return "";
+  if (ROLES.includes(role as (typeof ROLES)[number])) return role;
+  const hit = role
+    .split("/")
+    .map((s) => s.trim())
+    .find((s) => ROLES.includes(s as (typeof ROLES)[number]));
+  return hit ?? "";
+}
 const DEMANDS = ["知识库", "数据产品", "SOP", "报告", "课程", "咨询", "SaaS", "AI合作"] as const;
 
 const schema = z.object({
@@ -59,7 +74,7 @@ export function LeadForm({
     defaultValues: {
       name: "",
       contact: "",
-      role: defaultRole && ROLES.includes(defaultRole as (typeof ROLES)[number]) ? defaultRole : "",
+      role: pickRole(defaultRole),
       demand:
         defaultDemand && DEMANDS.includes(defaultDemand as (typeof DEMANDS)[number])
           ? defaultDemand
