@@ -13,6 +13,9 @@ import { getProducts } from "@/lib/data";
 import { LAYER_LABELS, TIER_ORDER } from "@/lib/types";
 import { getPersona, personaLeadHref } from "@/lib/persona";
 
+// Cloudflare Pages：该页读取 searchParams（?role=），属动态路由，必须跑 Edge Runtime
+export const runtime = "edge";
+
 export const metadata: Metadata = buildMetadata({
   title: "产品中心",
   description: "四档产品阶梯：免费内容 → 99-499 工具包 → 999-4999 课程/订阅 → 1万+ 咨询内训。每张卡片都写清：适合谁、解决什么问题、交付什么、怎么收费、下一步动作。",

@@ -14,6 +14,7 @@ import { mdxComponents } from "@/components/site/mdx";
 
 // Cloudflare Pages：只发布预渲染页，未列出的 slug 直接 404，
 // 避免生成 Node Runtime 的兜底函数（next-on-pages 不支持）
+export const dynamic = "force-static";
 export const dynamicParams = false;
 
 export function generateStaticParams() {
