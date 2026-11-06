@@ -1,5 +1,7 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Noto_Sans_SC } from "next/font/google";
+// 字体改为自托管：next/font/google 在构建期要访问 fonts.gstatic.com，
+// CI 构建机访问不到会导致 build 失败。详见 app/fonts.css。
+import "./fonts.css";
 import "./globals.css";
 
 import { Nav } from "@/components/site/nav";
@@ -10,19 +12,6 @@ import { FloatingCta } from "@/components/site/floating-cta";
 import { Analytics } from "@/components/site/analytics";
 import { JsonLd, organizationSchema, websiteSchema } from "@/components/site/json-ld";
 import { SITE_NAME, SITE_SUB, SITE_SLOGAN, CORE_KEYWORDS, absoluteUrl } from "@/lib/seo";
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-});
-
-const notoSc = Noto_Sans_SC({
-  subsets: ["latin"],
-  weight: ["400", "500", "700"],
-  variable: "--font-noto-sc",
-  display: "swap",
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL(absoluteUrl("/")),
@@ -63,7 +52,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="zh-CN" className={`${inter.variable} ${notoSc.variable}`}>
+    <html lang="zh-CN">
       <head>
         {/* 全站结构化数据：Organization + WebSite */}
         <JsonLd data={[organizationSchema(), websiteSchema()]} />
