@@ -16,7 +16,20 @@
 | 首次部署 | **已上线**：<https://qipei-web.pages.dev>（裸链直达，**无 sharecode**） |
 | 环境变量 | **已配置 6 个 secrets**：`NEXT_PUBLIC_SITE_URL`、`NEXT_PUBLIC_SUPABASE_URL`、`SUPABASE_SERVICE_ROLE_KEY`、`ADMIN_TOKEN`、`RESEND_FROM_EMAIL`、`LEAD_NOTIFY_EMAIL` |
 | 自定义域名 | 已在 Pages 项目里添加 `jinyoudata.com` 与 `www.jinyoudata.com`，状态 `pending`，等待 DNS 指向 |
-| **待你操作** | ① 在 Cloudflare 添加 `jinyoudata.com` zone 并把腾讯云 NS 改过去（或只给 www 加 CNAME 到 `qipei-web.pages.dev`）；② Supabase 项目域名已 NXDOMAIN，需恢复或换新项目 |
+| Supabase | **已恢复**（2026-11-06）。`/api/health` 6 表全 ✅、写入探活 ✅；留资实测 `stored:true, mode:supabase, id=10` |
+| **待你操作** | ① 在 Cloudflare 添加 `jinyoudata.com` zone 并把腾讯云 NS 改过去（或只给 www 加 CNAME 到 `qipei-web.pages.dev`）；② 新建 Git 集成项目（`qipei-web` 是 Direct Upload，**官方明确不能原地接 Git**） |
+
+### ⚠️ 关于 Git 自动部署（官方硬限制）
+
+> You cannot switch to Git integration later. If you choose Direct Upload, you cannot switch to Git integration later.
+> You will have to create a new project with Git integration to use automatic deployments.
+
+`qipei-web` 是 `wrangler pages deploy` 创建的 Direct Upload 项目（API 里 `source: null`），因此：
+
+1. 新建项目 `qipei-web-git`，来源选 `JinyouMate/qp`；
+2. 构建命令 `npm run pages:build`、输出目录 `.vercel/output/static`、`NODE_VERSION=20`、6 个环境变量照抄；
+3. 首构建通过后，把 `jinyoudata.com` / `www` 从旧项目解绑、挂到新项目；
+4. 旧项目保留或删除均可（删了 `.pages.dev` 子域会释放）。
 
 ### 构建期踩到的三个坑（已修好，别再改回去）
 
