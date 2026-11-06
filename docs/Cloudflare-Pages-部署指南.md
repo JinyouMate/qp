@@ -472,9 +472,35 @@ curl -sI https://jinyoudata.com | head -5  # server: cloudflare
   （Cloudflare → My Profile → API Tokens → Create Token → 权限 `Account / Cloudflare Pages / Edit`）
 - 未配置该 Secret 时工作流会打印 warning 并跳过，不会报红
 
-### 端到端验证结果
+### 字体自托管（必须的构建修复）
 
-- `https://jinyoudata.com` 及 `/products` `/insights` `/contact` `/privacy` `/admin` 全部 200
-- 首页 `service@jinyoudata.com` 出现 10 处，全站无 `sharecode`
-- `/api/health?token=<ADMIN_TOKEN>`：`"mode":"supabase"`，6 表 / 4 列 / 写入探活全绿
+`next/font/google` 会在**构建期**去 `fonts.gstatic.com` 下载 `Inter` 和 `Noto Sans SC` 分片。
+GitHub Actions 构建机访问不到该域名，首次 CI 直接 `Build failed because of webpack errors`
+（`An error occurred in next/font` / `TypeError: Cannot read properties of null (reading '1')`）。
+
+解决：把本地 `next build` 已下载的字体产物固化进仓库，构建期零外网依赖。
+
+- `public/fonts/`：108 个 woff2（约 4.9 MB），来自 `.next/static/media/`
+- `app/fonts.css`：310 条 `@font-face`（含 `unicode-range`），从 `.next/static/css/*.css` 提取，
+  URL 由 `/_next/static/media/` 改写为 `/fonts/`，family 改写为 `Inter` / `"Noto Sans SC"`，
+  并在 `:root` 定义 `--font-inter` / `--font-noto-sc`（Tailwind `fontFamily.sans` 继续引用这两个变量）
+- `app/layout.tsx` 移除 `next/font/google` 导入与 `inter.variable` / `notoSc.variable`，
+  改为 `import "./fonts.css"`
+
+浏览器只按 `unicode-range` 下载需要的分片，实际传输量远小于 4.9 MB。
+线上抽查 `/fonts/a1a005bcc47b07b5-s.woff2` 返回 200。
+
+### 实际上线状态（2026-11-06 21:5x 复核）
+
+| 项目 | 状态 |
+| --- | --- |
+| `jinyoudata.com` | active，Google 证书至 2027-02-04，全部页面 200 |
+| `www.jinyoudata.com` | **active**，`www CNAME qipei-web.pages.dev` 已加，证书 CN=www.jinyoudata.com 至 2027-02-04，200 |
+| MX | `5 mxbiz1.qq.com` + `10 mxbiz2.qq.com` 齐全，SPF 正常 |
+| Cloudflare API Token | `qipei-web GitHub Actions Deploy`（`Pages Write`，account 作用域），已写入 GitHub Secret `CLOUDFLARE_API_TOKEN` |
+| GitHub Actions | run #4 **SUCCESS**，自动产出生产部署 `038980b5`（2026-11-06T13:54:56Z，branch main） |
+| Supabase | `/api/health` 全绿，6 表 / 4 列 / 写入探活通过 |
+
+> 顶点 CNAME 与 MX 共存仍不合规（见上），当前收发信正常；如出现个别解析器查不到 MX，
+> 再把 NS 切到 Cloudflare 用 CNAME Flattening 彻底解决。
 
