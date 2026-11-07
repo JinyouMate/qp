@@ -24,18 +24,21 @@ export function ProductCta({
   product,
   size = "sm",
   label,
+  variant = "orange",
 }: {
   product: Product;
   size?: "sm" | "default" | "lg";
   /** 覆盖按钮文案（默认全站统一 CTA） */
   label?: string;
+  /** 主行动色 orange（默认）/ 次级样式 outline；产品中心按档位区分主次 */
+  variant?: "orange" | "outline";
 }) {
   const [open, setOpen] = useState(false);
 
   // 预约咨询：站内留资页（不弹窗、不跳外链）
   if (product.cta_type === "consult") {
     return (
-      <Button asChild size={size} variant="destructive">
+      <Button asChild size={size} variant={variant}>
         <TrackedLink
           href={`/contact?intent=consult&subject=${encodeURIComponent(product.name)}`}
           event="consult_click"
@@ -50,7 +53,7 @@ export function ProductCta({
   // claim（免费领取）/ buy：统一弹企微二维码，不跳转
   return (
     <>
-      <Button size={size} variant="orange" onClick={() => setOpen(true)}>
+      <Button size={size} variant={variant} onClick={() => setOpen(true)}>
         {label ?? WECOM.ctaLabel} <ArrowRight />
       </Button>
       <WecomDialog

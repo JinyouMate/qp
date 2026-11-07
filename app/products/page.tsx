@@ -4,13 +4,10 @@ import Link from "next/link";
 import { buildMetadata, KEYWORDS } from "@/lib/seo";
 
 import { PageHero } from "@/components/site/page-hero";
-import { SectionHeading } from "@/components/site/section-heading";
-import { ProductExplorer } from "@/components/site/product-explorer";
-import { ProductLadder, LadderNav } from "@/components/site/product-ladder";
+import { TierAccordion } from "@/components/site/tier-accordion";
 import { LeadSection } from "@/components/site/lead-section";
 import { JsonLd, productSchema, breadcrumbSchema } from "@/components/site/json-ld";
 import { getProducts } from "@/lib/data";
-import { LAYER_LABELS, TIER_ORDER } from "@/lib/types";
 import { getPersona, personaLeadHref } from "@/lib/persona";
 
 // Cloudflare Pages：该页读取 searchParams（?role=），属动态路由，必须跑 Edge Runtime
@@ -81,55 +78,19 @@ export default async function ProductsPage({
         </section>
       )}
 
-      {/* 阶梯导航 */}
-      <section className="border-b bg-brand-cream py-8">
+      {/* 四档产品阶梯：手风琴折叠，默认只展开第 2 档（工具包） */}
+      <section className="section-pad">
         <div className="container-site">
-          <LadderNav products={products} />
-        </div>
-      </section>
-
-      {/* 阶梯详情 */}
-      {TIER_ORDER.map((tier) => {
-        const items = products.filter((p) => p.tier === tier);
-        if (items.length === 0) return null;
-        return (
-          <section
-            key={tier}
-            id={`tier-${tier}`}
-            className="section-pad scroll-mt-20 border-b last:border-0"
-          >
-            <div className="container-site">
-              <ProductLadder products={items} showFooter={tier === "enterprise"} />
-            </div>
-          </section>
-        );
-      })}
-
-      {/* 另一个维度：按信任程度分层筛选 */}
-      <section className="section-pad bg-brand-cream">
-        <div className="container-site">
-          <SectionHeading
-            tag="换个维度"
-            title="按你的信任程度筛选"
-            desc="同一批产品，换个角度看：先免费试，再建信任，最后才谈付费与定制。"
-          />
-          <div className="mb-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            {(["traffic", "trust", "conversion", "delivery"] as const).map((l) => (
-              <div key={l} className="rounded-xl border bg-card p-4">
-                <div className="text-sm font-bold">{LAYER_LABELS[l].name}</div>
-                <p className="mt-1 text-xs text-muted-foreground">{LAYER_LABELS[l].desc}</p>
-                <p className="mt-2 text-xs font-semibold text-brand-orange-ink">
-                  目标：{LAYER_LABELS[l].goal}
-                </p>
-              </div>
-            ))}
+          <div className="mx-auto max-w-5xl">
+            <TierAccordion
+              products={products}
+              recommended={persona?.recommended ?? []}
+              roleLabel={persona?.label ?? null}
+            />
+            <p className="mt-6 text-center text-xs text-muted-foreground">
+              不确定从哪一档开始？先用免费的清单把问题解决一次，用得上再往上走。
+            </p>
           </div>
-          <ProductExplorer
-            products={products}
-            recommended={persona?.recommended ?? []}
-            roleLabel={persona?.label ?? null}
-            leadHref={persona ? personaLeadHref(persona) : null}
-          />
         </div>
       </section>
 
