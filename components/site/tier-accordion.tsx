@@ -90,7 +90,8 @@ export function TierAccordion({
             <AccordionTrigger
               className={cn(
                 "px-5 py-4 hover:no-underline sm:px-6 sm:py-5",
-                featured && "bg-brand-orange-soft/70"
+                featured &&
+                  "bg-brand-orange-soft/70 [&>svg]:text-brand-orange"
               )}
             >
               <div className="flex flex-1 flex-wrap items-center gap-x-4 gap-y-2 sm:flex-nowrap sm:gap-5">
@@ -121,7 +122,12 @@ export function TierAccordion({
                   {TIERS[tier].range}
                 </span>
 
-                <span className="hidden shrink-0 text-xs text-muted-foreground lg:inline">
+                <span
+                  className={cn(
+                    "hidden shrink-0 text-xs lg:inline",
+                    featured ? "font-semibold text-brand-orange-ink" : "text-muted-foreground"
+                  )}
+                >
                   {open ? "收起" : "展开"}
                 </span>
               </div>
