@@ -476,7 +476,7 @@ export default async function HomePage() {
           <div className="mt-6 flex flex-wrap justify-center gap-3">
             <Button asChild variant="outline">
               <Link href="/content">
-                全部内容 <ArrowRight />
+                看客户成果 <ArrowRight />
               </Link>
             </Button>
             <Button asChild variant="ghost">

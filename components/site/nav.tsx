@@ -13,7 +13,7 @@ import { cn } from "@/lib/utils";
 const LINKS = [
   { href: "/", label: "首页" },
   { href: "/products", label: "产品中心" },
-  { href: "/content", label: "内容IP" },
+  { href: "/content", label: "客户成果" },
   { href: "/cases", label: "案例" },
   { href: "/about", label: "关于" },
   { href: "/contact", label: "联系" },

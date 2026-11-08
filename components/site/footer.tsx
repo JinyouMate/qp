@@ -19,7 +19,7 @@ const COLS: { title: string; links: { href: string; label: string }[] }[] = [
     title: "内容与信任",
     links: [
       { href: "/insights", label: "汽配行业洞察" },
-      { href: "/content", label: "内容IP" },
+      { href: "/content", label: "客户成果与洞察" },
       { href: "/cases", label: "案例" },
       { href: "/about", label: "关于我们" },
       { href: "/wechat", label: "私域入口" },
