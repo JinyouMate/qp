@@ -1,4 +1,0 @@
-# /cases 已下线，内容合并进 /content（2026-11-09）
-# Cloudflare Pages 原生规则：永久重定向，精确路径 + 尾斜杠/子路径均覆盖
-/cases      /content    301
-/cases/*    /content    301

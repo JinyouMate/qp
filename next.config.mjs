@@ -4,15 +4,10 @@ const nextConfig = {
   eslint: { ignoreDuringBuilds: true },
   typescript: { ignoreBuildErrors: true },
 
-  // /cases 已下线（内容已合并进 /content）：所有访问永久重定向，避免旧书签 404。
-  // 注意：Next.js 的 permanent: true 实际返回 308；Cloudflare Pages 线上以
-  // public/_redirects 中显式的 301 规则为准，这里同时保留以覆盖开发态与构建语义。
-  async redirects() {
-    return [
-      { source: "/cases", destination: "/content", permanent: true },
-      { source: "/cases/:path*", destination: "/content", permanent: true },
-    ];
-  },
+  // /cases 已彻底下线，永久重定向到 /content。
+  // 说明：Next.js 的 redirects 只支持 307/308（permanent: true 实际输出 308），
+  // 无法输出 301；Cloudflare Pages 在 _worker.js 高级模式下又会忽略 public/_redirects。
+  // 因此 301 由 middleware.ts 显式实现（matcher 仅匹配 /cases 及其子路径）。
 };
 
 // Cloudflare Pages：仅在本地 `next dev` 时模拟 Pages 运行时（读取 wrangler.toml 的绑定）。
