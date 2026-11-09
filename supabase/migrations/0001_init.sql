@@ -85,11 +85,11 @@ alter table public.partners  enable row level security;
 -- ============================================================
 insert into public.products (slug,name,icon,layer,category,positioning,problem,audience,deliverable,price,cta_type,third_party_platform,sort) values
   ('content-ip','内容 IP','video','traffic','knowledge','全网同名「汽配知识局」的短视频、图文与直播','不了解我们，想先通过内容判断专业度','所有汽配人','短视频/图文/直播回放','免费 · 全网公开','claim',null,1),
-  ('sop-checklists','SOP 清单','list-checks','traffic','knowledge','打印出来贴在工位上就能照着做的流程清单','关键流程凭记忆、靠师傅带','修理厂、经销商、新入行从业者','选品/入驻/核价等 PDF 清单','免费 · 留资即得','claim',null,2),
-  ('report-briefs','行业报告摘要','file-text','traffic','reports','完整报告的精华版','想快速了解行业格局','需要决策参考的经营者','PDF 摘要 · 持续更新','免费 · 留资即得','claim',null,3),
+  ('sop-checklists','SOP 清单','list-checks','traffic','knowledge','打印出来贴在工位上就能照着做的流程清单','关键流程凭记忆、靠师傅带','修理厂、经销商、新入行从业者','选品/入驻/核价等 PDF 清单','免费 · 联系即得','claim',null,2),
+  ('report-briefs','行业报告摘要','file-text','traffic','reports','完整报告的精华版','想快速了解行业格局','需要决策参考的经营者','PDF 摘要 · 持续更新','免费 · 联系即得','claim',null,3),
   ('knowledge-base','基础知识库','book-open','trust','knowledge','12,000+ 条目的行业知识底座','查资料全靠到处问','从业者与新人','名词/适配/政策/避坑四库','基础版免费','claim','Baklib / 飞书',4),
-  ('templates','模板库','table','trust','knowledge','一线在用的表格模板','想提效不知道好表格长什么样','有现成业务的团队','评分/评估/周转/话术模板','免费 · 留资即得','claim','飞书',5),
-  ('case-library','案例库','folder-open','trust','knowledge','真实脱敏案例 + 动作清单','想知道别人怎么解决同类问题','想抄作业的务实派','图文案例专栏','免费 · 留资解锁','claim',null,6),
+  ('templates','模板库','table','trust','knowledge','一线在用的表格模板','想提效不知道好表格长什么样','有现成业务的团队','评分/评估/周转/话术模板','免费 · 联系即得','claim','飞书',5),
+  ('case-library','案例库','folder-open','trust','knowledge','真实脱敏案例 + 动作清单','想知道别人怎么解决同类问题','想抄作业的务实派','图文案例专栏','免费 · 申请解锁','claim',null,6),
   ('courses','培训课程','graduation-cap','conversion','courses','录播+社群+作业批改的体系课','学了很多干货还是不会干','0-5 年经验卖家与团队','知识星球课程','¥999–¥3,980/门','buy','知识星球',7),
   ('full-reports','完整行业报告','book','conversion','reports','品类数据、价格带与趋势预判','决策缺数据支撑','经营者与平台团队','飞书文档','¥899–¥1,999/份','buy','飞书',8),
   ('data-subscription','订阅数据产品','line-chart','conversion','reports','价格监测/销量追踪/竞品周报','盯盘靠手工翻平台','持续经营的卖家与团队','飞书看板 · 周更 · 7天试用','¥699起/月','consult','飞书',9),

@@ -129,10 +129,10 @@ export const CHANNEL_LABELS: Record<Channel, string> = {
 };
 
 export const LAYER_LABELS: Record<Layer, { name: string; desc: string; goal: string }> = {
-  traffic: { name: "流量层", desc: "内容IP · 报告摘要 · SOP清单", goal: "认识我们" },
-  trust: { name: "信任层", desc: "基础知识库 · 模板 · 案例", goal: "建立信任" },
-  conversion: { name: "转化层", desc: "培训课程 · 完整报告 · 订阅数据", goal: "深度使用" },
-  delivery: { name: "交付层", desc: "咨询方案 · 企业内训 · SaaS · AI数据", goal: "长期合作" },
+  traffic: { name: "免费入门", desc: "内容IP · 报告摘要 · SOP清单", goal: "先看，能直接用" },
+  trust: { name: "上手试用", desc: "基础知识库 · 模板 · 案例", goal: "先用起来再说" },
+  conversion: { name: "系统学习", desc: "培训课程 · 完整报告 · 订阅数据", goal: "按需付费，深入使用" },
+  delivery: { name: "长期合作", desc: "咨询方案 · 企业内训 · SaaS · AI数据", goal: "定制方案一起做事" },
 };
 
 export const LAYER_ORDER: Layer[] = ["traffic", "trust", "conversion", "delivery"];
