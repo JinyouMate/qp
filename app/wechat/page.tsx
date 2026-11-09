@@ -17,7 +17,7 @@ import { ExternalLink as GuardedLink } from "@/components/site/product-cta";
 import { WechatBanner } from "@/components/site/wechat-banner";
 
 export const metadata: Metadata = buildMetadata({
-  title: "私域入口",
+  title: "加微信联系",
   description: "联系主理人领资料，进对应身份的交流群；内部资料库链接由系统自动下发，官网不处理支付、不跳转任何第三方平台。",
   path: "/wechat",
   keywords: [KEYWORDS.knowledge, KEYWORDS.data],
@@ -35,7 +35,7 @@ const BENEFITS = [
   { name: "内部资料库", use: "SOP、报告、模板库在线查阅", how: "扫码后系统自动下发链接", demand: "知识库" },
   { name: "行业交流群", use: "按身份分组的同行交流与复盘", how: "添加后自动邀请入群", demand: "社群" },
   { name: "体系课程 / 工具包", use: "录播、作业批改、选品核价等工具表", how: "企微内确认需求后交付", demand: "课程" },
-  { name: "订阅数据看板", use: "品类价格监测与竞品动态（支持 7 天试用）", how: "留资后开通试用，到期不自动续费", demand: "数据产品" },
+  { name: "订阅数据看板", use: "品类价格监测与竞品动态（支持 7 天试用）", how: "登记后开通试用，到期不自动续费", demand: "数据产品" },
   { name: "AI 数据合作", use: "语料授权、标注规则与评测标准共建", how: "签协议后由项目负责人对接", demand: "AI合作" },
 ];
 
@@ -50,7 +50,7 @@ export default function WechatPage() {
   return (
     <>
       <PageHero
-        tag="私域入口"
+        tag="加微信联系"
         title="联系主理人，备注「官网」优先通过"
         desc="内部资料库、行业交流群、课程与工具包，都从这一步开始。官网不处理支付、不跳转第三方平台。"
       />
@@ -95,7 +95,7 @@ export default function WechatPage() {
                 你平时遇到这类问题一般怎么处理？
               </p>
               <p className="mt-2 text-xs text-muted-foreground">
-                这是我们私域的开头第一句，不推课、不报价。先听懂你的现状，再决定给你什么。
+                这是我们加上微信后的第一句话，不推课、不报价。先听懂你的现状，再决定给你什么。
               </p>
             </div>
 
@@ -202,8 +202,8 @@ export default function WechatPage() {
       </section>
 
       <LeadSection
-        title="还没留资？资料也能先发你"
-        desc="联系主理人最快；想先看看也行，填一次表，我们把资料发到你留的联系方式上。"
+        title="还没填信息？资料也能先发你"
+        desc="联系主理人最快；想先看看也行，填一次表，我们把资料发到你留下的联系方式上。"
       />
     </>
   );

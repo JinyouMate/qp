@@ -14,14 +14,14 @@ import { Faq } from "@/components/site/faq";
 import { SectionHeading } from "@/components/site/section-heading";
 
 export const metadata: Metadata = buildMetadata({
-  title: "联系与留资",
+  title: "联系我们",
   description: "留下姓名、联系方式、身份与需求，我们按你的情况推荐最合适的一两样产品。提交后自动跳转联系主理人获取资料页。",
   path: "/contact",
   keywords: [KEYWORDS.knowledge, KEYWORDS.data, KEYWORDS.sop],
 });
 
 const CONTACT_FAQS = [
-  { q: "提交后会发生什么？", a: "线索进入我们的后台（可导出 CSV），同时飞书/邮件通知到人。你会被引导到「联系主理人领资料」页，联系主理人后资料直接发你。" },
+  { q: "提交后会发生什么？", a: "我们会收到你的信息，按你的身份和需求准备对应的资料，并引导你到「联系主理人领资料」页；加上之后资料直接发你。" },
   { q: "会接到推销电话吗？", a: "不会。我们只在你要的东西准备好时联系你，且你可以通过企微或邮件随时要求删除信息。" },
   { q: "急事怎么找人？", a: "直接联系主理人最快，备注「官网」优先通过。工作日一般 2 小时内回复，非工作日不打扰。" },
   { q: "我想合作，该选哪个需求？", a: "SaaS 工具选「SaaS」，语料/标注/评测选「AI合作」，平台数据合作选「数据产品」。选不准也没关系，描述里写清楚就行。" },
@@ -35,7 +35,7 @@ export default function ContactPage() {
       <JsonLd
         data={breadcrumbSchema([
           { name: "首页", url: "/" },
-          { name: "联系与留资", url: "/contact" },
+          { name: "联系我们", url: "/contact" },
         ])}
       />
 
@@ -111,7 +111,7 @@ export default function ContactPage() {
 
       <section className="section-pad bg-brand-cream">
         <div className="container-site">
-          <SectionHeading tag="关于留资" title="你可能担心的几件事" />
+          <SectionHeading tag="关于你的信息" title="你可能担心的几件事" />
           <div className="mx-auto max-w-3xl">
             <Faq items={CONTACT_FAQS} />
           </div>

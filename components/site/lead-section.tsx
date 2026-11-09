@@ -7,11 +7,11 @@ import { SectionHeading } from "./section-heading";
 import { LeadForm } from "./lead-form";
 
 /**
- * 全站统一的留资收口区块。
- * 任何流量页面底部都应挂这个区块——官网的第一职责是收口，不是展示。
+ * 全站统一的资料领取区块。
+ * 任何页面底部都可挂这个区块，作为访客的联系入口。
  */
 export function LeadSection({
-  tag = "留资收口",
+  tag = "免费资料",
   title = "留个联系方式，先把免费资料拿走",
   desc = "填一次表，SOP 清单、报告摘要、模板库全部解锁；我们只在你需要的时侯联系你。",
   defaultRole,
@@ -39,7 +39,7 @@ export function LeadSection({
           <Card className="h-fit border-brand-green/15 bg-brand-green-soft/55">
             <CardContent className="space-y-4 p-6">
               <h3 className="flex items-center gap-2 text-lg font-bold">
-                <Gift className="h-5 w-5 text-brand-orange" /> 现在留资可以拿走
+                <Gift className="h-5 w-5 text-brand-orange" /> 现在登记就能拿走
               </h3>
               <ul className="space-y-2.5 text-sm leading-relaxed text-foreground/85">
                 {list.map((b, i) => (

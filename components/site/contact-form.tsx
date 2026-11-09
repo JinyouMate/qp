@@ -9,7 +9,7 @@ import { Card, CardContent } from "@/components/ui/card";
 const INTENT_TITLE: Record<string, string> = {
   asset: "获取资料",
   consult: "预约咨询",
-  buy: "资料领取前留资",
+  buy: "领取资料",
 };
 
 /** 读取 URL 参数，自动预填身份与需求（深链来自首页入口卡 / 产品 CTA） */

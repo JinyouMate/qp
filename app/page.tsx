@@ -436,9 +436,9 @@ export default async function HomePage() {
           <SectionHeading
             tag="产品分层"
             title="四层产品，一次只上一层"
-            desc="流量层免费 → 信任层低门槛 → 转化层付费 → 交付层定制。先用免费的把问题解决一次，用得上再往上走。"
+            desc="先免费试，再低门槛入门，需要体系化再付费，最后才是定制交付。先用免费的把问题解决一次，用得上再往上走。"
           />
-          <ProductLadder products={products} groupBy="layer" limitPerRow={3} />
+          <ProductLadder products={products} groupBy="tier" limitPerRow={3} />
           <div className="mt-8 text-center">
             <Button asChild variant="outline">
               <Link href="/products">
@@ -455,7 +455,7 @@ export default async function HomePage() {
           <SectionHeading
             tag="内容 IP"
             title="先看内容，再判断我们靠不靠谱"
-            desc="全网同名「汽配知识局」。内容都在公域，判断完再决定要不要留资。"
+            desc="全网同名「汽配知识局」。内容全部公开可看，看完再决定要不要认识我们。"
           />
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {contents.slice(0, 6).map((c) => (
@@ -557,7 +557,7 @@ export default async function HomePage() {
           </div>
           <p className="mt-6 flex items-center justify-center gap-2 text-xs text-muted-foreground">
             <ShieldCheck className="h-4 w-4 text-brand-green" />
-            完整方法论与校验记录模板，留资后随知识库一并开放
+            完整方法论与校验记录模板，登记后随知识库一并开放
           </p>
         </div>
       </section>

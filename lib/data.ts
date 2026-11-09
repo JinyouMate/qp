@@ -24,7 +24,7 @@ export const FALLBACK_PRODUCTS: Product[] = [
     problem: "关键流程凭记忆、靠师傅带，动作不标准、结果不稳定",
     audience: "修理厂、经销商、新入行从业者",
     deliverable: "《选品SOP》《平台入驻SOP》《报价核价SOP》等 PDF 清单",
-    price: "免费 · 留资即得",
+    price: "免费 · 联系即得",
     cta_type: "claim", third_party_url: null, third_party_platform: null, planet_url: null,
   },
   {
@@ -33,7 +33,7 @@ export const FALLBACK_PRODUCTS: Product[] = [
     problem: "想快速了解行业格局，没时间读完整报告",
     audience: "需要决策参考的经营者",
     deliverable: "PDF 摘要 · 随完整版同步更新",
-    price: "免费 · 留资即得",
+    price: "免费 · 联系即得",
     cta_type: "claim", third_party_url: null, third_party_platform: null, planet_url: null,
   },
   // ---------- 信任层（免费 · 建立信任） ----------
@@ -52,7 +52,7 @@ export const FALLBACK_PRODUCTS: Product[] = [
     problem: "想提效但不知道好用的表格长什么样",
     audience: "有现成业务、想立刻提效的团队",
     deliverable: "选品评分表 / 供应商评估表 / 库存周转表 / 客服话术库",
-    price: "免费 · 留资即得",
+    price: "免费 · 联系即得",
     cta_type: "claim", third_party_url: null, third_party_platform: "企业微信", planet_url: null,
   },
   {
@@ -61,7 +61,7 @@ export const FALLBACK_PRODUCTS: Product[] = [
     problem: "想知道别人是怎么解决同类问题的",
     audience: "想抄作业的务实派",
     deliverable: "图文案例 · 知识库专栏",
-    price: "免费 · 留资解锁",
+    price: "免费 · 申请解锁",
     cta_type: "claim", third_party_url: null, third_party_platform: null, planet_url: null,
   },
   // ---------- 阶梯二：工具包 99-499（解决一个具体问题） ----------

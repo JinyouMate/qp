@@ -43,8 +43,8 @@ const PRINCIPLES = [
 const MILESTONES = [
   { time: "起点", text: "从自营汽配业务起步，做跨境与国内多平台，攒下第一手数据与踩坑记录。" },
   { time: "沉淀", text: "把内部用的名词表、适配库、SOP 整理成册，先给自己的团队用。" },
-  { time: "外溢", text: "同行来要，才开始对外。内容先上公域，用内容换信任，不用广告换流量。" },
-  { time: "资产化", text: "把知识分成四层：免费清单建立信任，体系课与报告形成转化，咨询与数据合作做长期交付。" },
+  { time: "外溢", text: "同行来要，才开始对外。内容都公开写出来，用内容换信任，不靠买广告。" },
+  { time: "资产化", text: "把知识分成四层：免费清单先解决小问题，体系课与报告再往深处走，咨询与数据合作做长期交付。" },
   { time: "现在", text: "知识库 12,000+ 条目，服务 1,800+ 从业者，开始与 AI 公司做语料与评测合作。" },
 ];
 
@@ -85,7 +85,7 @@ export default function AboutPage() {
                 <strong>SaaS 与 AI 数据合作</strong>。
               </p>
               <p className="mt-3 text-sm leading-relaxed text-foreground/85">
-                官网只做展示、信任、路由和留资。成交和交付全部放在第三方平台，
+                官网只负责展示与联系。成交和交付全部放在第三方平台，
                 我们不碰钱，也不在你的交易里抽成。
               </p>
             </CardContent>
@@ -146,38 +146,6 @@ export default function AboutPage() {
                   <p className="text-sm font-bold text-brand-green">{m.time}</p>
                   <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{m.text}</p>
                 </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 流量路径：浅色暖底 + 白胶囊，不再用深墨绿 */}
-      <section className="section-pad border-y border-brand-green/10 bg-brand-green-soft/45">
-        <div className="container-site">
-          <div className="mx-auto mb-10 max-w-2xl text-center">
-            <span className="mb-2 block text-xs font-semibold tracking-[0.25em] text-brand-orange-ink">
-              FLOW
-            </span>
-            <h2 className="text-2xl font-bold md:text-3xl">流量必须经过官网或私域</h2>
-            <p className="mt-3 text-sm text-muted-foreground">
-              内容平台只负责让人认识我们，不直接跳到第三方成交页。
-              这条路径是我们所有运营动作的前提。
-            </p>
-          </div>
-          <div className="flex flex-col items-center gap-3 text-sm md:flex-row md:justify-center md:gap-2">
-            {[
-              "公域内容",
-              "官网 / 私域",
-              "第三方成交交付",
-              "私域复购转介绍",
-              "官网品牌资产",
-            ].map((s, i, arr) => (
-              <div key={s} className="flex items-center gap-2">
-                <span className="card-hover rounded-full border border-brand-green/15 bg-white px-4 py-2 font-medium shadow-warm">
-                  {s}
-                </span>
-                {i < arr.length - 1 && <ArrowRight className="h-4 w-4 shrink-0 text-brand-orange-ink md:rotate-0 rotate-90" />}
               </div>
             ))}
           </div>

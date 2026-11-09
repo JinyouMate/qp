@@ -94,7 +94,7 @@ export default async function PartnersPage() {
                       )}
                     </span>
                     <h3 className="text-base font-bold">{p.name}</h3>
-                    <Badge variant="secondary" className="ml-auto">交付层</Badge>
+                    <Badge variant="secondary" className="ml-auto">长期合作</Badge>
                   </div>
                   <p className="text-sm text-muted-foreground">{p.positioning}</p>
                   <dl className="space-y-1.5 text-xs">
@@ -168,9 +168,9 @@ export default async function PartnersPage() {
           <div className="mt-8 text-center text-xs text-muted-foreground">
             合作方平台入口在
             <Link href="/wechat#platforms" className="mx-1 text-primary underline underline-offset-2">
-              私域入口页
+              微信联系页
             </Link>
-            ，开通前需先联系主理人或留资。
+            ，开通前需先联系主理人或填写信息。
           </div>
         </div>
       </section>

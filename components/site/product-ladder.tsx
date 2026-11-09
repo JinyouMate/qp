@@ -117,7 +117,7 @@ export function ProductLadder({
 
               {limitPerRow && all.length > limitPerRow && (
                 <p className="mt-3 text-xs text-muted-foreground">
-                  本层共 {all.length} 项，已展示 {items.length} 项 ·{" "}
+                  本{isLayer ? "层" : "档"}共 {all.length} 项，已展示 {items.length} 项 ·{" "}
                   <Link href="/products" className="text-primary underline-offset-2 hover:underline">
                     查看全部
                   </Link>
@@ -127,7 +127,7 @@ export function ProductLadder({
               {i < keys.length - 1 && (
                 <div className="mt-4 flex items-center justify-center gap-1.5 text-xs text-muted-foreground">
                   <ArrowRight className="h-3.5 w-3.5 rotate-90" />
-                  用得上、想更进一步，再往上走一层
+                  用得上、想更进一步，再往上走一{isLayer ? "层" : "档"}
                 </div>
               )}
             </CardContent>

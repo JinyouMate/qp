@@ -177,7 +177,7 @@ export default async function CoursesPage() {
         </div>
       </section>
 
-      <LeadSection defaultDemand="课程" title="先拿课程大纲和一节试听" desc="留资后我们把三门课的完整大纲 + 一节正课试听发给你。" />
+      <LeadSection defaultDemand="课程" title="先拿课程大纲和一节试听" desc="登记后我们把三门课的完整大纲 + 一节正课试听发给你。" />
     </>
   );
 }

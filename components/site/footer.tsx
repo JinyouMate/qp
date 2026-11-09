@@ -21,13 +21,13 @@ const COLS: { title: string; links: { href: string; label: string }[] }[] = [
       { href: "/insights", label: "汽配行业洞察" },
       { href: "/content", label: "客户成果与洞察" },
       { href: "/about", label: "关于我们" },
-      { href: "/wechat", label: "私域入口" },
+      { href: "/wechat", label: "加微信聊" },
     ],
   },
   {
     title: "支持与合规",
     links: [
-      { href: "/contact", label: "联系与留资" },
+      { href: "/contact", label: "联系我们" },
       { href: "/access", label: "查询我的资料权限" },
       { href: "/privacy", label: "隐私政策" },
       { href: "/terms", label: "服务条款" },
@@ -80,7 +80,7 @@ export function Footer() {
             © 2026 {BRAND.name} · {BRAND.legalEntity} · 保留所有权利
           </p>
           <p className="text-center text-[11px] leading-relaxed text-muted-foreground/80">
-            本站为知识资产展示与留资站点，不销售汽车配件、不代运营店铺、不代收货款。
+            本站为知识资产展示站点，不销售汽车配件、不代运营店铺、不代收货款。
             课程、知识库与数据产品由第三方平台完成交易与交付，站内所有第三方链接均已附加来源参数用于统计。
           </p>
         </div>

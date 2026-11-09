@@ -333,7 +333,7 @@ export default function ProductDetailPage({ params }: { params: { slug: string }
       {/* ========== 留资收口 ========== */}
       <LeadSection
         title={`想要「${product.name}」？先留个联系方式`}
-        desc="留资后我们按你的身份给一份使用建议，不合适会直接告诉你。"
+        desc="登记后我们按你的身份给一份使用建议，不合适会直接告诉你。"
         defaultDemand={demand}
       />
 
