@@ -504,3 +504,47 @@ GitHub Actions 构建机访问不到该域名，首次 CI 直接 `Build failed b
 > 顶点 CNAME 与 MX 共存仍不合规（见上），当前收发信正常；如出现个别解析器查不到 MX，
 > 再把 NS 切到 Cloudflare 用 CNAME Flattening 彻底解决。
 
+---
+
+## /cases 下线与 301 重定向（2026-11-09）
+
+`/cases` 已彻底下线，内容合并进 `/content`（客户成果与数据洞察）。清理项：
+
+- 删除 `app/cases/page.tsx`；`app/sitemap.ts` 移除 `/cases` 条目
+- 导航（`nav.tsx`）与页脚（`footer.tsx`）移除「案例」入口，导航「客户成果」改名「数据洞察」
+- 首页案例区「看全部案例」按钮删除；`/about` 与产品详情页的案例链接改指 `/content`
+- 删除旧分享图 `public/og/cases.png` 与 `scripts/gen-og.py` 中对应条目
+
+### 为什么 301 只能写在 middleware.ts
+
+两条反直觉的结论，下次别再重复排查：
+
+1. **`next.config.mjs` 的 `redirects()` 只能输出 307/308**，`permanent: true` 对应 308，
+   Next.js 不支持自定义 301。构建产物 `.vercel/output/config.json` 里能看到 `status: 308`。
+2. **`public/_redirects` 在 `_worker.js` 高级模式下会被完全忽略**。
+   next-on-pages 1.13.14 的 `dist/` 里没有任何 `_redirects` 处理逻辑；实测
+   `wrangler pages dev` 下 `/cases` 直接 404，规则没有进入 worker 路由表。
+
+所以最终由 `middleware.ts` 显式返回 301（matcher 只匹配 `/cases` 及其子路径，不影响其它路由）：
+
+```ts
+export const config = { matcher: ["/cases", "/cases/:path*"] };
+
+export function middleware(request: NextRequest) {
+  const target = request.nextUrl.clone();
+  target.pathname = "/content";            // 保留原查询串
+  return NextResponse.redirect(target, 301);
+}
+```
+
+线上实测（2026-11-09，部署 `fe9af1b5`）：
+
+| 请求 | 结果 |
+| --- | --- |
+| `/cases` | **301** → `/content` |
+| `/cases/` | 308 → `/cases` → 301 → `/content`（Next 尾斜杠规范化先跳一次） |
+| `/cases/x?from=bookmark` | **301** → `/content?from=bookmark` |
+| `www` / `qipei-web.pages.dev` 的 `/cases` | **301** → 同域 `/content` |
+
+> 以后需要「非 308 的跳转」时，不要再用 `_redirects`，直接写 middleware。
+
