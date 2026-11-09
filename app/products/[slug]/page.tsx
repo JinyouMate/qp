@@ -3,7 +3,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import {
   ArrowRight, ArrowLeft, CheckCircle2, Package, Clock, RefreshCw,
-  Users, AlertCircle, FileCheck2, Sparkles, ShieldCheck,
+  Users, AlertCircle, FileCheck2, Sparkles,
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -151,12 +151,7 @@ export default function ProductDetailPage({ params }: { params: { slug: string }
               </Button>
             </div>
 
-            <p className="mt-3 flex items-start gap-2 text-xs text-muted-foreground">
-              <ShieldCheck className="mt-0.5 h-3.5 w-3.5 shrink-0 text-brand-green" />
-              本站不收款、不做支付、不跳转任何第三方平台。添联系主理人后，
-              系统自动下发内部资料库链接并邀请你加入行业交流群。
-            </p>
-            {product.cta_type === "buy" && <WecomNote className="mt-2" />}
+            <WecomNote className="mt-3 flex items-start gap-2 text-xs leading-relaxed text-muted-foreground" />
           </div>
 
           {/* 粘性参数卡 */}
