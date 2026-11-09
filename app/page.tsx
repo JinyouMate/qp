@@ -526,13 +526,6 @@ export default async function HomePage() {
               </Card>
             ))}
           </div>
-          <div className="mt-6 text-center">
-            <Button asChild variant="outline">
-              <Link href="/cases">
-                看全部案例 <ArrowRight />
-              </Link>
-            </Button>
-          </div>
         </div>
       </section>
 

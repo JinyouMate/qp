@@ -345,7 +345,7 @@ export default function ProductDetailPage({ params }: { params: { slug: string }
           <ArrowLeft className="h-4 w-4" /> 返回产品中心
         </Link>
         <span className="mx-3 text-muted-foreground">·</span>
-        <Link href="/cases" className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-primary">
+        <Link href="/content" className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-primary">
           看看别人怎么用 <ArrowRight className="h-4 w-4" />
         </Link>
       </div>
