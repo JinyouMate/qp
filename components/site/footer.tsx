@@ -57,7 +57,6 @@ export function Footer() {
                 {BRAND.email}
               </a>
             </p>
-            <p className="mt-1 text-xs">💬 企微：官网扫码添加，备注「官网」优先通过</p>
           </div>
           {COLS.map((col) => (
             <div key={col.title}>
