@@ -5,10 +5,11 @@ import { buildMetadata, KEYWORDS } from "@/lib/seo";
 
 import { PageHero } from "@/components/site/page-hero";
 import { TierAccordion } from "@/components/site/tier-accordion";
-import { LeadSection } from "@/components/site/lead-section";
+import { WecomCtaCard } from "@/components/site/wecom-cta-card";
 import { JsonLd, productSchema, breadcrumbSchema } from "@/components/site/json-ld";
 import { getProducts } from "@/lib/data";
-import { getPersona, personaLeadHref } from "@/lib/persona";
+import { getPersona } from "@/lib/persona";
+import { WecomCtaButton } from "@/components/site/wecom-dialog";
 
 // Cloudflare Pages：该页读取 searchParams（?role=），属动态路由，必须跑 Edge Runtime
 export const runtime = "edge";
@@ -61,12 +62,14 @@ export default async function ProductsPage({
               </p>
             </div>
             <div className="flex shrink-0 gap-2">
-              <Link
-                href={personaLeadHref(persona)}
-                className="rounded-full bg-brand-orange px-4 py-2 text-xs font-semibold text-white transition-colors hover:bg-brand-orange-dark"
-              >
-                {persona.intent === "consult" ? "预约沟通" : "获取资料"}
-              </Link>
+              <WecomCtaButton
+                size="sm"
+                variant="orange"
+                label="联系主理人"
+                from="products-persona"
+                subject={persona.label}
+                className="rounded-full px-4 py-2 text-xs font-semibold"
+              />
               <Link
                 href="/products"
                 className="rounded-full border bg-card px-4 py-2 text-xs font-medium"
@@ -94,10 +97,7 @@ export default async function ProductsPage({
         </div>
       </section>
 
-      <LeadSection
-        title="不确定选哪个？说清楚你的问题，我们帮你挑"
-        desc="填一次表，我们按你的身份与问题推荐最合适的那一两样，不会推全部。"
-      />
+      <WecomCtaCard from="products" subject="服务目录" />
     </>
   );
 }

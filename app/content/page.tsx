@@ -4,14 +4,14 @@ import { buildMetadata, KEYWORDS } from "@/lib/seo";
 import { JsonLd, breadcrumbSchema } from "@/components/site/json-ld";
 import { PageHero } from "@/components/site/page-hero";
 import { SectionHeading } from "@/components/site/section-heading";
-import { WecomCtaButton } from "@/components/site/wecom-dialog";
+import { WecomCtaCard } from "@/components/site/wecom-cta-card";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 
 /* ============================================================
    客户成果与数据洞察（原内容归档页，2026-11-08 重构）
    定位：对外信任页。只写已经交付的结果，不写待办与设想。
-   所有转化按钮统一走 WecomCtaButton → 主理人企微名片弹窗。
+   底部统一走 WecomCtaCard → 主理人企微二维码弹窗，不设表单。
    ============================================================ */
 
 export const metadata: Metadata = buildMetadata({
@@ -183,29 +183,12 @@ export default function ContentPage() {
         </div>
       </section>
 
-      {/* 底部行动号召：唯一转化按钮，点击弹主理人企微名片 */}
-      <section className="section-pad pt-0">
-        <div className="container-site">
-          <div className="flex flex-col gap-6 rounded-2xl border border-brand-orange/20 bg-gradient-to-r from-brand-orange-soft via-[#FFF8F1] to-brand-green-soft px-6 py-8 shadow-warm md:flex-row md:items-center md:justify-between md:px-10">
-            <div>
-              <h2 className="text-xl font-bold leading-snug md:text-2xl">
-                你的品类，有没有被数据忽略的利润空间？
-              </h2>
-              <p className="mt-2.5 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-                我们提供基于 312 万 SKU 库的选品诊断，帮你找出被高退货率掩盖的高毛利机会。
-              </p>
-            </div>
-            <WecomCtaButton
-              label="申请专属诊断"
-              size="lg"
-              variant="default"
-              from="content-results-banner"
-              subject="申请专属诊断"
-              className="shrink-0"
-            />
-          </div>
-        </div>
-      </section>
+      {/* 底部统一加微大卡片：全站唯一转化收口，无表单 */}
+      <WecomCtaCard
+        title="你的品类，有没有被数据忽略的利润空间？"
+        from="content"
+        subject="数据洞察"
+      />
     </>
   );
 }

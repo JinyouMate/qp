@@ -14,7 +14,7 @@ export type TrackEventName =
   | "wechat_click" // 点击联系主理人 / 复制微信号
   | "third_party_click" // 跳转第三方成交页
   | "asset_download" // 资料下载/领取
-  | "consult_click" // 预约咨询
+  | "consult_click" // 历史咨询点击（保留兼容）
   | "ai_chat_open" // AI 问答打开
   | "ladder_click"; // 产品阶梯点击
 

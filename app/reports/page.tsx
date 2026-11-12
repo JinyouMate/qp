@@ -7,7 +7,7 @@ import { ArrowRight, ExternalLink, LineChart, FileText, Table2 } from "lucide-re
 
 import { PageHero } from "@/components/site/page-hero";
 import { SectionHeading } from "@/components/site/section-heading";
-import { LeadSection } from "@/components/site/lead-section";
+import { WecomCtaCard } from "@/components/site/wecom-cta-card";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -78,10 +78,10 @@ export default async function ReportsPage() {
       >
         <div className="flex flex-wrap gap-3">
           <Button asChild variant="destructive">
-            <Link href="/contact?intent=asset&demand=%E6%8A%A5%E5%91%8A">免费领报告摘要</Link>
+            <Link href="/contact">免费领报告摘要</Link>
           </Button>
           <Button asChild variant="outline">
-            <Link href="/contact?intent=consult&demand=%E6%95%B0%E6%8D%AE%E4%BA%A7%E5%93%81">申请 7 天试用</Link>
+            <Link href="/contact">申请 7 天试用</Link>
           </Button>
         </div>
       </PageHero>
@@ -110,7 +110,7 @@ export default async function ReportsPage() {
                 <span className="font-bold">不想先花钱？</span>每份报告都有精华摘要版：核心数据 + 趋势判断 + 一页决策建议，免费领。
               </p>
               <Button asChild variant="default" size="sm">
-                <Link href="/contact?intent=asset&demand=%E6%8A%A5%E5%91%8A">
+                <Link href="/contact">
                   领摘要 <ArrowRight />
                 </Link>
               </Button>
@@ -167,7 +167,7 @@ export default async function ReportsPage() {
         </div>
       </section>
 
-      <LeadSection defaultDemand="报告" title="免费领报告摘要 + 申请 7 天试用" />
+      <WecomCtaCard from="reports" subject="行业报告" />
     </>
   );
 }

@@ -7,7 +7,7 @@ import { ArrowRight, Ban, Compass } from "lucide-react";
 
 import { PageHero } from "@/components/site/page-hero";
 import { SectionHeading } from "@/components/site/section-heading";
-import { LeadSection } from "@/components/site/lead-section";
+import { WecomCtaCard } from "@/components/site/wecom-cta-card";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 
@@ -152,10 +152,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <LeadSection
-        title="想更了解我们？先从免费资料开始"
-        desc="判断我们靠不靠谱，看内容、看清单，比看我们说自己靠谱有用。"
-      />
+      <WecomCtaCard from="about" subject="关于我们" />
 
       <section className="pb-12 text-center">
         <Button asChild variant="outline">

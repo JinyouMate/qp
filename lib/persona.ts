@@ -105,12 +105,3 @@ export function getPersona(key?: string | string[] | null): Persona | null {
   return PERSONAS[key as PersonaKey] ?? null;
 }
 
-/** 留资链接：带上身份与需求预填 */
-export function personaLeadHref(p: Persona): string {
-  const q = new URLSearchParams({
-    role: p.identity,
-    demand: p.demand,
-    intent: p.intent,
-  });
-  return `/contact?${q.toString()}`;
-}

@@ -6,10 +6,9 @@ import { ArrowLeft, ArrowRight, CalendarDays, Clock } from "lucide-react";
 
 import { buildMetadata } from "@/lib/seo";
 import { getAllInsights, getInsight, estimateReadingTime } from "@/lib/insights";
-import { LeadSection } from "@/components/site/lead-section";
+import { WecomCtaCard } from "@/components/site/wecom-cta-card";
 import { JsonLd, articleSchema, breadcrumbSchema } from "@/components/site/json-ld";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { mdxComponents } from "@/components/site/mdx";
 
 // Cloudflare Pages：只发布预渲染页，未列出的 slug 直接 404，
@@ -106,25 +105,6 @@ export default function InsightDetailPage({ params }: { params: { slug: string }
             <MDXRemote source={body} components={mdxComponents} />
           </div>
 
-          {/* 文末收口 */}
-          <div className="mt-12 rounded-xl border bg-brand-green-soft p-5 md:p-6">
-            <h2 className="text-lg font-bold">这篇里提到的方法，都做成了可填写的工具</h2>
-            <p className="mt-2 text-sm text-muted-foreground">
-              适配校验工具包、选品评分工具包、核价毛利工具包——留个联系方式，我们把对应模板发你，
-              联系主理人后回复【汽配数据】直接领。
-            </p>
-            <div className="mt-4 flex flex-wrap gap-3">
-              <Button asChild>
-                <Link href="/contact?intent=asset">
-                  领取本文工具包 <ArrowRight />
-                </Link>
-              </Button>
-              <Button asChild variant="outline">
-                <Link href="/wechat?from=insight">加入同行社群</Link>
-              </Button>
-            </div>
-          </div>
-
           {next ? (
             <div className="mt-8">
               <Link
@@ -142,7 +122,7 @@ export default function InsightDetailPage({ params }: { params: { slug: string }
         </div>
       </article>
 
-      <LeadSection />
+      <WecomCtaCard from="insight-detail" subject="洞察文章" />
     </>
   );
 }

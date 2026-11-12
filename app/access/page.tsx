@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, MessageCircle, ShieldCheck, Smartphone, Users, Search } from "lucide-react";
+import { ArrowRight, ShieldCheck, Smartphone, Users, Search } from "lucide-react";
 
 import { buildMetadata, KEYWORDS } from "@/lib/seo";
 import { WECOM } from "@/lib/brand";
 import { PageHero } from "@/components/site/page-hero";
 import { SectionHeading } from "@/components/site/section-heading";
 import { Faq } from "@/components/site/faq";
-import { LeadSection } from "@/components/site/lead-section";
+import { WecomCtaCard } from "@/components/site/wecom-cta-card";
+import { WecomCtaButton } from "@/components/site/wecom-dialog";
 import { WecomNote } from "@/components/site/wecom-note";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -52,9 +53,9 @@ const WAYS = [
     icon: Search,
     title: "还是找不到？找客服核对",
     steps: [
-      "添加企业微信，报你登记时填的手机号 / 微信号",
-      "我们按登记记录核对开通状态（一般当天回复）",
-      "确认漏发的，人工补发；重复提交的，合并处理",
+      "添加企业微信，说明你要核对哪份资料",
+      "我们按企微聊天记录核对开通状态（一般当天回复）",
+      "确认漏发的，人工补发；重复领取的，合并处理",
     ],
   },
 ];
@@ -66,7 +67,7 @@ const FAQS = [
   },
   {
     q: "联系主理人后多久能收到资料？",
-    a: "扫码添加后系统自动发送，一般几分钟内。若超过当天仍未收到，多半是微信号与登记号不一致，在企微里报一下手机号即可核对补发。",
+    a: "扫码添加后系统自动发送，一般几分钟内。若超过当天仍未收到，多半是添加时用的微信号不同，在企微里说明一下即可核对补发。",
   },
   {
     q: "我能看多久？到期会失效吗？",
@@ -78,7 +79,7 @@ const FAQS = [
   },
   {
     q: "不想加了，能删掉我的信息吗？",
-    a: "能。在企微里说一声，或按《隐私政策》里的联系方式申请，我们按流程删除你的登记记录。",
+    a: "能。在企微里说一声，或按《隐私政策》里的联系方式申请，我们按流程删除相关记录。",
   },
 ];
 
@@ -120,11 +121,13 @@ export default function AccessPage() {
                     ))}
                   </ol>
                   {w.title.startsWith("还是找不到") && (
-                    <Button asChild variant="orange" className="mt-auto w-full">
-                      <Link href={`${WECOM.path}?from=access`}>
-                        <MessageCircle /> 联系主理人核对
-                      </Link>
-                    </Button>
+                    <WecomCtaButton
+                      variant="orange"
+                      label="联系主理人核对"
+                      from="access-check"
+                      subject="资料权限核对"
+                      className="mt-auto w-full"
+                    />
                   )}
                 </CardContent>
               </Card>
@@ -150,19 +153,17 @@ export default function AccessPage() {
                 回到产品中心 <ArrowRight />
               </Link>
             </Button>
-            <Button asChild variant="outline">
-              <Link href={`${WECOM.path}?from=access`}>
-                <MessageCircle /> 联系主理人，人工查权限
-              </Link>
-            </Button>
+            <WecomCtaButton
+              variant="outline"
+              label="联系主理人，人工查权限"
+              from="access-manual"
+              subject="资料权限核对"
+            />
           </div>
         </div>
       </section>
 
-      <LeadSection
-        title="还没添加？先填个信息也行"
-        desc="留一次联系方式，内部资料库链接和入群邀请一起发你。"
-      />
+      <WecomCtaCard from="access" subject="资料权限" />
     </>
   );
 }

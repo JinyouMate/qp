@@ -7,7 +7,7 @@ import { ArrowRight, ExternalLink } from "lucide-react";
 
 import { PageHero } from "@/components/site/page-hero";
 import { SectionHeading } from "@/components/site/section-heading";
-import { LeadSection } from "@/components/site/lead-section";
+import { WecomCtaCard } from "@/components/site/wecom-cta-card";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -73,7 +73,7 @@ export default async function KnowledgePage() {
       >
         <div className="flex flex-wrap gap-3">
           <Button asChild variant="destructive">
-            <Link href="/contact?intent=asset&demand=SOP">免费领 SOP 清单</Link>
+            <Link href="/contact">免费领 SOP 清单</Link>
           </Button>
           <Button asChild variant="outline">
             <Link href="#sop-list">看 6 套 SOP 目录</Link>
@@ -159,7 +159,7 @@ export default async function KnowledgePage() {
                   <div className="mt-auto flex items-center justify-between border-t border-dashed pt-3">
                     <span className="text-sm font-bold text-brand-red">{p.price}</span>
                     <Button asChild size="sm" variant="outline">
-                      <Link href={`/contact?intent=asset&demand=SOP`}>
+                      <Link href="/contact">
                         获取资料 <ArrowRight />
                       </Link>
                     </Button>
@@ -175,7 +175,7 @@ export default async function KnowledgePage() {
         </div>
       </section>
 
-      <LeadSection defaultDemand="SOP" title="留个联系方式，6 套 SOP + 模板库一起发你" />
+      <WecomCtaCard from="knowledge" subject="知识库" />
     </>
   );
 }

@@ -2,19 +2,17 @@ import type { Metadata } from "next";
 
 import { buildMetadata, KEYWORDS } from "@/lib/seo";
 import Link from "next/link";
-import { Suspense } from "react";
-import { CheckCircle2, Users, ExternalLink, ArrowRight, Quote } from "lucide-react";
+import { CheckCircle2, Users, ExternalLink, Quote } from "lucide-react";
 
 import { WECOM } from "@/lib/brand";
 
 import { PageHero } from "@/components/site/page-hero";
 import { SectionHeading } from "@/components/site/section-heading";
-import { LeadSection } from "@/components/site/lead-section";
+import { WecomCtaCard } from "@/components/site/wecom-cta-card";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ExternalLink as GuardedLink } from "@/components/site/product-cta";
-import { WechatBanner } from "@/components/site/wechat-banner";
 
 export const metadata: Metadata = buildMetadata({
   title: "加微信联系",
@@ -35,7 +33,7 @@ const BENEFITS = [
   { name: "内部资料库", use: "SOP、报告、模板库在线查阅", how: "扫码后系统自动下发链接", demand: "知识库" },
   { name: "行业交流群", use: "按身份分组的同行交流与复盘", how: "添加后自动邀请入群", demand: "社群" },
   { name: "体系课程 / 工具包", use: "录播、作业批改、选品核价等工具表", how: "企微内确认需求后交付", demand: "课程" },
-  { name: "订阅数据看板", use: "品类价格监测与竞品动态（支持 7 天试用）", how: "登记后开通试用，到期不自动续费", demand: "数据产品" },
+  { name: "订阅数据看板", use: "品类价格监测与竞品动态（支持 7 天试用）", how: "企微内确认后开通试用，到期不自动续费", demand: "数据产品" },
   { name: "AI 数据合作", use: "语料授权、标注规则与评测标准共建", how: "签协议后由项目负责人对接", demand: "AI合作" },
 ];
 
@@ -54,11 +52,6 @@ export default function WechatPage() {
         title="联系主理人，备注「官网」优先通过"
         desc="内部资料库、行业交流群、课程与工具包，都从这一步开始。官网不处理支付、不跳转第三方平台。"
       />
-
-      {/* 提交表单后 / 拦截弹窗过来的落地提示 */}
-      <Suspense fallback={null}>
-        <WechatBanner />
-      </Suspense>
 
       <section className="section-pad">
         <div className="container-site grid gap-8 md:grid-cols-[auto_1fr] md:items-start">
@@ -119,9 +112,6 @@ export default function WechatPage() {
             <div className="mt-6 flex flex-wrap gap-3">
               <Button asChild variant="outline">
                 <Link href="/products">看产品阶梯</Link>
-              </Button>
-              <Button asChild variant="default">
-                <Link href="/contact?intent=consult">预约咨询 <ArrowRight /></Link>
               </Button>
             </div>
           </div>
@@ -201,10 +191,7 @@ export default function WechatPage() {
         </div>
       </section>
 
-      <LeadSection
-        title="还没填信息？资料也能先发你"
-        desc="联系主理人最快；想先看看也行，填一次表，我们把资料发到你留下的联系方式上。"
-      />
+      <WecomCtaCard from="wechat" subject="加微信联系" />
     </>
   );
 }

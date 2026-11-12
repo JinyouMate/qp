@@ -6,7 +6,7 @@ import { ArrowRight, ExternalLink, PlayCircle, Users, ClipboardCheck } from "luc
 
 import { PageHero } from "@/components/site/page-hero";
 import { SectionHeading } from "@/components/site/section-heading";
-import { LeadSection } from "@/components/site/lead-section";
+import { WecomCtaCard } from "@/components/site/wecom-cta-card";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -89,7 +89,7 @@ export default async function CoursesPage() {
       >
         <div className="flex flex-wrap gap-3">
           <Button asChild variant="outline">
-            <Link href="/contact?intent=asset&demand=%E8%AF%BE%E7%A8%8B">先要一份课程大纲</Link>
+            <Link href="/contact">先要一份课程大纲</Link>
           </Button>
         </div>
       </PageHero>
@@ -169,7 +169,7 @@ export default async function CoursesPage() {
               如果现有课程解决不了，会直接告诉你，不硬卖。
             </p>
             <Button asChild className="mt-4">
-              <Link href="/contact?intent=consult&demand=%E8%AF%BE%E7%A8%8B">
+              <Link href="/contact">
                 说说我的情况 <ArrowRight />
               </Link>
             </Button>
@@ -177,7 +177,7 @@ export default async function CoursesPage() {
         </div>
       </section>
 
-      <LeadSection defaultDemand="课程" title="先拿课程大纲和一节试听" desc="登记后我们把三门课的完整大纲 + 一节正课试听发给你。" />
+      <WecomCtaCard from="courses" subject="体系课程" />
     </>
   );
 }

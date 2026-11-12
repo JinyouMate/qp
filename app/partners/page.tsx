@@ -7,7 +7,7 @@ import { ArrowRight, Wrench, Bot, ShieldCheck, FileSignature } from "lucide-reac
 
 import { PageHero } from "@/components/site/page-hero";
 import { SectionHeading } from "@/components/site/section-heading";
-import { LeadSection } from "@/components/site/lead-section";
+import { WecomCtaCard } from "@/components/site/wecom-cta-card";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -70,10 +70,10 @@ export default async function PartnersPage() {
       >
         <div className="flex flex-wrap gap-3">
           <Button asChild variant="destructive">
-            <Link href="/contact?intent=consult&demand=AI%E5%90%88%E4%BD%9C">AI 数据合作</Link>
+            <Link href="/contact">AI 数据合作</Link>
           </Button>
           <Button asChild variant="outline">
-            <Link href="/contact?intent=consult&demand=SaaS">SaaS 合作</Link>
+            <Link href="/contact">SaaS 合作</Link>
           </Button>
         </div>
       </PageHero>
@@ -115,9 +115,7 @@ export default async function PartnersPage() {
                     <span className="text-sm font-bold text-brand-red">{p.price}</span>
                     <Button asChild size="sm" variant="destructive">
                       <Link
-                        href={`/contact?intent=consult&demand=${encodeURIComponent(
-                          p.slug === "ai-data" ? "AI合作" : "SaaS"
-                        )}`}
+                        href="/contact"
                       >
                         提交合作意向 <ArrowRight />
                       </Link>
@@ -170,12 +168,12 @@ export default async function PartnersPage() {
             <Link href="/wechat#platforms" className="mx-1 text-primary underline underline-offset-2">
               微信联系页
             </Link>
-            ，开通前需先联系主理人或填写信息。
+            ，开通前请添加主理人企微。
           </div>
         </div>
       </section>
 
-      <LeadSection defaultRole="AI公司" defaultDemand="AI合作" title="说说你的场景和数据需求" desc="写清楚你要解决什么问题、需要什么形态的数据，我们 1 个工作日内回复。" />
+      <WecomCtaCard from="partners" subject="商务合作" />
     </>
   );
 }

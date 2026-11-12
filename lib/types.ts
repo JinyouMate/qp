@@ -52,7 +52,7 @@ export interface Product {
   audience: string; // 适合谁
   deliverable: string; // 交付什么
   price: string; // 怎么收费
-  cta_type: CtaType; // 下一步动作：联系主理人 / 预约咨询（站内留资）
+  cta_type: CtaType; // 下一步动作：统一弹主理人企微名片
   /** 历史字段，已废弃：不再跳转任何第三方平台链接，前端统一改弹企微二维码 */
   third_party_url: string | null;
   /** 历史字段，已废弃：交付平台统一为企业微信 */
@@ -101,12 +101,12 @@ export interface Lead {
   demand: string; // 知识库 / 数据产品 / SOP / 报告 / 课程 / 咨询 / SaaS / AI合作
   description?: string;
   utm?: Record<string, string>;
-  channel?: Channel; // 留资来源：抖音/视频号/知乎/公众号/搜索/直接访问/其他
+  channel?: Channel; // 来源渠道：抖音/视频号/知乎/公众号/搜索/直接访问/其他
   status?: string; // new / contacted / won / closed
   created_at?: string;
 }
 
-/** 留资来源渠道 */
+/** 来源渠道 */
 export type Channel =
   | "douyin"
   | "channels" // 视频号

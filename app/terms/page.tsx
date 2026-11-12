@@ -7,7 +7,7 @@ import Link from "next/link";
 
 import { PageHero } from "@/components/site/page-hero";
 import { SectionHeading } from "@/components/site/section-heading";
-import { LeadSection } from "@/components/site/lead-section";
+import { WecomCtaCard } from "@/components/site/wecom-cta-card";
 
 export const metadata: Metadata = buildMetadata({
   title: "服务条款",
@@ -41,8 +41,8 @@ const SECTIONS: Section[] = [
     body: [
       "本站原创内容（文章、视频、报告、SOP、模板、图表、方法论）的著作权归我们所有，未经书面许可不得整体复制、转载、摘编后署名发布或用于商业用途。",
       "个人学习与非商业分享：可以引用，需注明出处与作者，且引用比例不得超过原文的三分之一，不得改动原意。",
-      "你登记获取的 SOP、模板与资料，授权范围为「你本人及你所在企业/团队内部使用」，不得对外销售、分发或打包进其他产品。",
-      <span>
+      "你从主理人处获取的 SOP、模板与资料，授权范围为「你本人及你所在企业/团队内部使用」，不得对外销售、分发或打包进其他产品。",
+      <span key="terms-infringement">
         {"发现侵权请联系："}
         <a
           href={BRAND.emailHref}
@@ -84,7 +84,7 @@ const SECTIONS: Section[] = [
       "本条款如有更新，将在本页面标注更新日期。继续使用本站视为接受更新后的条款。",
       "因本条款引起的争议，双方应友好协商；协商不成的，提交本站运营主体所在地有管辖权的人民法院处理。",
       "本条款适用中华人民共和国法律（不含港澳台地区法律）。",
-      <span>
+      <span key="terms-contact">
         {"条款与商务咨询邮箱："}
         <a
           href={BRAND.emailHref}
@@ -147,10 +147,7 @@ export default function TermsPage() {
         </div>
       </section>
 
-      <LeadSection
-        title="边界清楚了，合作才顺"
-        desc="留下身份和需求，我们把对应的资料和下一步建议发你。不推销、不群发。"
-      />
+      <WecomCtaCard from="terms" subject="服务条款" />
     </>
   );
 }

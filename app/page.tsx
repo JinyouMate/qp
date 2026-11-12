@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { SectionHeading } from "@/components/site/section-heading";
 import { HeroDataBoard } from "@/components/site/hero-data-board";
 import { WecomCtaButton } from "@/components/site/wecom-dialog";
+import { WecomCtaCard } from "@/components/site/wecom-cta-card";
 import { getCases } from "@/lib/data";
 
 /* 首页只做两件事：用数据证明，用加微收口。 */
@@ -304,33 +305,15 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ========== 底部唯一大 CTA：无表单，只弹企微名片 ========== */}
-      <section className="section-pad bg-[#FFF7EE]">
-        <div className="container-site">
-          <div className="mx-auto max-w-3xl rounded-3xl border border-brand-orange/25 bg-white px-6 py-12 text-center shadow-sun md:px-12 md:py-16">
-            <span className="inline-block rounded-full bg-brand-orange/10 px-4 py-1.5 text-xs font-bold tracking-wide text-brand-orange-ink">
-              免费 · 内测版
-            </span>
-            <h2 className="mt-5 text-2xl font-bold leading-snug md:text-4xl">
-              别再靠运气选品，用真实数据拿回利润。
-            </h2>
-            <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-muted-foreground md:text-base">
-              312 万条真实 SKU、40%-50% 黄金毛利带，已经整理成一份能直接照着做的清单。
-            </p>
-            <WecomCtaButton
-              size="lg"
-              variant="orange"
-              label="立即扫码添加主理人"
-              from="home-bottom-cta"
-              subject="首页底部行动区"
-              className="mt-8 h-16 w-full max-w-md rounded-2xl text-lg font-bold shadow-warm-lg md:h-[72px] md:text-xl"
-            />
-            <p className="mt-4 text-xs leading-relaxed text-muted-foreground">
-              点击弹出主理人企微二维码 · 无需填表，扫码即发 Top 50 高毛利选品清单（内测版）
-            </p>
-          </div>
-        </div>
-      </section>
+      {/* ========== 底部唯一大 CTA：全站统一组件，无表单，只弹企微名片 ========== */}
+      <WecomCtaCard
+        badge="免费 · 内测版"
+        desc="312 万条真实 SKU、40%-50% 黄金毛利带，已经整理成一份能直接照着做的清单。"
+        footnote="点击弹出主理人企微二维码 · 无需填表，扫码即发 Top 50 高毛利选品清单（内测版）"
+        from="home-bottom-cta"
+        subject="首页底部行动区"
+        showQr={false}
+      />
     </>
   );
 }

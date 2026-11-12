@@ -145,7 +145,7 @@ export function ProductLadder({
             </span>
           </p>
           <Link
-            href="/contact?intent=asset"
+            href="/contact"
             className="shrink-0 rounded-full bg-brand-orange px-4 py-2 text-sm font-semibold text-white shadow-warm transition-colors hover:bg-brand-orange-dark"
           >
             先领免费资料

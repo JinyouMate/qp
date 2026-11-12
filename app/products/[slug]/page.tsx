@@ -13,12 +13,12 @@ import { ProductIcon } from "@/components/site/icon";
 import { ProductCta } from "@/components/site/product-cta";
 import { ProductCard } from "@/components/site/product-card";
 import { WecomNote } from "@/components/site/wecom-note";
-import { LeadSection } from "@/components/site/lead-section";
+import { WecomCtaCard } from "@/components/site/wecom-cta-card";
 import { Faq } from "@/components/site/faq";
 import { JsonLd, productSchema, breadcrumbSchema } from "@/components/site/json-ld";
 import { buildMetadata } from "@/lib/seo";
 import { FALLBACK_PRODUCTS } from "@/lib/data";
-import { demandForProduct, getProductDetail, tierCompare } from "@/lib/product-detail";
+import { getProductDetail, tierCompare } from "@/lib/product-detail";
 import { LAYER_LABELS, TIERS, type Product } from "@/lib/types";
 
 /* ============================================================
@@ -76,7 +76,6 @@ export default function ProductDetailPage({ params }: { params: { slug: string }
   const tier = TIERS[product.tier];
   const layer = LAYER_LABELS[product.layer];
   const compare = tierCompare(product.tier);
-  const demand = demandForProduct(product);
   const recs = siblings(product);
 
   return (
@@ -145,7 +144,7 @@ export default function ProductDetailPage({ params }: { params: { slug: string }
             <div className="mt-6 flex flex-wrap items-center gap-3">
               <ProductCta product={product} size="default" />
               <Button asChild variant="outline">
-                <Link href={`/contact?demand=${encodeURIComponent(demand)}&intent=wechat`}>
+                <Link href="/contact">
                   联系主理人先问清楚
                 </Link>
               </Button>
@@ -325,12 +324,8 @@ export default function ProductDetailPage({ params }: { params: { slug: string }
         </section>
       )}
 
-      {/* ========== 留资收口 ========== */}
-      <LeadSection
-        title={`想要「${product.name}」？先留个联系方式`}
-        desc="登记后我们按你的身份给一份使用建议，不合适会直接告诉你。"
-        defaultDemand={demand}
-      />
+      {/* ========== 加微收口 ========== */}
+      <WecomCtaCard from="product-detail" subject="产品详情" />
 
       <div className="container-site pb-10">
         <Link

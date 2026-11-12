@@ -7,7 +7,7 @@ import { ArrowRight, Search, Route, Repeat, Presentation } from "lucide-react";
 
 import { PageHero } from "@/components/site/page-hero";
 import { SectionHeading } from "@/components/site/section-heading";
-import { LeadSection } from "@/components/site/lead-section";
+import { WecomCtaCard } from "@/components/site/wecom-cta-card";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -53,7 +53,7 @@ export default async function ConsultingPage() {
         desc="先做一次免费 30 分钟诊断。如果我们帮不上忙，会直接告诉你，不接单。"
       >
         <Button asChild variant="destructive">
-          <Link href="/contact?intent=consult&demand=%E5%92%A8%E8%AF%A2">
+          <Link href="/contact">
             预约 30 分钟免费诊断 <ArrowRight />
           </Link>
         </Button>
@@ -122,8 +122,8 @@ export default async function ConsultingPage() {
                   <div className="mt-auto flex items-center justify-between border-t border-dashed pt-3">
                     <span className="text-lg font-bold text-brand-red">{p.price}</span>
                     <Button asChild size="sm" variant="destructive">
-                      <Link href={`/contact?intent=consult&demand=${encodeURIComponent(p.slug === "corporate-training" ? "咨询" : "咨询")}`}>
-                        预约沟通 <ArrowRight />
+                      <Link href="/contact">
+                        联系主理人 <ArrowRight />
                       </Link>
                     </Button>
                   </div>
@@ -139,7 +139,7 @@ export default async function ConsultingPage() {
               我们判断能不能帮上，能帮就给下一步建议，不能帮就直说。
             </p>
             <Button asChild className="mt-4">
-              <Link href="/contact?intent=consult&demand=%E5%92%A8%E8%AF%A2">
+              <Link href="/contact">
                 现在预约 <ArrowRight />
               </Link>
             </Button>
@@ -147,7 +147,7 @@ export default async function ConsultingPage() {
         </div>
       </section>
 
-      <LeadSection defaultDemand="咨询" title="把你的情况写清楚，我们来约时间" />
+      <WecomCtaCard from="consulting" subject="咨询服务" />
     </>
   );
 }

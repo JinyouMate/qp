@@ -48,7 +48,7 @@ export async function GET(request: Request) {
   };
 
   if (!configured) {
-    result.hint = "Supabase 环境变量未配置，站点运行在兜底静态数据模式，留资不会入库。";
+    result.hint = "Supabase 环境变量未配置，站点运行在兜底静态数据模式，埋点不会入库。";
     return NextResponse.json(result, { status: 200 });
   }
 
@@ -122,7 +122,7 @@ export async function GET(request: Request) {
   const allTablesOk = Object.values(tableStatus).every((v) => v === "✅");
   result.ok = allTablesOk && String(result.write ?? "").startsWith("✅");
   result.conclusion = result.ok
-    ? "数据库已就绪，留资可真实入库。"
+    ? "数据库已就绪，埋点可真实入库。"
     : "数据库未完全就绪，请检查建表 SQL 是否执行成功（见 tables 字段）。";
 
   return NextResponse.json(result, { status: 200 });

@@ -6,7 +6,7 @@ import { buildMetadata, KEYWORDS } from "@/lib/seo";
 import { getAllInsights, estimateReadingTime } from "@/lib/insights";
 import { PageHero } from "@/components/site/page-hero";
 import { SectionHeading } from "@/components/site/section-heading";
-import { LeadSection } from "@/components/site/lead-section";
+import { WecomCtaCard } from "@/components/site/wecom-cta-card";
 import { JsonLd, breadcrumbSchema } from "@/components/site/json-ld";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
@@ -95,13 +95,13 @@ export default function InsightsPage() {
 
           {items.length === 0 ? (
             <p className="py-10 text-center text-sm text-muted-foreground">
-              文章正在整理中，先留个联系方式，更新后第一时间发你。
+              文章正在整理中，添加主理人企微，更新后第一时间发你。
             </p>
           ) : null}
         </div>
       </section>
 
-      <LeadSection />
+      <WecomCtaCard from="insights" subject="数据洞察" />
     </>
   );
 }

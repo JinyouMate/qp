@@ -7,7 +7,6 @@ import "./globals.css";
 import { Nav } from "@/components/site/nav";
 import { Footer } from "@/components/site/footer";
 import { UtmCapture } from "@/components/site/utm-capture";
-import { AiChat } from "@/components/site/ai-chat";
 import { FloatingCta } from "@/components/site/floating-cta";
 import { Analytics } from "@/components/site/analytics";
 import { JsonLd, organizationSchema, websiteSchema } from "@/components/site/json-ld";
@@ -61,11 +60,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Analytics />
         <UtmCapture />
         <Nav />
-        {/* 移动端底部固定留资条占位 */}
+        {/* 移动端底部固定加微条占位 */}
         <main className="pb-16 lg:pb-0">{children}</main>
         <Footer />
         <FloatingCta />
-        <AiChat />
       </body>
     </html>
   );

@@ -11,7 +11,7 @@ const buttonVariants = cva(
       variant: {
         /* 火：全站主 CTA 统一阳光橙，白字，hover 加深到 orange-700 */
         default: "bg-brand-orange text-white shadow-warm hover:bg-brand-orange-dark",
-        /* 站内 CTA（预约咨询 / 领取资料）历史上也用 destructive，一并收口到行动色 */
+        /* 站内 CTA 历史上也用 destructive，一并收口到行动色 */
         destructive: "bg-brand-orange text-white shadow-warm hover:bg-brand-orange-dark",
         orange: "bg-brand-orange text-white shadow-warm hover:bg-brand-orange-dark",
         /* 次级按钮：暖橙描边而不是冷绿，保持火系但不与主按钮抢焦点 */
