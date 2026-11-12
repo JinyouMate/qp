@@ -3,7 +3,6 @@
 /* eslint-disable @next/next/no-img-element */
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
 import { BadgeCheck, MessageCircle, ShieldCheck } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -160,19 +159,7 @@ export function WecomDialog({
 
           <p className="mt-4 flex items-start gap-1.5 text-[11px] leading-relaxed text-muted-foreground">
             <ShieldCheck className="mt-0.5 h-3 w-3 shrink-0 text-primary" strokeWidth={1.5} />
-            <span>官网不处理支付，资料与诊断均由主理人在企业微信一对一交付。</span>
-          </p>
-
-          <p className="mt-2 text-xs text-muted-foreground">
-            不方便扫码？
-            <Link
-              href={`/contact?intent=asset${subject ? `&subject=${encodeURIComponent(subject)}` : ""}`}
-              className="mx-1 text-primary underline underline-offset-2"
-              onClick={() => onOpenChange(false)}
-            >
-              留下联系方式
-            </Link>
-            ，我们会主动与你联系。
+            <span>官网不处理支付，不收集表单信息；资料与诊断均由主理人在企业微信一对一交付。</span>
           </p>
         </div>
       </DialogContent>

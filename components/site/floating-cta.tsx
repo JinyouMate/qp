@@ -2,17 +2,15 @@
 
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
-import { CalendarClock, X } from "lucide-react";
+import { X } from "lucide-react";
 
-import { TrackedLink } from "./tracked-link";
 import { WecomCtaButton } from "./wecom-dialog";
 
 /**
- * 全站固定留资入口。
- * - 桌面：右侧竖排按钮（联系主理人），滚过一屏后出现
- * - 移动：底部固定条（联系主理人 / 预约咨询）
- * - 表单页 /contact、私域页 /wechat、后台 /admin 不显示（避免自己挡自己）
- * - 每个按钮都带事件埋点：asset_download / consult_click / wechat_click
+ * 全站固定加微入口（单一动作，无表单、无次级按钮）。
+ * - 桌面：右侧圆形按钮，滚过一屏后出现
+ * - 移动：底部固定条，仅一个「联系主理人」按钮
+ * - 表单页 /contact、加微页 /wechat、后台 /admin 不显示
  */
 export function FloatingCta() {
   const pathname = usePathname();
@@ -33,7 +31,7 @@ export function FloatingCta() {
 
   return (
     <>
-      {/* 桌面：右侧竖排 */}
+      {/* 桌面：右侧圆形按钮 */}
       <div className="fixed right-3 top-1/2 z-30 hidden -translate-y-1/2 flex-col gap-2 lg:flex">
         <div className="group relative">
           <WecomCtaButton
@@ -56,22 +54,14 @@ export function FloatingCta() {
         </button>
       </div>
 
-      {/* 移动：底部固定条（主按钮联系主理人，次按钮站内预约咨询） */}
-      <div className="fixed inset-x-0 bottom-0 z-40 flex items-center gap-2 border-t bg-card/95 px-3 py-2.5 backdrop-blur lg:hidden">
+      {/* 移动：底部固定条，唯一动作 */}
+      <div className="fixed inset-x-0 bottom-0 z-40 flex items-center border-t bg-card/95 px-3 py-2.5 backdrop-blur lg:hidden">
         <WecomCtaButton
           from="float-mobile"
           subject="悬浮条"
           label="联系主理人"
-          className="flex-1 rounded-full px-3 py-2.5 text-sm font-semibold shadow-warm"
+          className="w-full rounded-full py-2.5 text-sm font-semibold shadow-warm"
         />
-        <TrackedLink
-          href="/contact?intent=consult"
-          event="consult_click"
-          data={{ from: "float-mobile" }}
-          className="flex shrink-0 items-center justify-center gap-1.5 rounded-full border border-brand-orange/40 px-3 py-2.5 text-sm font-semibold text-brand-orange-ink transition-colors hover:bg-brand-orange-soft"
-        >
-          <CalendarClock className="h-4 w-4" /> 预约咨询
-        </TrackedLink>
       </div>
     </>
   );

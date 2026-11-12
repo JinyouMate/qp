@@ -3,19 +3,16 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { Menu, X, CalendarClock } from "lucide-react";
+import { Menu, X } from "lucide-react";
 
-import { Button } from "@/components/ui/button";
 import { BrandLogo } from "./brand-logo";
 import { WecomCtaButton } from "./wecom-dialog";
 import { cn } from "@/lib/utils";
 
 const LINKS = [
   { href: "/", label: "首页" },
-  { href: "/products", label: "产品中心" },
+  { href: "/products", label: "服务目录" },
   { href: "/content", label: "数据洞察" },
-  { href: "/about", label: "关于" },
-  { href: "/contact", label: "联系" },
 ];
 
 export function Nav() {
@@ -45,13 +42,8 @@ export function Nav() {
           ))}
         </nav>
 
-        {/* 右上角固定 CTA：主按钮「联系主理人」，次按钮「预约咨询」（站内） */}
-        <div className="hidden items-center gap-2.5 lg:flex">
-          <Button asChild size="sm" variant="ghost">
-            <Link href="/contact?intent=consult">
-              <CalendarClock /> 预约咨询
-            </Link>
-          </Button>
+        {/* 右上角唯一 CTA：点一下弹主理人企微名片 */}
+        <div className="hidden lg:flex">
           <WecomCtaButton
             size="sm"
             variant="default"
@@ -88,7 +80,7 @@ export function Nav() {
                 {l.label}
               </Link>
             ))}
-            <div className="mt-3 grid grid-cols-1 gap-2">
+            <div className="mt-3">
               <WecomCtaButton
                 size="sm"
                 variant="default"
@@ -97,9 +89,6 @@ export function Nav() {
                 subject="移动导航"
                 className="w-full"
               />
-              <Button asChild size="sm" variant="outline" onClick={() => setOpen(false)}>
-                <Link href="/contact?intent=consult">预约咨询</Link>
-              </Button>
             </div>
           </div>
         </nav>
