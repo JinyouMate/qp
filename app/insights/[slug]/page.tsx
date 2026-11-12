@@ -6,7 +6,7 @@ import { ArrowLeft, ArrowRight, CalendarDays, Clock } from "lucide-react";
 
 import { buildMetadata } from "@/lib/seo";
 import { getAllInsights, getInsight, estimateReadingTime } from "@/lib/insights";
-import { WecomCtaCard } from "@/components/site/wecom-cta-card";
+import { QuietCta } from "@/components/site/quiet-cta";
 import { JsonLd, articleSchema, breadcrumbSchema } from "@/components/site/json-ld";
 import { Badge } from "@/components/ui/badge";
 import { mdxComponents } from "@/components/site/mdx";
@@ -122,7 +122,7 @@ export default function InsightDetailPage({ params }: { params: { slug: string }
         </div>
       </article>
 
-      <WecomCtaCard from="insight-detail" subject="洞察文章" />
+      <QuietCta from="quiet-insights" subject="洞察文章" />
     </>
   );
 }

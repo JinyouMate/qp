@@ -7,7 +7,7 @@ import { ArrowRight, Ban, Compass } from "lucide-react";
 
 import { PageHero } from "@/components/site/page-hero";
 import { SectionHeading } from "@/components/site/section-heading";
-import { WecomCtaCard } from "@/components/site/wecom-cta-card";
+import { QuietCta } from "@/components/site/quiet-cta";
 import { DataTerminal } from "@/components/site/data-terminal";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -159,15 +159,15 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <WecomCtaCard from="about" subject="关于我们" />
-
-      <section className="pb-12 text-center">
+      <section className="pb-4 text-center">
         <Button asChild variant="outline">
           <Link href="/content">
             先看案例证据 <ArrowRight />
           </Link>
         </Button>
       </section>
+
+      <QuietCta from="quiet-about" subject="关于我们" />
     </>
   );
 }

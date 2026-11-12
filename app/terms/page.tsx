@@ -7,7 +7,6 @@ import Link from "next/link";
 
 import { PageHero } from "@/components/site/page-hero";
 import { SectionHeading } from "@/components/site/section-heading";
-import { WecomCtaCard } from "@/components/site/wecom-cta-card";
 
 export const metadata: Metadata = buildMetadata({
   title: "服务条款",
@@ -146,8 +145,6 @@ export default function TermsPage() {
           </div>
         </div>
       </section>
-
-      <WecomCtaCard from="terms" subject="服务条款" />
     </>
   );
 }

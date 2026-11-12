@@ -6,7 +6,7 @@ import { buildMetadata, KEYWORDS } from "@/lib/seo";
 import { getAllInsights, estimateReadingTime } from "@/lib/insights";
 import { PageHero } from "@/components/site/page-hero";
 import { SectionHeading } from "@/components/site/section-heading";
-import { WecomCtaCard } from "@/components/site/wecom-cta-card";
+import { QuietCta } from "@/components/site/quiet-cta";
 import { JsonLd, breadcrumbSchema } from "@/components/site/json-ld";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
@@ -101,7 +101,7 @@ export default function InsightsPage() {
         </div>
       </section>
 
-      <WecomCtaCard from="insights" subject="数据洞察" />
+      <QuietCta from="quiet-insights" subject="数据洞察" />
     </>
   );
 }

@@ -4,14 +4,14 @@ import { buildMetadata, KEYWORDS } from "@/lib/seo";
 import { JsonLd, breadcrumbSchema } from "@/components/site/json-ld";
 import { PageHero } from "@/components/site/page-hero";
 import { SectionHeading } from "@/components/site/section-heading";
-import { WecomCtaCard } from "@/components/site/wecom-cta-card";
+import { QuietCta } from "@/components/site/quiet-cta";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 
 /* ============================================================
    客户成果与数据洞察（原内容归档页，2026-11-08 重构）
    定位：对外信任页。只写已经交付的结果，不写待办与设想。
-   底部统一走 WecomCtaCard → 主理人企微二维码弹窗，不设表单。
+   底部只留一行轻引导（QuietCta），不放营销大卡片。
    ============================================================ */
 
 export const metadata: Metadata = buildMetadata({
@@ -184,12 +184,8 @@ export default function ContentPage() {
         </div>
       </section>
 
-      {/* 底部统一加微大卡片：全站唯一转化收口，无表单 */}
-      <WecomCtaCard
-        title="你的品类，有没有被数据忽略的利润空间？"
-        from="content"
-        subject="数据洞察"
-      />
+      {/* 阅读型页面：一行轻引导，不放营销大卡片 */}
+      <QuietCta from="quiet-content" subject="数据洞察" />
     </>
   );
 }

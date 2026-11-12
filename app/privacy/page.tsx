@@ -7,7 +7,6 @@ import Link from "next/link";
 import { Mail } from "lucide-react";
 
 import { PageHero } from "@/components/site/page-hero";
-import { WecomCtaCard } from "@/components/site/wecom-cta-card";
 
 export const metadata: Metadata = buildMetadata({
   title: "隐私政策",
@@ -150,8 +149,6 @@ export default function PrivacyPage() {
           </div>
         </div>
       </section>
-
-      <WecomCtaCard from="privacy" subject="隐私政策" />
     </>
   );
 }

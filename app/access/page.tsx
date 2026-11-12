@@ -7,7 +7,7 @@ import { WECOM } from "@/lib/brand";
 import { PageHero } from "@/components/site/page-hero";
 import { SectionHeading } from "@/components/site/section-heading";
 import { Faq } from "@/components/site/faq";
-import { WecomCtaCard } from "@/components/site/wecom-cta-card";
+import { QuietCta } from "@/components/site/quiet-cta";
 import { WecomCtaButton } from "@/components/site/wecom-dialog";
 import { WecomNote } from "@/components/site/wecom-note";
 import { Button } from "@/components/ui/button";
@@ -163,7 +163,7 @@ export default function AccessPage() {
         </div>
       </section>
 
-      <WecomCtaCard from="access" subject="资料权限" />
+      <QuietCta from="quiet-access" subject="资料权限" />
     </>
   );
 }

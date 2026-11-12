@@ -7,7 +7,7 @@ import { ArrowRight, ExternalLink, LineChart, FileText, Table2 } from "lucide-re
 
 import { PageHero } from "@/components/site/page-hero";
 import { SectionHeading } from "@/components/site/section-heading";
-import { WecomCtaCard } from "@/components/site/wecom-cta-card";
+import { QuietCta } from "@/components/site/quiet-cta";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -167,7 +167,7 @@ export default async function ReportsPage() {
         </div>
       </section>
 
-      <WecomCtaCard from="reports" subject="行业报告" />
+      <QuietCta from="quiet-reports" subject="行业报告" />
     </>
   );
 }
