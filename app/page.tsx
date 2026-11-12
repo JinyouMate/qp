@@ -111,7 +111,7 @@ export default async function HomePage() {
                   className="h-14 w-full whitespace-normal text-center text-base font-bold leading-snug shadow-warm-lg sm:w-auto sm:text-lg md:h-16 md:px-10 md:text-xl"
                 />
                 <p className="mt-3 text-xs text-muted-foreground">
-                  点一下弹出主理人企微名片 · 不用填表，不用跳转，扫码即发
+                  点击扫码，直接获取内测资料
                 </p>
               </div>
 

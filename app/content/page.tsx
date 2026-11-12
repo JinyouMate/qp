@@ -119,7 +119,8 @@ export default function ContentPage() {
             </div>
           ))}
         </div>
-        <p className="mt-4 text-xs text-muted-foreground">
+        {/* 合规脚注：保持极弱视觉权重，不抢上方三个核心数据卡片的焦点 */}
+        <p className="mt-4 text-xs font-normal leading-relaxed text-gray-400">
           数据来自已交付的选品诊断项目；客户名称与可识别信息均已脱敏。
         </p>
       </PageHero>
