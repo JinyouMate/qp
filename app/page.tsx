@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { SectionHeading } from "@/components/site/section-heading";
 import { HeroDataBoard } from "@/components/site/hero-data-board";
 import { WecomCtaButton } from "@/components/site/wecom-dialog";
-import { WecomCtaCard } from "@/components/site/wecom-cta-card";
+import { QuietCta } from "@/components/site/quiet-cta";
 import { getCases } from "@/lib/data";
 
 /* 首页只做两件事：用数据证明，用加微收口。 */
@@ -305,14 +305,8 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ========== 底部唯一大 CTA：全站统一组件，无表单，只弹企微名片 ========== */}
-      <WecomCtaCard
-        badge="免费 · 内测版"
-        desc="312 万条真实 SKU、40%-50% 黄金毛利带，已经整理成一份能直接照着做的清单。"
-        from="home-bottom-cta"
-        subject="首页底部行动区"
-        showQr={false}
-      />
+      {/* 底部只留一行轻引导：右上角按钮与右侧悬浮已承担联系入口，不再重复大卡片 */}
+      <QuietCta from="quiet-home" subject="首页底部" />
     </>
   );
 }
