@@ -164,11 +164,7 @@ export default async function PartnersPage() {
             ))}
           </div>
           <div className="mt-8 text-center text-xs text-muted-foreground">
-            合作方平台入口在
-            <Link href="/wechat#platforms" className="mx-1 text-primary underline underline-offset-2">
-              微信联系页
-            </Link>
-            ，开通前请添加主理人企微。
+            合作开通前，请先添加主理人企微，由项目负责人一对一对接。
           </div>
         </div>
       </section>

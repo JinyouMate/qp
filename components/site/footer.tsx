@@ -29,7 +29,6 @@ const COLS: { title: string; links: { href: string; label: string }[] }[] = [
       { href: "/access", label: "查询我的资料权限" },
       { href: "/privacy", label: "隐私政策" },
       { href: "/terms", label: "服务条款" },
-      { href: "/wechat#platforms", label: "第三方平台入口" },
     ],
   },
 ];
