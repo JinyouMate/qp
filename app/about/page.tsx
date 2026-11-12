@@ -8,6 +8,7 @@ import { ArrowRight, Ban, Compass } from "lucide-react";
 import { PageHero } from "@/components/site/page-hero";
 import { SectionHeading } from "@/components/site/section-heading";
 import { WecomCtaCard } from "@/components/site/wecom-cta-card";
+import { DataTerminal } from "@/components/site/data-terminal";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 
@@ -63,6 +64,7 @@ export default function AboutPage() {
         tag="ABOUT"
         title="我们是汽配行业知识资产运营商"
         desc="把散落在老师傅脑子里、Excel 表里、聊天记录里的隐性知识，整理成查得到、学得会、可交易的知识资产。"
+        aside={<DataTerminal />}
       >
         <p className="text-base font-semibold text-brand-green">
           从数据到决策，从知识到工具。
@@ -117,7 +119,7 @@ export default function AboutPage() {
             {PRINCIPLES.map((p, i) => (
               <Card key={p.title} className="card-hover h-full">
                 <CardContent className="flex h-full flex-col gap-2 p-5">
-                  <span className="flex h-8 w-8 items-center justify-center rounded-full bg-brand-green text-sm font-bold text-white">
+                  <span className="flex h-9 w-9 items-center justify-center rounded-full bg-brand-orange text-sm font-bold text-white shadow-sun ring-4 ring-brand-orange/15">
                     {i + 1}
                   </span>
                   <h3 className="text-base font-bold">{p.title}</h3>
@@ -145,6 +147,11 @@ export default function AboutPage() {
                 <div className="pt-1">
                   <p className="text-sm font-bold text-brand-green">{m.time}</p>
                   <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{m.text}</p>
+                  {m.time === "现在" && (
+                    <p className="mt-2 text-sm font-bold text-brand-orange-ink">
+                      目前已沉淀 312万+ SKU 库与 12,000+ 行业词条
+                    </p>
+                  )}
                 </div>
               </div>
             ))}

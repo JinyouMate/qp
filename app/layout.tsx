@@ -60,8 +60,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Analytics />
         <UtmCapture />
         <Nav />
-        {/* 移动端底部固定加微条占位 */}
-        <main className="pb-16 lg:pb-0">{children}</main>
+        {/* 移动端底部固定加微条占位：主内容与页脚之间先留 96px */}
+        <main className="pb-24 lg:pb-0">{children}</main>
         <Footer />
         <FloatingCta />
       </body>

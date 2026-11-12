@@ -37,8 +37,10 @@ const COLS: { title: string; links: { href: string; label: string }[] }[] = [
 ];
 
 export function Footer() {
+  /* 页脚是页面最后一个元素：移动端额外留 120px 安全区（>=100px），
+     保证滚动到底时加微按钮、二维码说明与页脚文字都不会被底部固定悬浮条遮挡。 */
   return (
-    <footer className="border-t border-brand-green/10 bg-brand-cream text-muted-foreground">
+    <footer className="border-t border-brand-green/10 bg-brand-cream pb-[120px] text-muted-foreground lg:pb-0">
       <div className="container-site py-12">
         <div className="grid gap-10 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
           <div>
