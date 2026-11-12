@@ -20,7 +20,7 @@ export function WecomCtaCard({
   desc = WECOM_LEAD_TEXT,
   badge = "一对一 · 企微直连",
   buttonLabel = "立即扫码添加主理人",
-  footnote = "点击按钮可放大二维码 · 无需填表，资料与诊断由主理人一对一交付",
+  footnote = "点击扫码，立即获取完整资料（备注官网优先通过）",
   from = "wecom-cta-card",
   subject,
   showQr = true,

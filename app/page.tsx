@@ -309,7 +309,6 @@ export default async function HomePage() {
       <WecomCtaCard
         badge="免费 · 内测版"
         desc="312 万条真实 SKU、40%-50% 黄金毛利带，已经整理成一份能直接照着做的清单。"
-        footnote="点击弹出主理人企微二维码 · 无需填表，扫码即发 Top 50 高毛利选品清单（内测版）"
         from="home-bottom-cta"
         subject="首页底部行动区"
         showQr={false}
