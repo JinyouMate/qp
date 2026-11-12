@@ -13,6 +13,7 @@ const LINKS = [
   { href: "/", label: "首页" },
   { href: "/products", label: "服务目录" },
   { href: "/content", label: "数据洞察" },
+  { href: "/about", label: "关于我们" },
 ];
 
 export function Nav() {
