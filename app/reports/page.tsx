@@ -7,7 +7,6 @@ import { ArrowRight, ExternalLink, LineChart, FileText, Table2 } from "lucide-re
 
 import { PageHero } from "@/components/site/page-hero";
 import { SectionHeading } from "@/components/site/section-heading";
-import { QuietCta } from "@/components/site/quiet-cta";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -166,8 +165,6 @@ export default async function ReportsPage() {
           </p>
         </div>
       </section>
-
-      <QuietCta from="quiet-reports" subject="行业报告" />
     </>
   );
 }

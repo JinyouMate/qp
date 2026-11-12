@@ -7,7 +7,6 @@ import { ArrowRight, ExternalLink } from "lucide-react";
 
 import { PageHero } from "@/components/site/page-hero";
 import { SectionHeading } from "@/components/site/section-heading";
-import { QuietCta } from "@/components/site/quiet-cta";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -174,8 +173,6 @@ export default async function KnowledgePage() {
           </p>
         </div>
       </section>
-
-      <QuietCta from="quiet-knowledge" subject="知识库" />
     </>
   );
 }

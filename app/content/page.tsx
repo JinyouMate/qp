@@ -4,14 +4,13 @@ import { buildMetadata, KEYWORDS } from "@/lib/seo";
 import { JsonLd, breadcrumbSchema } from "@/components/site/json-ld";
 import { PageHero } from "@/components/site/page-hero";
 import { SectionHeading } from "@/components/site/section-heading";
-import { QuietCta } from "@/components/site/quiet-cta";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 
 /* ============================================================
    客户成果与数据洞察（原内容归档页，2026-11-08 重构）
    定位：对外信任页。只写已经交付的结果，不写待办与设想。
-   底部只留一行轻引导（QuietCta），不放营销大卡片。
+   不设表单、不设转化卡片，联系入口只在导航与悬浮条。
    ============================================================ */
 
 export const metadata: Metadata = buildMetadata({
@@ -183,9 +182,6 @@ export default function ContentPage() {
           </div>
         </div>
       </section>
-
-      {/* 阅读型页面：一行轻引导，不放营销大卡片 */}
-      <QuietCta from="quiet-content" subject="数据洞察" />
     </>
   );
 }

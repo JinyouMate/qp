@@ -6,7 +6,6 @@ import { ArrowLeft, ArrowRight, CalendarDays, Clock } from "lucide-react";
 
 import { buildMetadata } from "@/lib/seo";
 import { getAllInsights, getInsight, estimateReadingTime } from "@/lib/insights";
-import { QuietCta } from "@/components/site/quiet-cta";
 import { JsonLd, articleSchema, breadcrumbSchema } from "@/components/site/json-ld";
 import { Badge } from "@/components/ui/badge";
 import { mdxComponents } from "@/components/site/mdx";
@@ -67,7 +66,7 @@ export default function InsightDetailPage({ params }: { params: { slug: string }
       <article>
         {/* 文章头 */}
         <header className="border-b bg-brand-cream">
-          <div className="container-site max-w-3xl py-10 md:py-14">
+          <div className="container-site max-w-3xl pb-16 pt-10 md:pb-24 md:pt-14">
             <Link
               href="/insights"
               className="mb-5 inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-primary"
@@ -100,7 +99,7 @@ export default function InsightDetailPage({ params }: { params: { slug: string }
         </header>
 
         {/* 正文：MDX */}
-        <div className="container-site max-w-3xl py-10 md:py-14">
+        <div className="container-site max-w-3xl pb-16 pt-10 md:pb-24 md:pt-14">
           <div className="mdx-body">
             <MDXRemote source={body} components={mdxComponents} />
           </div>
@@ -121,8 +120,6 @@ export default function InsightDetailPage({ params }: { params: { slug: string }
           ) : null}
         </div>
       </article>
-
-      <QuietCta from="quiet-insights" subject="洞察文章" />
     </>
   );
 }

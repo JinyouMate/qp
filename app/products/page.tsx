@@ -5,7 +5,6 @@ import { buildMetadata, KEYWORDS } from "@/lib/seo";
 
 import { PageHero } from "@/components/site/page-hero";
 import { TierAccordion } from "@/components/site/tier-accordion";
-import { QuietCta } from "@/components/site/quiet-cta";
 import { JsonLd, productSchema, breadcrumbSchema } from "@/components/site/json-ld";
 import { getProducts } from "@/lib/data";
 import { getPersona } from "@/lib/persona";
@@ -96,8 +95,6 @@ export default async function ProductsPage({
           </div>
         </div>
       </section>
-
-      <QuietCta from="quiet-products" subject="服务目录" />
     </>
   );
 }

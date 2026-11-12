@@ -7,7 +7,6 @@ import { ArrowRight, Ban, Compass } from "lucide-react";
 
 import { PageHero } from "@/components/site/page-hero";
 import { SectionHeading } from "@/components/site/section-heading";
-import { QuietCta } from "@/components/site/quiet-cta";
 import { DataTerminal } from "@/components/site/data-terminal";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -159,15 +158,13 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="pb-4 text-center">
+      <section className="pb-16 text-center">
         <Button asChild variant="outline">
           <Link href="/content">
             先看案例证据 <ArrowRight />
           </Link>
         </Button>
       </section>
-
-      <QuietCta from="quiet-about" subject="关于我们" />
     </>
   );
 }

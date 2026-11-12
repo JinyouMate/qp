@@ -13,7 +13,6 @@ import { ProductIcon } from "@/components/site/icon";
 import { ProductCta } from "@/components/site/product-cta";
 import { ProductCard } from "@/components/site/product-card";
 import { WecomNote } from "@/components/site/wecom-note";
-import { QuietCta } from "@/components/site/quiet-cta";
 import { Faq } from "@/components/site/faq";
 import { JsonLd, productSchema, breadcrumbSchema } from "@/components/site/json-ld";
 import { buildMetadata } from "@/lib/seo";
@@ -324,7 +323,7 @@ export default function ProductDetailPage({ params }: { params: { slug: string }
         </section>
       )}
 
-      <div className="container-site pb-2">
+      <div className="container-site pb-14">
         <Link
           href="/products"
           className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-primary"
@@ -337,8 +336,6 @@ export default function ProductDetailPage({ params }: { params: { slug: string }
         </Link>
       </div>
 
-      {/* 收尾只留一行轻引导：导航与悬浮条已承担主要联系入口 */}
-      <QuietCta from="quiet-product-detail" subject="产品详情" />
     </>
   );
 }

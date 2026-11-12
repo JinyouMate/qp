@@ -7,7 +7,6 @@ import { ArrowRight, Wrench, Bot, ShieldCheck, FileSignature } from "lucide-reac
 
 import { PageHero } from "@/components/site/page-hero";
 import { SectionHeading } from "@/components/site/section-heading";
-import { QuietCta } from "@/components/site/quiet-cta";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -168,8 +167,6 @@ export default async function PartnersPage() {
           </div>
         </div>
       </section>
-
-      <QuietCta from="quiet-partners" subject="商务合作" />
     </>
   );
 }

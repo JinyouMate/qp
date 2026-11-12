@@ -7,7 +7,6 @@ import { ArrowRight, Search, Route, Repeat, Presentation } from "lucide-react";
 
 import { PageHero } from "@/components/site/page-hero";
 import { SectionHeading } from "@/components/site/section-heading";
-import { QuietCta } from "@/components/site/quiet-cta";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -146,8 +145,6 @@ export default async function ConsultingPage() {
           </div>
         </div>
       </section>
-
-      <QuietCta from="quiet-consulting" subject="咨询服务" />
     </>
   );
 }

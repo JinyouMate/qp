@@ -6,7 +6,6 @@ import { buildMetadata, KEYWORDS } from "@/lib/seo";
 import { getAllInsights, estimateReadingTime } from "@/lib/insights";
 import { PageHero } from "@/components/site/page-hero";
 import { SectionHeading } from "@/components/site/section-heading";
-import { QuietCta } from "@/components/site/quiet-cta";
 import { JsonLd, breadcrumbSchema } from "@/components/site/json-ld";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
@@ -100,8 +99,6 @@ export default function InsightsPage() {
           ) : null}
         </div>
       </section>
-
-      <QuietCta from="quiet-insights" subject="数据洞察" />
     </>
   );
 }
