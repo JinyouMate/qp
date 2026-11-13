@@ -5,8 +5,8 @@
 export const BRAND = {
   /** 站点名称 */
   name: "汽配知识局",
-  /** 英文副标 */
-  english: "AUTO PARTS KNOWLEDGE",
+  /** 英文副标 + 商标 */
+  english: "JINYOU DATA · 金游™",
   /** 运营主体（工商登记全称，用于版权与发票主体） */
   legalEntity: "深圳市元卦科技有限公司",
   /** 腾讯企业邮箱 · 官方对外服务邮箱（全站唯一来源，勿在页面里硬编码） */
