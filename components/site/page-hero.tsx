@@ -40,7 +40,7 @@ export function PageHero({
           {children && <div className="mt-6">{children}</div>}
         </div>
 
-        {aside && <div className="hidden md:block">{aside}</div>}
+        {aside && <div className="mt-10 md:mt-0">{aside}</div>}
       </div>
     </section>
   );
