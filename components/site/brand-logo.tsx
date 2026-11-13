@@ -42,8 +42,8 @@ export function BrandLogo({
           汽配知识局
         </span>
         {showSubtitle && (
-          <span className="mt-0.5 block text-[10px] tracking-[0.2em] text-muted-foreground">
-            AUTO PARTS KNOWLEDGE
+          <span className="mt-0.5 block whitespace-nowrap text-[10px] tracking-[0.08em] text-muted-foreground">
+            JINYOU DATA · 金游™
           </span>
         )}
       </span>
