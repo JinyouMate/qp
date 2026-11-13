@@ -81,7 +81,7 @@ export function Footer() {
             <span className="whitespace-nowrap">{BRAND.legalEntity} 保留所有权利</span>
           </p>
           <p className="mt-2 break-words text-xs leading-relaxed text-gray-400">
-            本站为知识资产与数据展示平台。
+            本站为知识资产与数据展示平台
           </p>
         </div>
       </div>

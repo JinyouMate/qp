@@ -64,7 +64,6 @@ export default async function HomePage() {
                   化繁为金
                   <span className="absolute -bottom-1 left-0 h-2 w-full rounded-full bg-brand-orange/30" />
                 </span>
-                <span className="-ml-[0.34em]">。</span>
               </h1>
               <p className="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
                 基于 312 万条真实汽配交易大盘与 900+ 源头供应商，为你拆解 40%-50% 黄金毛利区间，
