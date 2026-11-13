@@ -89,6 +89,9 @@ export default function AboutPage() {
                 官网只负责展示与联系。成交和交付全部放在第三方平台，
                 我们不碰钱，也不在你的交易里抽成。
               </p>
+              <p className="mt-3 border-t border-brand-green/20 pt-3 text-xs leading-relaxed text-foreground/65">
+                本平台所有数据与内容交付，均冠以「金游™」品牌标识，受相关知识产权保护。
+              </p>
             </CardContent>
           </Card>
 

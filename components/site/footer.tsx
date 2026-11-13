@@ -75,7 +75,7 @@ export function Footer() {
         </div>
         <div className="mt-10 space-y-2 border-t border-border pt-6">
           <p className="text-center text-sm text-muted-foreground">
-            © 2026 {BRAND.name} · {BRAND.legalEntity} · 保留所有权利
+            © 2026 {BRAND.name} · 金游™ 出品。{BRAND.legalEntity} 保留所有权利。
           </p>
           <p className="text-center text-xs leading-relaxed text-gray-500">
             {"本站为知识资产与数据展示站点。不销售汽配实体商品，不代运营店铺，不代收货款。所有知识产品与数据服务，均由主理人在企业微信完成一对一交付。"}
