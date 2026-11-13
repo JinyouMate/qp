@@ -56,18 +56,19 @@ export default async function HomePage() {
           <div className="grid items-center gap-10 md:grid-cols-[1.15fr_1fr]">
             <div>
               <Badge variant="accent" className="mb-4">
-                汽配行业 · 知识资产运营商
+                JINYOU DATA · 汽配行业数据智库
               </Badge>
               <h1 className="text-3xl font-bold leading-[1.25] md:text-5xl">
-                把隐性知识
-                <span className="relative mx-1 inline-block text-brand-red">
-                  变成可交易资产
+                用数据洞察，
+                <span className="relative ml-[0.12em] inline-block text-brand-orange">
+                  化繁为金
                   <span className="absolute -bottom-1 left-0 h-2 w-full rounded-full bg-brand-orange/30" />
                 </span>
+                <span className="-ml-[0.34em]">。</span>
               </h1>
               <p className="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
-                基于 312 万条真实汽配交易数据与 900+ 家源头供应商，
-                我们为你拆解出锁定 40%-50% 黄金毛利区间的选品逻辑与合规 SOP。
+                基于 312 万条真实汽配交易大盘与 900+ 源头供应商，为你拆解 40%-50% 黄金毛利区间，
+                只给能落地的选品依据与合规 SOP。
               </p>
 
               {/* 首屏唯一按钮：点击直接弹主理人企微名片，不跳页、不填表 */}
