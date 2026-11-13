@@ -129,8 +129,20 @@
 .mdx-body pre code {
   @apply bg-transparent p-0;
 }
+/* 表格：外层 .table-scroll 负责横向滚动，窄屏不再挤压/截断单元格 */
 .mdx-body table {
-  @apply my-6 w-full border-collapse overflow-hidden rounded-xl text-sm;
+  @apply my-6 w-full border-collapse text-sm;
+}
+.mdx-body .table-scroll {
+  @apply my-6 overflow-x-auto;
+}
+.mdx-body .table-scroll > table {
+  @apply my-0;
+}
+@media (max-width: 640px) {
+  .mdx-body .table-scroll > table {
+    min-width: 520px;
+  }
 }
 .mdx-body thead {
   @apply bg-brand-green-soft;

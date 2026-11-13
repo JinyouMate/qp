@@ -95,10 +95,10 @@ export function HeroDataBoard() {
         {/* 阳光橙高亮标识：左侧竖条 */}
         <span aria-hidden className="absolute inset-y-3 left-0 w-[3px] rounded-r-full bg-brand-orange" />
         <div className="flex items-center justify-between gap-1">
-          <span className={`text-[9px] font-semibold tracking-[0.16em] sm:text-[10px] ${LABEL}`}>
+          <span className={`whitespace-nowrap text-[9px] font-semibold tracking-[0.1em] sm:text-[10px] sm:tracking-[0.16em] ${LABEL}`}>
             MARGIN BAND
           </span>
-          <span className="flex shrink-0 items-center gap-1 rounded-full bg-brand-orange/10 px-1.5 py-0.5 text-[9px] font-bold text-brand-orange-ink sm:text-[10px]">
+          <span className="flex shrink-0 items-center gap-1 whitespace-nowrap rounded-full bg-brand-orange/10 px-1.5 py-0.5 text-[9px] font-bold text-brand-orange-ink sm:text-[10px]">
             <span className="h-1.5 w-1.5 rounded-full bg-brand-orange" />
             黄金带
           </span>

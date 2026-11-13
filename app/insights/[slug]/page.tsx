@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
+import remarkGfm from "remark-gfm";
 import { ArrowLeft, ArrowRight, CalendarDays, Clock } from "lucide-react";
 
 import { buildMetadata } from "@/lib/seo";
@@ -101,7 +102,12 @@ export default function InsightDetailPage({ params }: { params: { slug: string }
         {/* 正文：MDX */}
         <div className="container-site max-w-3xl pb-16 pt-10 md:pb-24 md:pt-14">
           <div className="mdx-body">
-            <MDXRemote source={body} components={mdxComponents} />
+            <MDXRemote
+              source={body}
+              components={mdxComponents}
+              /* GFM 扩展：MDX 默认不认 Markdown 管道表格，缺了 remark-gfm 会把 | 表格原样当正文输出 */
+              options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }}
+            />
           </div>
 
           {next ? (

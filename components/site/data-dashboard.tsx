@@ -41,10 +41,10 @@ const supplierPath = SUPPLIER_SERIES.map(
 /* ---------- 图 2：黄金毛利带分布（千条） ---------- */
 const MARGIN_BANDS = [
   { label: "<20%", value: 62 },
-  { label: "20–30%", value: 148 },
-  { label: "30–40%", value: 372 },
-  { label: "40–50%", value: 486, highlight: true },
-  { label: "50–60%", value: 348 },
+  { label: "20%-30%", value: 148 },
+  { label: "30%-40%", value: 372 },
+  { label: "40%-50%", value: 486, highlight: true },
+  { label: "50%-60%", value: 348 },
   { label: ">60%", value: 202 },
 ];
 const MARGIN_MAX = 486;
@@ -183,7 +183,7 @@ export function DataDashboard() {
       <ChartCard
         title="核心黄金毛利带分布"
         hint="商品数 · 千条"
-        footnote="40%–50% 区间占比 30%，是主推选品的锚点。"
+        footnote="40%-50% 区间占比 30%，是主推选品的锚点。"
       >
         <div className="flex h-[176px] items-end gap-2">
           {MARGIN_BANDS.map((b) => {

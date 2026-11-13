@@ -14,9 +14,9 @@ type LogLine = {
 
 const LOG_LINES: LogLine[] = [
   { label: "INIT DATA PIPELINE", status: "SUCCESS" },
-  { label: "SKUs", value: "3,120,450", status: "LOADED" },
+  { label: "SKUs", value: "3,124,045", status: "LOADED" },
   { label: "SUPPLIERS", value: "931", status: "VERIFIED" },
-  { label: "MARGIN BAND", value: "40.0% - 50.0%" },
+  { label: "MARGIN BAND", value: "40%-50%" },
 ];
 
 export function DataTerminal() {

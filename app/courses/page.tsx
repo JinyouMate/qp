@@ -14,7 +14,8 @@ import { JsonLd, courseSchema, breadcrumbSchema } from "@/components/site/json-l
 import { getProducts } from "@/lib/data";
 
 export const metadata: Metadata = buildMetadata({
-  title: "培训课程",
+  /* 与 /products/courses（产品详情）区分开，避免两页 title 重复 */
+  title: "体系课：把散的干货排成顺序",
   description: "录播 + 社群答疑 + 作业批改的体系课。从选品、适配数据到跨境平台运营，讲方法也讲真实数据。联系主理人即可获取，官网不处理支付。",
   path: "/courses",
   keywords: [KEYWORDS.knowledge, KEYWORDS.sop, KEYWORDS.data, KEYWORDS.compliance],

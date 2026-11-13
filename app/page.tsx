@@ -14,8 +14,8 @@ import { getCases } from "@/lib/data";
 
 /* ---------- 数字统计信任区（底层数据资产口径，只用自有数据） ---------- */
 const TRUST_STATS = [
-  { value: "3,124,045+", label: "底层 SKU 库" },
-  { value: "931+", label: "源头供应商直连" },
+  { value: "3,124,045", label: "底层 SKU 库" },
+  { value: "931", label: "源头供应商直连" },
   { value: "2,219+", label: "主流品牌覆盖" },
   { value: "28.03%", label: "平均毛利空间" },
 ];

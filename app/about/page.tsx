@@ -151,7 +151,7 @@ export default function AboutPage() {
                   <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{m.text}</p>
                   {m.time === "现在" && (
                     <p className="mt-2 text-sm font-bold text-brand-orange-ink">
-                      目前已沉淀 312万+ SKU 库与 12,000+ 行业词条
+                      目前已沉淀 312 万+ SKU 库与 12,000+ 行业词条
                     </p>
                   )}
                 </div>

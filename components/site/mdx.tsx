@@ -20,6 +20,17 @@ const A = ({ href = "", children, ...rest }: ComponentPropsWithoutRef<"a">) => {
   );
 };
 
+/**
+ * 表格：外层包一个可横向滚动的容器。
+ * MDX 里的 GFM 表格在 375px 下会被压到看不清，包一层后窄屏可左右滑，页面本身不溢出。
+ */
+const Table = ({ children, ...rest }: ComponentPropsWithoutRef<"table">) => (
+  <div className="table-scroll">
+    <table {...rest}>{children}</table>
+  </div>
+);
+
 export const mdxComponents = {
   a: A,
+  table: Table,
 };
