@@ -73,12 +73,15 @@ export function Footer() {
             </div>
           ))}
         </div>
-        <div className="mt-10 space-y-2 border-t border-border pt-6">
-          <p className="text-center text-sm text-muted-foreground">
-            © 2026 {BRAND.name} · 金游™ 出品。{BRAND.legalEntity} 保留所有权利。
+        <div className="mt-10 border-t border-border pt-6 text-center">
+          <p className="break-words text-xs leading-relaxed text-gray-400">
+            © 2026 {BRAND.name} · 金游™ 出品 |{" "}
+            {/* 公司名与权利声明绑定为一个不可断行的整体，窄屏时整体换到下一行，
+                避免出现「保 / 留所有权利」这种把词拆开的断行。 */}
+            <span className="whitespace-nowrap">{BRAND.legalEntity} 保留所有权利</span>
           </p>
-          <p className="text-center text-xs leading-relaxed text-gray-500">
-            {"本站为知识资产与数据展示站点。不销售汽配实体商品，不代运营店铺，不代收货款。所有知识产品与数据服务，均由主理人在企业微信完成一对一交付。"}
+          <p className="mt-2 break-words text-xs leading-relaxed text-gray-400">
+            本站为知识资产与数据展示平台。
           </p>
         </div>
       </div>
