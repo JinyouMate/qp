@@ -6,6 +6,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { SectionHeading } from "@/components/site/section-heading";
 import { HeroDataBoard } from "@/components/site/hero-data-board";
+import { DataDashboard } from "@/components/site/data-dashboard";
 import { WecomCtaButton } from "@/components/site/wecom-dialog";
 import { getCases } from "@/lib/data";
 
@@ -17,36 +18,6 @@ const TRUST_STATS = [
   { value: "931+", label: "源头供应商直连" },
   { value: "2,219+", label: "主流品牌覆盖" },
   { value: "28.03%", label: "平均毛利空间" },
-];
-
-/* ---------- 底层数据资产看板：4 个硬核指标 + 3 张图 ---------- */
-const DATA_METRICS = [
-  { value: "3,124,045+", label: "SKU 底层明细总数" },
-  { value: "1,618,701+", label: "去重商品数" },
-  { value: "2,219+", label: "覆盖主流汽配品牌" },
-  { value: "28.03%", label: "大盘平均毛利率" },
-];
-
-/* 图片位：直接覆盖 public/data/ 下的同名文件即可换成真实截图，代码不用改 */
-const DATA_CHARTS = [
-  {
-    src: "/data/chart-monthly-sku.png",
-    title: "月度 SKU 与供应商趋势",
-    caption: "实时监控上千家源头供应商的上架与淘汰动态。",
-    alt: "月度 SKU 与供应商趋势图：11 个月大盘 SKU 规模与供应商数量走势",
-  },
-  {
-    src: "/data/chart-top-brands.png",
-    title: "Top 15 主流品牌覆盖",
-    caption: "深度解析丰田、宝马、MEKEDE 等核心品牌的适配逻辑。",
-    alt: "Top 15 主流品牌覆盖图：SKU 覆盖量排名前 15 的品牌",
-  },
-  {
-    src: "/data/chart-margin-distribution.png",
-    title: "黄金毛利区间分布",
-    caption: "精准锁定 40%-50% 利润带，帮你避开高退货率雷区。",
-    alt: "黄金毛利区间分布图：各毛利率区间的商品数量分布",
-  },
 ];
 
 /* ---------- 方法论：汽配数据三层校验法 ---------- */
@@ -153,63 +124,18 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ========== 底层数据资产看板：纯数据证明，不再放并列 CTA ========== */}
+      {/* ========== 真实交易大盘洞察：三张纯代码图表，不再重复大数字 ========== */}
       <section className="section-pad border-y border-brand-green/10 bg-brand-green-soft/35">
         <div className="container-site">
-          <SectionHeading
-            tag="数据中台 · 11 个月真实大盘"
-            title="底层数据资产看板"
-            desc="我们不打价格战，我们用数据帮你找蓝海。"
-          />
+          <SectionHeading tag="数据中台 · 11 个月真实大盘" title="真实交易大盘洞察" />
 
-          <div className="grid grid-cols-2 gap-3 md:gap-4 lg:grid-cols-4">
-            {DATA_METRICS.map((m) => (
-              <Card
-                key={m.label}
-                className="card-hover card-hover-green h-full border-brand-green/10 bg-white/90 shadow-[0_1px_2px_rgba(16,45,32,0.04)]"
-              >
-                <CardContent className="flex h-full flex-col items-center justify-center gap-2 px-3 py-7 text-center">
-                  <div className="whitespace-nowrap font-bold leading-none tracking-tight text-brand-green text-[clamp(22px,5.6vw,34px)]">
-                    {m.value}
-                  </div>
-                  <div className="text-[11px] leading-snug text-muted-foreground md:text-xs">
-                    {m.label}
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+          <DataDashboard />
 
-          {/*
-            数据洞察图表：手机纵向依次排列，≥lg 三张并列。
-            图片位：public/data/chart-*.png，覆盖同名文件即可替换。
-          */}
-          <div className="mt-10 grid gap-5 lg:grid-cols-3">
-            {DATA_CHARTS.map((c) => (
-              <Card
-                key={c.src}
-                className="card-hover flex h-full flex-col overflow-hidden rounded-2xl border-border bg-white shadow-warm"
-              >
-                <div className="relative aspect-[16/10] w-full overflow-hidden border-b border-border bg-white">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={c.src}
-                    alt={c.alt}
-                    width={960}
-                    height={600}
-                    loading="lazy"
-                    className="h-full w-full object-contain"
-                  />
-                </div>
-                <CardContent className="flex flex-1 flex-col gap-2 p-5">
-                  <h3 className="text-[15px] font-bold text-brand-green">{c.title}</h3>
-                  <p className="text-sm leading-relaxed text-muted-foreground">{c.caption}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+          <p className="mt-8 text-center text-[15px] font-semibold text-brand-green md:text-base">
+            不凭直觉选品，用真实数据帮你找蓝海。
+          </p>
 
-          <p className="mt-6 flex items-center justify-center gap-2 text-center text-xs text-muted-foreground">
+          <p className="mt-4 flex items-center justify-center gap-2 text-center text-xs text-muted-foreground">
             <ShieldCheck className="h-4 w-4 shrink-0 text-brand-green" />
             数据口径：11 个月连续观测 · 161.8 万+ 去重商品 · 312 万条底层 SKU · 每条结论均可回溯原始记录
           </p>
