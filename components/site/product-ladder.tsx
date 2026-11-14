@@ -21,8 +21,8 @@ const TIER_STYLE: Record<Tier, { bar: string; soft: string; text: string }> = {
 const LAYER_RANGE: Record<Layer, string> = {
   traffic: "¥0 · 免费",
   trust: "¥0 – 低门槛",
-  conversion: "¥199 – ¥4,999",
-  delivery: "¥20,000 起",
+  conversion: "¥99 – ¥1,999",
+  delivery: "¥30,000 起",
 };
 
 type GroupBy = "tier" | "layer";

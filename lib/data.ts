@@ -1,4 +1,5 @@
-import type { Product, ContentItem, CaseStudy, Partner } from "./types";
+import type { Product, ContentItem, CaseStudy, Partner, Tier } from "./types";
+import { TIER_ORDER } from "./types";
 import { fetchTable } from "./supabase";
 
 /* ============================================================
@@ -261,10 +262,45 @@ function sanitizeRow<T extends Record<string, unknown>>(row: T): T {
 /** 已下线的产品 slug：即使数据库里还有旧记录，也不允许再出现在站点上 */
 const RETIRED_PRODUCT_SLUGS = new Set(["courses", "annual-pass", "corporate-training"]);
 
+/** slug → 规范档位（以代码里的产品目录为准） */
+const CANONICAL_BY_SLUG = new Map(FALLBACK_PRODUCTS.map((p) => [p.slug, p]));
+
+/** 数据库里 tier 还是旧枚举（如 course）的产品，回落到规范档位，避免整档消失 */
+const VALID_TIERS = new Set<string>(TIER_ORDER);
+
+/**
+ * 已改版产品的核心口径以代码为准（2026-11-14）。
+ * 数据库 products 表里仍留着改版前的名字与价格（如「订阅数据产品 ¥699」），
+ * 只改代码不改库时，第三档的名字/价格会回潮，甚至在 tier 枚举变了之后整档消失。
+ * 这里对改版产品做一次读取层覆盖：DB 只保留它独有的字段，口径字段用代码版本。
+ */
+const REBRANDED_SLUGS = new Set(["data-subscription"]);
+
+const OVERRIDE_KEYS = [
+  "name", "icon", "layer", "category", "tier",
+  "positioning", "problem", "audience", "deliverable", "price", "cta_type",
+] as const;
+
+function normalizeProduct(row: Product): Product {
+  const canonical = CANONICAL_BY_SLUG.get(row.slug);
+  const dbTierValid = VALID_TIERS.has(String(row.tier));
+  const tier: Tier = dbTierValid
+    ? (row.tier as Tier)
+    : canonical?.tier ?? "toolkit";
+
+  if (REBRANDED_SLUGS.has(row.slug) && canonical) {
+    const merged: Record<string, unknown> = { ...row };
+    for (const k of OVERRIDE_KEYS) merged[k] = canonical[k];
+    return merged as unknown as Product;
+  }
+  return { ...row, tier };
+}
+
 export async function getProducts(): Promise<Product[]> {
   const rows = (await fetchTable<Product>("products")) ?? FALLBACK_PRODUCTS;
   return rows
     .filter((r) => !RETIRED_PRODUCT_SLUGS.has((r as Product).slug))
+    .map((r) => normalizeProduct(r as Product))
     .map((r) => sanitizeRow(r as unknown as Record<string, unknown>) as unknown as Product);
 }
 export async function getContents(): Promise<ContentItem[]> {

@@ -69,7 +69,6 @@ export function TierAccordion({
     >
       {TIER_ORDER.map((tier, i) => {
         const all = products.filter((p) => p.tier === tier);
-        if (all.length === 0) return null;
 
         const items = hasRole ? [...all].sort((a, b) => rank(a) - rank(b)) : all;
         const featured = tier === "toolkit";
@@ -140,6 +139,20 @@ export function TierAccordion({
                 </p>
               )}
               <div className="grid gap-5 md:grid-cols-2">
+                {items.length === 0 && (
+                  <div className="rounded-xl border border-dashed bg-secondary/40 p-5 text-sm md:col-span-2">
+                    <p className="font-semibold">这一档正在整理上线</p>
+                    <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
+                      {TIERS[tier].note}
+                    </p>
+                    <Link
+                      href="/contact"
+                      className="mt-3 inline-block text-xs font-semibold text-brand-green underline-offset-4 hover:underline"
+                    >
+                      直接问主理人 →
+                    </Link>
+                  </div>
+                )}
                 {items.map((p) => {
                   const rec = hasRole && recommended.includes(p.slug);
                   return (
