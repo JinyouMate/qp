@@ -82,7 +82,7 @@ export default function AboutPage() {
                 做四件事：把一线经验整理成<strong>知识库与 SOP</strong>；把真实交易数据处理成
                 <strong>报告与数据产品</strong>；把 312 万条底层数据做成
                 <strong>可查询的数据中台</strong>；对具体问题给
-                <strong>咨询与内训</strong>，对行业伙伴开放
+                <strong>定制咨询</strong>，对行业伙伴开放
                 <strong>SaaS 与 AI 数据合作</strong>。
               </p>
               <p className="mt-3 text-sm leading-relaxed text-foreground/85">

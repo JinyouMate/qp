@@ -38,8 +38,8 @@ function fallbackReply(lastUserMessage: string): string {
   if (/合作|AI|标注|语料|评测|SaaS/.test(t)) {
     return "AI 数据合作（语料授权、标注规则、评测标准共建）和 SaaS 合作在 /partners，签 DPA 后启动。可以先在 /contact 提交意向。";
   }
-  if (/咨询|诊断|内训|方案/.test(t)) {
-    return "咨询与内训先做 30 分钟免费诊断：扫码添加主理人企微，把你的业务规模、卡点和目标说清楚，我们判断能不能帮上。";
+  if (/咨询|诊断|方案|定制/.test(t)) {
+    return "定制咨询先做 30 分钟免费诊断：扫码添加主理人企微，把你的业务规模、卡点和目标说清楚，我们基于 312 万条交易大盘判断能不能帮上。";
   }
   return "这个问题我记下了。更准确的答案建议联系主理人（/wechat）找真人确认，也可以在 /contact 留下你的问题，我们按情况回复。";
 }

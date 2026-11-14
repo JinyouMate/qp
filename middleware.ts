@@ -8,6 +8,7 @@ import type { NextRequest } from "next/server";
  * - /courses                  培训课程体系已砍掉，改为「数据订阅与会员版」
  * - /products/courses         同上（原课程产品详情）
  * - /products/annual-pass     年度知识通行证已下线（原权益含课程与社群答疑）
+ * - /products/corporate-training  企业内训已砍掉，改为按项目的「定制咨询」
  *
  * 为什么不用 next.config 的 redirects：
  * Next.js 的 redirects 只支持 307/308（permanent: true → 308），无法输出 301；
@@ -20,6 +21,7 @@ const RETIRED: Record<string, string> = {
   "/courses": "/products/data-subscription",
   "/products/courses": "/products/data-subscription",
   "/products/annual-pass": "/products/data-subscription",
+  "/products/corporate-training": "/consulting",
 };
 
 export const config = {
@@ -32,6 +34,7 @@ export const config = {
     "/courses/:path*",
     "/products/courses",
     "/products/annual-pass",
+    "/products/corporate-training",
   ],
 };
 

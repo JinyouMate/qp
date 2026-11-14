@@ -11,7 +11,7 @@ const COLS: { title: string; links: { href: string; label: string }[] }[] = [
       { href: "/knowledge", label: "知识库与SOP" },
       { href: "/products/data-subscription", label: "数据订阅与会员版" },
       { href: "/reports", label: "报告与数据产品" },
-      { href: "/consulting", label: "咨询与内训" },
+      { href: "/consulting", label: "定制咨询" },
       { href: "/partners", label: "SaaS与AI合作" },
     ],
   },

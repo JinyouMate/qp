@@ -3,33 +3,50 @@ import type { Metadata } from "next";
 import { buildMetadata, KEYWORDS } from "@/lib/seo";
 import { JsonLd, breadcrumbSchema } from "@/components/site/json-ld";
 import Link from "next/link";
-import { ArrowRight, Search, Route, Repeat, Presentation } from "lucide-react";
+import { ArrowRight, Search, Route, Repeat } from "lucide-react";
 
 import { PageHero } from "@/components/site/page-hero";
 import { SectionHeading } from "@/components/site/section-heading";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { ProductIcon } from "@/components/site/icon";
 import { getProducts } from "@/lib/data";
 
 export const metadata: Metadata = buildMetadata({
-  title: "咨询与内训",
-  description: "诊断 + 方案 + 陪跑的咨询方案（¥30,000 起 / 项目），以及面向团队的定制内训（¥20,000 起 / 场）。先做 30 分钟免费诊断。",
+  title: "定制咨询",
+  description:
+    "基于 312 万条真实交易大盘的定制诊断与咨询（¥30,000 起 / 项目）：先把问题定义清楚，再给分阶段路线图与月度复盘。先做 30 分钟免费诊断。",
   path: "/consulting",
   keywords: [KEYWORDS.data, KEYWORDS.knowledge, KEYWORDS.sop, KEYWORDS.compliance],
 });
 
 const STEPS = [
-  { icon: Search, name: "诊断", desc: "先把问题定义清楚。看你的真实数据、流程和人员，找出真正卡住的地方，而不是你以为的地方。", time: "1-2 周" },
-  { icon: Route, name: "方案", desc: "给分阶段路线图：先做什么、后做什么、每一步要什么资源、怎么验收。只写能落地的动作。", time: "2-3 周" },
-  { icon: Repeat, name: "陪跑", desc: "月度复盘，看数据不看汇报。跑偏了当场纠，跑不动了换打法。", time: "3-6 个月" },
+  {
+    icon: Search,
+    name: "诊断",
+    desc: "先用真实数据把问题定义清楚：把你在做的品类、毛利结构、价格带放进大盘里对一遍，找出真正卡住的地方，而不是你以为的地方。",
+    time: "1-2 周",
+  },
+  {
+    icon: Route,
+    name: "方案",
+    desc: "给分阶段路线图：先做什么、后做什么、每一步要什么资源、怎么验收。只写能落地的动作。",
+    time: "2-3 周",
+  },
+  {
+    icon: Repeat,
+    name: "陪跑",
+    desc: "月度复盘，看数据不看汇报。跑偏了当场纠，跑不动了换打法。",
+    time: "3-6 个月",
+  },
 ];
 
 const TOPICS = [
   "采购与供应链梳理：集中采购目录、供应商分级、库存周转",
   "选品与定价体系：五维评分、毛利核算、价格带定位",
   "多平台运营：店铺矩阵、类目选择、合规与风险",
-  "团队能力建设：岗位 SOP、新人培养路径、考核标准",
+  "数据驱动决策：用 312 万条交易大盘做品类机会扫描与竞品对标",
 ];
 
 export default async function ConsultingPage() {
@@ -42,13 +59,13 @@ export default async function ConsultingPage() {
       <JsonLd
         data={breadcrumbSchema([
           { name: "首页", url: "/" },
-          { name: "咨询与内训", url: "/consulting" },
+          { name: "定制咨询", url: "/consulting" },
         ])}
       />
 
       <PageHero
         tag="CONSULTING"
-        title="咨询与内训：只给能落地的动作，不给漂亮 PPT"
+        title="定制咨询：答案从 312 万条数据里来，不给漂亮 PPT"
         desc="先做一次免费 30 分钟诊断。如果我们帮不上忙，会直接告诉你，不接单。"
       >
         <Button asChild variant="destructive">
@@ -96,14 +113,14 @@ export default async function ConsultingPage() {
 
       <section className="section-pad">
         <div className="container-site">
-          <SectionHeading tag="产品与收费" title="两种交付形态，收费方式不同" />
-          <div className="grid gap-4 md:grid-cols-2">
+          <SectionHeading tag="产品与收费" title="按项目定制，一次报价" />
+          <div className="mx-auto grid max-w-3xl gap-4">
             {items.map((p) => (
               <Card key={p.id} className="card-hover h-full">
                 <CardContent className="flex h-full flex-col gap-3 p-5">
                   <div className="flex items-center gap-2">
                     <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-secondary text-primary">
-                      <Presentation className="h-5 w-5" strokeWidth={1.75} />
+                      <ProductIcon name={p.icon} />
                     </span>
                     <h3 className="text-base font-bold">{p.name}</h3>
                   </div>

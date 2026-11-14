@@ -5,7 +5,7 @@
 export type Layer = "traffic" | "trust" | "conversion" | "delivery";
 export type CtaType = "claim" | "buy" | "consult";
 
-/** 价格阶梯：免费 → 工具包(99-499) → 数据订阅与会员(999-1999) → 咨询/内训(1万+) */
+/** 价格阶梯：免费 → 工具包(99-499) → 数据订阅与会员(999-1999) → 咨询/合作(1万+) */
 export type Tier = "free" | "toolkit" | "subscription" | "enterprise";
 
 export const TIERS: Record<Tier, { name: string; range: string; goal: string; note: string }> = {
@@ -28,10 +28,10 @@ export const TIERS: Record<Tier, { name: string; range: string; goal: string; no
     note: "开通金游™数据中台专属账号，312 万条底层数据无限次查询，支持按 OE 号、品牌、毛利区间自由检索。",
   },
   enterprise: {
-    name: "咨询 / 内训",
+    name: "定制合作",
     range: "¥10,000 起",
     goal: "解决你自己的问题",
-    note: "诊断+方案+陪跑、企业内训、SaaS 与 AI 数据合作——按你的业务定制。",
+    note: "基于 312 万条交易大盘的诊断 + 方案 + 陪跑，以及 SaaS 与 AI 数据合作——按你的业务定制。",
   },
 };
 
@@ -132,7 +132,7 @@ export const LAYER_LABELS: Record<Layer, { name: string; desc: string; goal: str
   traffic: { name: "免费入门", desc: "内容IP · 报告摘要 · SOP清单", goal: "先看，能直接用" },
   trust: { name: "上手试用", desc: "基础知识库 · 模板 · 案例", goal: "先用起来再说" },
   conversion: { name: "数据订阅", desc: "数据中台账号 · 完整报告 · 查询权限", goal: "按需付费，持续查数" },
-  delivery: { name: "长期合作", desc: "咨询方案 · 企业内训 · SaaS · AI数据", goal: "定制方案一起做事" },
+  delivery: { name: "长期合作", desc: "定制咨询 · SaaS · AI数据", goal: "定制方案一起做事" },
 };
 
 export const LAYER_ORDER: Layer[] = ["traffic", "trust", "conversion", "delivery"];

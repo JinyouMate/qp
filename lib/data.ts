@@ -59,7 +59,7 @@ export const FALLBACK_PRODUCTS: Product[] = [
     id: 6, slug: "case-library", name: "案例库", icon: "folder-open", layer: "trust", category: "knowledge", tier: "free",
     positioning: "真实脱敏案例，每个都附可复用的动作清单",
     problem: "想知道别人是怎么解决同类问题的",
-    audience: "想抄作业的务实派",
+    audience: "想直接看别人怎么解决的务实派",
     deliverable: "图文案例 · 知识库专栏",
     price: "免费 · 申请解锁",
     cta_type: "claim", third_party_url: null, third_party_platform: null, planet_url: null,
@@ -120,7 +120,7 @@ export const FALLBACK_PRODUCTS: Product[] = [
     price: "¥999 – ¥1,999 / 年",
     cta_type: "buy", third_party_url: null, third_party_platform: "企业微信", planet_url: null,
   },
-  // ---------- 阶梯四：咨询 / 内训 / 合作 1万+（解决你自己的问题） ----------
+  // ---------- 阶梯四：咨询 / 合作 1万+（解决你自己的问题） ----------
   {
     id: 10, slug: "consulting", name: "咨询方案", icon: "compass", layer: "delivery", category: "consulting", tier: "enterprise",
     positioning: "诊断 + 方案 + 陪跑，只给可落地的动作",
@@ -128,15 +128,6 @@ export const FALLBACK_PRODUCTS: Product[] = [
     audience: "修理厂连锁、经销商集团、成长期卖家",
     deliverable: "诊断报告 + 分阶段路线图 + 月度复盘陪跑",
     price: "¥30,000 起 / 项目",
-    cta_type: "consult", third_party_url: null, third_party_platform: null, planet_url: null,
-  },
-  {
-    id: 11, slug: "corporate-training", name: "企业内训", icon: "presentation", layer: "delivery", category: "consulting", tier: "enterprise",
-    positioning: "面向团队的定制内训，训后附考核与落地清单",
-    problem: "团队依赖老师傅，人走经验走",
-    audience: "连锁修理厂、经销商集团、平台类目团队",
-    deliverable: "线上 / 驻场 · 1-3 天 · 训后考核",
-    price: "¥20,000 起 / 场",
     cta_type: "consult", third_party_url: null, third_party_platform: null, planet_url: null,
   },
   {
@@ -229,6 +220,7 @@ export const FALLBACK_PARTNERS: Partner[] = [
 const DELIVERY_REPLACERS: Array<[RegExp, string]> = [
   [/知识星球课程/g, "内部资料"],
   [/培训课程|体系课|录播课/g, "数据订阅与会员版"],
+  [/企业内训|定制内训/g, "定制咨询"],
   [/课程/g, "数据工具"],
   [/知识星球/g, "企业微信"],
   [/小鹅通/g, "企业微信"],
@@ -267,7 +259,7 @@ function sanitizeRow<T extends Record<string, unknown>>(row: T): T {
 }
 
 /** 已下线的产品 slug：即使数据库里还有旧记录，也不允许再出现在站点上 */
-const RETIRED_PRODUCT_SLUGS = new Set(["courses", "annual-pass"]);
+const RETIRED_PRODUCT_SLUGS = new Set(["courses", "annual-pass", "corporate-training"]);
 
 export async function getProducts(): Promise<Product[]> {
   const rows = (await fetchTable<Product>("products")) ?? FALLBACK_PRODUCTS;
