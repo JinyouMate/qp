@@ -34,7 +34,7 @@ export const LIBRARIES: Record<
   data: {
     name: "数据库",
     en: "DATABASE",
-    tagline: "开通中控台专属账号，看透真实利润",
+    tagline: "开通金游智库专属查询账号，看透真实利润",
     price: "¥999 / 年",
     goal: "用真实数据做决策",
     note: "312 万 SKU、OE 号匹配、万家供货商评级 —— 不是给你一份报表，是给你随时能查的底账。",

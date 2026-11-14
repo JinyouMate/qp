@@ -15,7 +15,7 @@ import { getProducts } from "@/lib/data";
 
 export const metadata: Metadata = buildMetadata({
   title: "报告与数据产品",
-  description: "行业报告（品类数据、价格带、竞争格局、趋势预判，¥9.9 引流）与数据库会员（金游™数据中台 Client 只读账号，312 万 SKU 无限次查询，¥999 / 年）。",
+  description: "行业报告（品类数据、价格带、竞争格局、趋势预判，¥9.9 引流）与数据库会员（金游智库·专属查询账号，Client 只读，312 万 SKU 无限次查询，¥999 / 年）。",
   path: "/reports",
   keywords: [KEYWORDS.data, KEYWORDS.nev, KEYWORDS.compliance, KEYWORDS.oe],
 });
@@ -73,14 +73,14 @@ export default async function ReportsPage() {
       <PageHero
         tag="REPORTS & DATA"
         title="决策要有依据，别再用拍脑袋交学费"
-        desc="报告给结论与动作，数据中台账号给持续查数的能力。摘要免费看，账号开通即查 312 万条底层数据。"
+        desc="报告给结论与动作，金游数据智库账号给持续查数的能力。摘要免费看，账号开通即查 312 万条底层数据。"
       >
         <div className="flex flex-wrap gap-3">
           <Button asChild variant="destructive">
             <Link href="/contact">免费领报告摘要</Link>
           </Button>
           <Button asChild variant="outline">
-            <Link href="/contact">开通数据中台账号</Link>
+            <Link href="/contact">开通金游智库账号</Link>
           </Button>
         </div>
       </PageHero>
@@ -120,7 +120,7 @@ export default async function ReportsPage() {
 
       <section className="section-pad bg-brand-cream">
         <div className="container-site">
-          <SectionHeading tag="数据库" title="312 万 SKU，随你查" desc="金游™数据中台 Client 只读账号，一人一号，按 OE 号、品牌、毛利区间自由检索，看透真实利润。" />
+          <SectionHeading tag="数据库" title="312 万 SKU，随你查" desc="金游智库·专属查询账号，Client 只读，一人一号，按 OE 号、品牌、毛利区间自由检索，看透真实利润。" />
           <div className="grid gap-4 md:grid-cols-3">
             {DATA_FEATURES.map((f) => (
               <Card key={f.title}>
@@ -139,7 +139,7 @@ export default async function ReportsPage() {
           {sub && (
             <div className="mx-auto mt-6 flex max-w-2xl flex-col items-center gap-3 rounded-xl border bg-card p-5 sm:flex-row sm:justify-between">
               <div>
-                <p className="font-semibold">金游™ 数据中台账号 · ¥999 / 年</p>
+                <p className="font-semibold">金游智库·专属查询账号 · ¥999 / 年</p>
                 <p className="text-xs text-muted-foreground">312 万条底层数据无限次查询，只给工具，不讲废话。</p>
               </div>
               <ProductCta product={sub} />
@@ -161,7 +161,7 @@ export default async function ReportsPage() {
           </div>
           <p className="mt-6 flex items-center justify-center gap-1.5 text-xs text-muted-foreground">
             <ExternalLink className="h-3.5 w-3.5" />
-            报告由主理人在企业微信一对一交付，数据在数据中台内查询；官网不处理支付。
+            报告由主理人在企业微信一对一交付，数据在金游数据智库内查询；官网不处理支付。
           </p>
         </div>
       </section>

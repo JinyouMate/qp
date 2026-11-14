@@ -29,7 +29,7 @@ export function DataTerminal() {
           <span className="h-2 w-2 rounded-full border border-[#D8D2C7]" />
           <span className="h-2 w-2 rounded-full border border-[#D8D2C7]" />
           <span className="ml-3 truncate text-[10px] tracking-wide text-[#BDB7AC]">
-            qipei://data-pipeline
+            qipei://金游数据智库
           </span>
           <span className="ml-auto flex shrink-0 items-center gap-1.5 text-[10px] font-medium tracking-widest text-brand-green">
             <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-brand-green" />

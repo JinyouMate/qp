@@ -34,7 +34,7 @@ export function organizationSchema() {
       addressCountry: "CN",
     },
     description:
-      "汽配行业知识资产运营商：知识库、工具库、数据库三层资产。提供避坑指南、行业报告、合规 SOP，选品评分表、核价毛利计算器、库存周转模板，以及 312 万 SKU 数据中台账号（OE 号匹配、万家供货商评级）；另做定制咨询与 AI 数据标注合作。",
+      "汽配行业知识资产运营商：知识库、工具库、数据库三层资产。提供避坑指南、行业报告、合规 SOP，选品评分表、核价毛利计算器、库存周转模板，以及 312 万 SKU 金游数据智库账号（OE 号匹配、万家供货商评级）；另做定制咨询与 AI 数据标注合作。",
     areaServed: { "@type": "Country", name: "CN" },
     knowsAbout: [
       "汽配数据",

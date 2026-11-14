@@ -146,11 +146,11 @@ export function LibrarySections({ products }: { products: Product[] }) {
                     <div className="flex flex-wrap items-start justify-between gap-4">
                       <div className="min-w-0">
                         <h3 className="text-lg font-bold text-foreground">
-                          {items[0]?.name ?? "金游™ 数据中台账号"}
+                          {items[0]?.name ?? "金游智库·专属查询账号"}
                         </h3>
                         <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
                           {items[0]?.deliverable ??
-                            "中控台 Client 只读账号（一人一号）+ 312 万 SKU 检索 + OE 号匹配 + 万家供货商评级"}
+                            "金游智库 Client 只读账号（一人一号）+ 312 万 SKU 检索 + OE 号匹配 + 万家供货商评级"}
                         </p>
                       </div>
                       <div className="text-right">
@@ -179,7 +179,7 @@ export function LibrarySections({ products }: { products: Product[] }) {
                       ) : (
                         <WecomCtaButton
                           variant="orange"
-                          label="开通中控台账号"
+                          label="开通金游智库账号"
                           from="products-data"
                           subject="数据库"
                         />

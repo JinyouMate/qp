@@ -113,11 +113,11 @@ export const FALLBACK_PRODUCTS: Product[] = [
 
   /* ================= 板块三 · 数据库（¥999 / 年 · 核心，看透真实利润） ================= */
   {
-    id: 9, slug: "data-subscription", name: "金游™ 数据中台账号", icon: "line-chart", library: "data", category: "reports",
-    positioning: "开通中控台专属账号，看透真实利润",
+    id: 9, slug: "data-subscription", name: "金游智库·专属查询账号", icon: "line-chart", library: "data", category: "reports",
+    positioning: "开通金游智库专属查询账号，看透真实利润",
     problem: "利润被错配、错价、错货源一点点吃掉，账上看着赚钱，实际在亏",
     audience: "要把利润算清楚的卖家、经销商与修理厂",
-    deliverable: "中控台 Client 只读账号（一人一号）+ 312 万 SKU 检索 + OE 号匹配 + 万家供货商评级，无限次查询",
+    deliverable: "金游智库 Client 只读账号（一人一号）+ 312 万 SKU 检索 + OE 号匹配 + 万家供货商评级，无限次查询",
     price: "¥999 / 年",
     cta_type: "buy", third_party_url: null, third_party_platform: "企业微信", planet_url: null,
   },

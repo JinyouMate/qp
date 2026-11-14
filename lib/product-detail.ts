@@ -209,7 +209,7 @@ const PRODUCT_EXTRA: Record<string, Partial<ProductDetail>> = {
       "手上有数据需求，但没有一把能查 312 万条数据的钥匙",
     ],
     checklist: [
-      "金游™数据中台 Client 只读账号（一人一号，网页登录）",
+      "金游智库·专属查询账号（Client 只读，一人一号，网页登录）",
       "312 万条底层 SKU 数据，按 OE 号 / 品牌 / 车型 / 毛利区间自由检索",
       "无限次查询，不按条计费",
     ],

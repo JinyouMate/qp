@@ -16,7 +16,7 @@ export const runtime = "edge";
 export const metadata: Metadata = buildMetadata({
   title: "服务目录",
   description:
-    "三库商业矩阵：知识库（免费 / ¥9.9 引流，构建行业认知）→ 工具库（¥99 – ¥299，现成工具直接落地）→ 数据库（¥999 / 年，开通中控台专属账号，看透真实利润）。",
+    "三库商业矩阵：知识库（免费 / ¥9.9 引流，构建行业认知）→ 工具库（¥99 – ¥299，现成工具直接落地）→ 数据库（¥999 / 年，开通金游智库专属查询账号，看透真实利润）。",
   path: "/products",
   keywords: [KEYWORDS.data, KEYWORDS.oe, KEYWORDS.vin, KEYWORDS.knowledge, KEYWORDS.sop],
 });

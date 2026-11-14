@@ -127,7 +127,7 @@ export default async function HomePage() {
       {/* ========== 真实交易大盘洞察：三张纯代码图表，不再重复大数字 ========== */}
       <section className="section-pad border-y border-brand-green/10 bg-brand-green-soft/35">
         <div className="container-site">
-          <SectionHeading tag="数据中台 · 11 个月真实大盘" title="真实交易大盘洞察" />
+          <SectionHeading tag="金游™ 智库 · 11 个月真实大盘" title="金游智库 · 底层大盘洞察" />
 
           <DataDashboard />
 
