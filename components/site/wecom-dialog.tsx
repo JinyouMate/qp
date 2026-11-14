@@ -86,7 +86,7 @@ export function WecomDialog({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-md gap-0 overflow-hidden p-0">
+      <DialogContent className="max-w-md grid-rows-[auto_minmax(0,1fr)] gap-0 overflow-hidden p-0">
         {/* 头部：浅灰底，不用大红大橙 */}
         <div className="border-b bg-muted/60 px-6 pb-4 pt-6 text-center">
           <DialogHeader className="items-center gap-1 text-center">
@@ -102,7 +102,8 @@ export function WecomDialog({
           </DialogHeader>
         </div>
 
-        <div className="px-6 pb-6 pt-5">
+        {/* 内容区：小屏（如 375×667）高度不够时区内滚动，头图与关闭按钮保持可见 */}
+        <div className="min-h-0 overflow-y-auto px-6 pb-6 pt-5">
           {/* 名片：头像与二维码并排（专家名片质感，不用大红大橙） */}
           <div className="flex items-center justify-center gap-5 rounded-2xl border bg-muted/40 p-4">
             <div className="flex shrink-0 flex-col items-center gap-1.5">
