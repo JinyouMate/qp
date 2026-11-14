@@ -4,7 +4,7 @@ import Link from "next/link";
 import { buildMetadata, KEYWORDS } from "@/lib/seo";
 
 import { PageHero } from "@/components/site/page-hero";
-import { TierAccordion } from "@/components/site/tier-accordion";
+import { LibrarySections } from "@/components/site/library-sections";
 import { JsonLd, productSchema, breadcrumbSchema } from "@/components/site/json-ld";
 import { getProducts } from "@/lib/data";
 import { getPersona } from "@/lib/persona";
@@ -14,8 +14,9 @@ import { WecomCtaButton } from "@/components/site/wecom-dialog";
 export const runtime = "edge";
 
 export const metadata: Metadata = buildMetadata({
-  title: "产品中心",
-  description: "四档产品阶梯：免费内容 → 99-499 工具包 → 999-1999 数据订阅与会员 → 1万+ 定制合作。每张卡片都写清：适合谁、解决什么问题、交付什么、怎么收费、下一步动作。",
+  title: "服务目录",
+  description:
+    "三库商业矩阵：知识库（免费 / ¥9.9 引流，构建行业认知）→ 工具库（¥99 – ¥299，现成工具直接落地）→ 数据库（¥999 / 年，开通中控台专属账号，看透真实利润）。",
   path: "/products",
   keywords: [KEYWORDS.data, KEYWORDS.oe, KEYWORDS.vin, KEYWORDS.knowledge, KEYWORDS.sop],
 });
@@ -37,15 +38,15 @@ export default async function ProductsPage({
           ...products.map(productSchema),
           breadcrumbSchema([
             { name: "首页", url: "/" },
-            { name: "产品中心", url: "/products" },
+            { name: "服务目录", url: "/products" },
           ]),
         ]}
       />
 
       <PageHero
-        tag="PRODUCTS"
-        title="产品中心：从免费到定制，一次只上一档"
-        desc="不用一次买全套。先用免费清单把问题解决一次，用得上再往上走：工具包 → 数据中台账号 → 定制咨询。"
+        tag="CATALOG"
+        title="服务目录：知识库、工具库、数据库"
+        desc="三层资产，缺什么补什么：先用知识库把行业看明白，再用工具库把动作做出结果，最后用数据库看透自己的真实利润。"
       />
 
       {/* 身份筛选提示条：从首页四类入口进来时展示 */}
@@ -80,18 +81,37 @@ export default async function ProductsPage({
         </section>
       )}
 
-      {/* 四档产品阶梯：手风琴折叠，默认只展开第 2 档（工具包） */}
+      {/* 三库：知识库 → 工具库 → 数据库（数据库视觉权重最高） */}
       <section className="section-pad">
         <div className="container-site">
           <div className="mx-auto max-w-5xl">
-            <TierAccordion
-              products={products}
-              recommended={persona?.recommended ?? []}
-              roleLabel={persona?.label ?? null}
-            />
-            <p className="mt-6 text-center text-xs text-muted-foreground">
-              不确定从哪一档开始？先用免费的清单把问题解决一次，用得上再往上走。
+            <LibrarySections products={products} />
+          </div>
+        </div>
+      </section>
+
+      {/* 定制合作：不占三库板块，单独一条出口 */}
+      <section className="pb-16">
+        <div className="container-site">
+          <div className="mx-auto flex max-w-5xl flex-col gap-3 rounded-2xl border border-dashed bg-card p-5 sm:flex-row sm:items-center sm:justify-between">
+            <p className="text-sm leading-relaxed text-muted-foreground">
+              <b className="text-foreground">三库解决不了的问题？</b>
+              按你的业务做定制：基于 312 万条数据的诊断、方案与陪跑，以及 SaaS 与 AI 数据合作。
             </p>
+            <div className="flex shrink-0 gap-2 text-sm font-semibold">
+              <Link
+                href="/consulting"
+                className="rounded-full border bg-card px-4 py-2 transition-colors hover:border-brand-green hover:text-brand-green"
+              >
+                定制咨询
+              </Link>
+              <Link
+                href="/partners"
+                className="rounded-full border bg-card px-4 py-2 transition-colors hover:border-brand-green hover:text-brand-green"
+              >
+                SaaS / AI 合作
+              </Link>
+            </div>
           </div>
         </div>
       </section>

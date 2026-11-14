@@ -1,17 +1,17 @@
 import Link from "next/link";
 
-import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { ProductIcon } from "./icon";
 import { ProductCta } from "./product-cta";
 import { WecomNote } from "./wecom-note";
-import { LAYER_LABELS, TIERS, type Product } from "@/lib/types";
+import { LIBRARIES, type Product } from "@/lib/types";
 
-const LAYER_BADGE: Record<string, string> = {
-  traffic: "secondary",
-  trust: "default",
-  conversion: "accent",
-  delivery: "destructive",
+/** 三库徽标配色：数据库用品牌绿实心，视觉上压过另外两个板块 */
+export const LIBRARY_BADGE: Record<string, string> = {
+  kb: "bg-secondary text-primary",
+  tools: "bg-brand-orange-soft text-brand-orange-ink",
+  data: "bg-brand-green text-white",
+  custom: "bg-brand-red-soft text-brand-red",
 };
 
 /** 产品卡：必须回答五个问题——适合谁 / 解决什么 / 交付什么 / 怎么收费 / 下一步动作 */
@@ -21,6 +21,7 @@ export function ProductCard({ product }: { product: Product }) {
     { label: "适合谁", value: product.audience },
     { label: "交付什么", value: product.deliverable },
   ];
+  const lib = LIBRARIES[product.library];
 
   return (
     <Card className="card-hover flex h-full flex-col">
@@ -29,12 +30,11 @@ export function ProductCard({ product }: { product: Product }) {
           <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-secondary text-primary">
             <ProductIcon name={product.icon} />
           </span>
-          <div className="flex flex-wrap items-center justify-end gap-1.5">
-            <Badge variant="outline">{TIERS[product.tier].name}</Badge>
-            <Badge variant={LAYER_BADGE[product.layer] as never}>
-              {LAYER_LABELS[product.layer].name}
-            </Badge>
-          </div>
+          <span
+            className={`rounded-full px-2.5 py-1 text-[11px] font-bold ${LIBRARY_BADGE[product.library]}`}
+          >
+            {lib.name}
+          </span>
         </div>
         <Link
           href={`/products/${product.slug}`}

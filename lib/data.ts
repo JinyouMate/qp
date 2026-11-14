@@ -1,5 +1,4 @@
-import type { Product, ContentItem, CaseStudy, Partner, Tier } from "./types";
-import { TIER_ORDER } from "./types";
+import type { Product, ContentItem, CaseStudy, Partner, Library } from "./types";
 import { fetchTable } from "./supabase";
 
 /* ============================================================
@@ -9,92 +8,101 @@ import { fetchTable } from "./supabase";
    ============================================================ */
 
 export const FALLBACK_PRODUCTS: Product[] = [
-  // ---------- 流量层（免费 · 认识我们） ----------
+  /* ================= 板块一 · 知识库（免费 / ¥9.9 引流 · 构建行业认知） ================= */
   {
-    id: 1, slug: "content-ip", name: "内容 IP", icon: "video", layer: "traffic", category: "knowledge", tier: "free",
-    positioning: "全网同名「汽配知识局」的短视频、图文与直播",
-    problem: "不了解我们，想先通过内容判断专业度",
-    audience: "所有汽配人，尤其是想先看看再决定的人",
-    deliverable: "短视频 / 深度图文 / 月度直播（回放沉淀知识库）",
-    price: "免费 · 全网公开",
-    cta_type: "claim", third_party_url: null, third_party_platform: null, planet_url: null,
+    id: 4, slug: "knowledge-base", name: "避坑指南", icon: "book-open", library: "kb", category: "knowledge",
+    positioning: "12,000+ 条踩过的坑，按场景一条条写清楚",
+    problem: "名词不懂、政策不清、坑位没人提醒，查资料全靠到处问",
+    audience: "刚入行要快速补课的人，和干了多年仍怕踩新坑的老板",
+    deliverable: "避坑库 / 名词库 / 适配库 / 政策库 · 内部资料库在线查阅",
+    price: "免费 · 联系即得",
+    cta_type: "claim", third_party_url: null, third_party_platform: "企业微信", planet_url: null,
   },
   {
-    id: 2, slug: "sop-checklists", name: "SOP 清单", icon: "list-checks", layer: "traffic", category: "knowledge", tier: "free",
+    id: 8, slug: "full-reports", name: "行业报告", icon: "book", library: "kb", category: "reports",
+    positioning: "品类数据、价格带、竞争格局与趋势预判",
+    problem: "决策缺数据支撑，拍脑袋交学费",
+    audience: "需要决策依据的经营者与平台团队",
+    deliverable: "完整报告文档 · 数据来源与口径全部注明",
+    price: "¥9.9 · 引流价",
+    cta_type: "buy", third_party_url: null, third_party_platform: "企业微信", planet_url: null,
+  },
+  {
+    id: 2, slug: "sop-checklists", name: "合规 SOP 清单", icon: "list-checks", library: "kb", category: "knowledge",
     positioning: "打印出来贴在工位上就能照着做的流程清单",
     problem: "关键流程凭记忆、靠师傅带，动作不标准、结果不稳定",
     audience: "修理厂、经销商、新入行从业者",
-    deliverable: "《选品SOP》《平台入驻SOP》《报价核价SOP》等 PDF 清单",
+    deliverable: "《选品SOP》《平台入驻SOP》《报价核价SOP》《出海合规SOP》等 PDF 清单",
     price: "免费 · 联系即得",
-    cta_type: "claim", third_party_url: null, third_party_platform: null, planet_url: null,
+    cta_type: "claim", third_party_url: null, third_party_platform: "企业微信", planet_url: null,
   },
   {
-    id: 3, slug: "report-briefs", name: "行业报告摘要", icon: "file-text", layer: "traffic", category: "reports", tier: "free",
-    positioning: "完整报告的精华版：核心数据 + 趋势判断 + 一页决策建议",
+    id: 3, slug: "report-briefs", name: "行业报告摘要", icon: "file-text", library: "kb", category: "reports",
+    positioning: "核心数据 + 趋势判断 + 一页决策建议",
     problem: "想快速了解行业格局，没时间读完整报告",
     audience: "需要决策参考的经营者",
     deliverable: "PDF 摘要 · 随完整版同步更新",
     price: "免费 · 联系即得",
-    cta_type: "claim", third_party_url: null, third_party_platform: null, planet_url: null,
-  },
-  // ---------- 信任层（免费 · 建立信任） ----------
-  {
-    id: 4, slug: "knowledge-base", name: "基础知识库", icon: "book-open", layer: "trust", category: "knowledge", tier: "free",
-    positioning: "12,000+ 条目的行业知识底座",
-    problem: "名词不懂、政策不清、坑位没人提醒，查资料全靠到处问",
-    audience: "从业者日常查询、新人系统入门",
-    deliverable: "名词库 / 适配库 / 政策库 / 避坑库 · Baklib / 飞书在线查阅",
-    price: "基础版免费 · 进阶版随社群",
     cta_type: "claim", third_party_url: null, third_party_platform: "企业微信", planet_url: null,
   },
   {
-    id: 5, slug: "templates", name: "模板库", icon: "table", layer: "trust", category: "knowledge", tier: "free",
-    positioning: "一线在用的表格模板，复制到飞书就能用",
+    id: 5, slug: "templates", name: "模板库", icon: "table", library: "kb", category: "knowledge",
+    positioning: "一线在用的表格模板，复制过去就能填",
     problem: "想提效但不知道好用的表格长什么样",
     audience: "有现成业务、想立刻提效的团队",
     deliverable: "选品评分表 / 供应商评估表 / 库存周转表 / 客服话术库",
-    price: "免费 · 联系即得",
-    cta_type: "claim", third_party_url: null, third_party_platform: "企业微信", planet_url: null,
+    price: "¥9.9 · 引流价",
+    cta_type: "buy", third_party_url: null, third_party_platform: "企业微信", planet_url: null,
   },
   {
-    id: 6, slug: "case-library", name: "案例库", icon: "folder-open", layer: "trust", category: "knowledge", tier: "free",
+    id: 6, slug: "case-library", name: "案例库", icon: "folder-open", library: "kb", category: "knowledge",
     positioning: "真实脱敏案例，每个都附可复用的动作清单",
     problem: "想知道别人是怎么解决同类问题的",
     audience: "想直接看别人怎么解决的务实派",
-    deliverable: "图文案例 · 知识库专栏",
+    deliverable: "图文案例 · 内部资料库专栏",
     price: "免费 · 申请解锁",
+    cta_type: "claim", third_party_url: null, third_party_platform: "企业微信", planet_url: null,
+  },
+  {
+    id: 1, slug: "content-ip", name: "内容 IP", icon: "video", library: "kb", category: "knowledge",
+    positioning: "全网同名「汽配知识局」的短视频、图文与直播",
+    problem: "不了解我们，想先通过内容判断专业度",
+    audience: "所有汽配人，尤其是想先看看再决定的人",
+    deliverable: "短视频 / 深度图文 / 月度直播（回放沉淀进知识库）",
+    price: "免费 · 全网公开",
     cta_type: "claim", third_party_url: null, third_party_platform: null, planet_url: null,
   },
-  // ---------- 阶梯二：工具包 99-499（解决一个具体问题） ----------
+
+  /* ================= 板块二 · 工具库（¥99 – ¥299 · 现成工具，直接落地） ================= */
   {
-    id: 14, slug: "toolkit-selection", name: "选品评分工具包", icon: "calculator", layer: "conversion", category: "knowledge", tier: "toolkit",
+    id: 14, slug: "toolkit-selection", name: "选品评分表", icon: "calculator", library: "tools", category: "knowledge",
     positioning: "把「要不要进这批货」变成一张能算出分数的表",
     problem: "选品靠感觉，同一个品类这次赚下次亏，说不清为什么",
     audience: "每周要做选品决策的卖家与采购",
-    deliverable: "五维评分表（自动算分）+ 测款记录表 + 复盘模板 · 飞书/Excel 双版本",
+    deliverable: "五维评分表（自动算分）+ 测款记录表 + 复盘模板 · Excel / 在线表格双版本",
     price: "¥199",
     cta_type: "buy", third_party_url: null, third_party_platform: "企业微信", planet_url: null,
   },
   {
-    id: 15, slug: "toolkit-pricing", name: "核价毛利工具包", icon: "coins", layer: "conversion", category: "knowledge", tier: "toolkit",
+    id: 15, slug: "toolkit-pricing", name: "核价毛利计算器", icon: "coins", library: "tools", category: "knowledge",
     positioning: "算清楚到手多少钱，别再卖一单亏一单",
-    problem: "跨境与多平台定价时漏算汇率、佣金、物流与退货，账面赚钱实际亏",
+    problem: "定价时漏算汇率、佣金、物流与退货，账面赚钱实际亏",
     audience: "做出海与多平台经营的卖家",
     deliverable: "成本核算表 + 汇率折算器 + 毛利校验表 + 定价决策卡",
     price: "¥299",
     cta_type: "buy", third_party_url: null, third_party_platform: "企业微信", planet_url: null,
   },
   {
-    id: 16, slug: "toolkit-fitment", name: "适配校验工具包", icon: "scan-search", layer: "conversion", category: "knowledge", tier: "toolkit",
+    id: 16, slug: "toolkit-fitment", name: "适配校验表", icon: "scan-search", library: "tools", category: "knowledge",
     positioning: "按三层校验法，把适配数据一条条过一遍",
     problem: "适配数据错了，退货、差评、压货一起来，一次就赔掉几个月利润",
     audience: "被适配问题反复拖住的团队与修理厂",
     deliverable: "交叉验证清单 + 存疑标记表 + 一线回测记录表 + 专家复核申请模板",
-    price: "¥399",
+    price: "¥299",
     cta_type: "buy", third_party_url: null, third_party_platform: "企业微信", planet_url: null,
   },
   {
-    id: 17, slug: "toolkit-inventory", name: "库存周转工具包", icon: "boxes", layer: "conversion", category: "knowledge", tier: "toolkit",
+    id: 17, slug: "toolkit-inventory", name: "库存周转模板", icon: "boxes", library: "tools", category: "knowledge",
     positioning: "把压在仓库里的钱算清楚，再决定清还是留",
     problem: "滞销 SKU 占压资金，但不知道该清哪些、清多少、走什么渠道",
     audience: "有现货库存的经销商与修理厂",
@@ -102,28 +110,21 @@ export const FALLBACK_PRODUCTS: Product[] = [
     price: "¥199",
     cta_type: "buy", third_party_url: null, third_party_platform: "企业微信", planet_url: null,
   },
-  // ---------- 阶梯三：数据订阅与会员 999-1999（拿到查询权） ----------
+
+  /* ================= 板块三 · 数据库（¥999 / 年 · 核心，看透真实利润） ================= */
   {
-    id: 8, slug: "full-reports", name: "完整行业报告", icon: "book", layer: "conversion", category: "reports", tier: "subscription",
-    positioning: "品类数据、价格带、竞争格局与趋势预判",
-    problem: "决策缺数据支撑，拍脑袋交学费",
-    audience: "需要决策依据的经营者与平台团队",
-    deliverable: "飞书文档 · 数据来源与口径全部注明",
-    price: "¥899 – ¥1,999 / 份",
+    id: 9, slug: "data-subscription", name: "金游™ 数据中台账号", icon: "line-chart", library: "data", category: "reports",
+    positioning: "开通中控台专属账号，看透真实利润",
+    problem: "利润被错配、错价、错货源一点点吃掉，账上看着赚钱，实际在亏",
+    audience: "要把利润算清楚的卖家、经销商与修理厂",
+    deliverable: "中控台 Client 只读账号（一人一号）+ 312 万 SKU 检索 + OE 号匹配 + 万家供货商评级，无限次查询",
+    price: "¥999 / 年",
     cta_type: "buy", third_party_url: null, third_party_platform: "企业微信", planet_url: null,
   },
+
+  /* ================= 定制合作（不占三库板块，单列） ================= */
   {
-    id: 9, slug: "data-subscription", name: "数据订阅与会员版", icon: "line-chart", layer: "conversion", category: "reports", tier: "subscription",
-    positioning: "开通金游™数据中台专属账号，312 万条底层数据无限次查询",
-    problem: "开通金游™数据中台专属账号，312 万条底层数据无限次查询，支持按 OE 号、品牌、毛利区间自由检索。只给工具，不讲废话。",
-    audience: "需要长期查数、按 OE 号 / 品牌 / 毛利区间自由检索的卖家与团队",
-    deliverable: "金游™数据中台 Client 只读账号（一人一号）+ 312 万条底层数据无限次查询",
-    price: "¥999 – ¥1,999 / 年",
-    cta_type: "buy", third_party_url: null, third_party_platform: "企业微信", planet_url: null,
-  },
-  // ---------- 阶梯四：咨询 / 合作 1万+（解决你自己的问题） ----------
-  {
-    id: 10, slug: "consulting", name: "咨询方案", icon: "compass", layer: "delivery", category: "consulting", tier: "enterprise",
+    id: 10, slug: "consulting", name: "咨询方案", icon: "compass", library: "custom", category: "consulting",
     positioning: "诊断 + 方案 + 陪跑，只给可落地的动作",
     problem: "有明确的经营问题要解决，缺外部视角与方法",
     audience: "修理厂连锁、经销商集团、成长期卖家",
@@ -132,7 +133,7 @@ export const FALLBACK_PRODUCTS: Product[] = [
     cta_type: "consult", third_party_url: null, third_party_platform: null, planet_url: null,
   },
   {
-    id: 12, slug: "saas-cooperation", name: "SaaS 工具合作", icon: "wrench", layer: "delivery", category: "partners", tier: "enterprise",
+    id: 12, slug: "saas-cooperation", name: "SaaS 工具合作", icon: "wrench", library: "custom", category: "partners",
     positioning: "我们出行业 Know-how 与种子用户，你出产品力",
     problem: "工具好，但打不进汽配行业、缺场景验证",
     audience: "有成熟产品的 SaaS 团队",
@@ -141,7 +142,7 @@ export const FALLBACK_PRODUCTS: Product[] = [
     cta_type: "consult", third_party_url: null, third_party_platform: "企业微信", planet_url: null,
   },
   {
-    id: 13, slug: "ai-data", name: "AI 数据标注 / 模型训练", icon: "bot", layer: "delivery", category: "partners", tier: "enterprise",
+    id: 13, slug: "ai-data", name: "AI 数据标注 / 模型训练", icon: "bot", library: "custom", category: "partners",
     positioning: "汽配领域语料授权、标注规则与评测标准共建",
     problem: "通用模型答不准汽配问题，缺行业语料与评测尺子",
     audience: "AI 公司、大模型厂商、研究机构",
@@ -220,7 +221,7 @@ export const FALLBACK_PARTNERS: Partner[] = [
    ============================================================ */
 const DELIVERY_REPLACERS: Array<[RegExp, string]> = [
   [/知识星球课程/g, "内部资料"],
-  [/培训课程|体系课|录播课/g, "数据订阅与会员版"],
+  [/培训课程|体系课|录播课/g, "数据库"],
   [/企业内训|定制内训/g, "定制咨询"],
   [/课程/g, "数据工具"],
   [/知识星球/g, "企业微信"],
@@ -262,46 +263,66 @@ function sanitizeRow<T extends Record<string, unknown>>(row: T): T {
 /** 已下线的产品 slug：即使数据库里还有旧记录，也不允许再出现在站点上 */
 const RETIRED_PRODUCT_SLUGS = new Set(["courses", "annual-pass", "corporate-training"]);
 
-/** slug → 规范档位（以代码里的产品目录为准） */
+/**
+ * 代码里的产品目录 = 唯一真源（2026-11-14 三库定调，全站封板）。
+ *
+ * 背景：官网的产品数据来自 Supabase products 表，但库里还留着改版前的
+ * 名字、价格与旧的 tier 枚举（如「订阅数据产品 ¥699」、tier=course）。
+ * 只要库里有一条 tier 不在枚举内，整块板块就会消失（第三档曾经整块空掉）。
+ *
+ * 所以读取层改为：已知 slug 一律用代码目录（名称 / 定价 / 归类 / 文案），
+ * 数据库只用来补充尚未进目录的额外条目，并按旧 tier 归到对应板块。
+ * 这样官网不会因为库里的历史数据而回潮，也不会再有板块消失。
+ */
 const CANONICAL_BY_SLUG = new Map(FALLBACK_PRODUCTS.map((p) => [p.slug, p]));
 
-/** 数据库里 tier 还是旧枚举（如 course）的产品，回落到规范档位，避免整档消失 */
-const VALID_TIERS = new Set<string>(TIER_ORDER);
+/** 旧 tier 枚举 → 三库板块（只为兼容数据库历史数据） */
+const LEGACY_TIER_TO_LIBRARY: Record<string, Library> = {
+  free: "kb",
+  toolkit: "tools",
+  subscription: "data",
+  enterprise: "custom",
+  course: "data",
+  courses: "data",
+};
 
-/**
- * 已改版产品的核心口径以代码为准（2026-11-14）。
- * 数据库 products 表里仍留着改版前的名字与价格（如「订阅数据产品 ¥699」），
- * 只改代码不改库时，第三档的名字/价格会回潮，甚至在 tier 枚举变了之后整档消失。
- * 这里对改版产品做一次读取层覆盖：DB 只保留它独有的字段，口径字段用代码版本。
- */
-const REBRANDED_SLUGS = new Set(["data-subscription"]);
+function legacyLibrary(raw: unknown): Library {
+  return LEGACY_TIER_TO_LIBRARY[String(raw ?? "")] ?? "custom";
+}
 
-const OVERRIDE_KEYS = [
-  "name", "icon", "layer", "category", "tier",
-  "positioning", "problem", "audience", "deliverable", "price", "cta_type",
-] as const;
-
-function normalizeProduct(row: Product): Product {
-  const canonical = CANONICAL_BY_SLUG.get(row.slug);
-  const dbTierValid = VALID_TIERS.has(String(row.tier));
-  const tier: Tier = dbTierValid
-    ? (row.tier as Tier)
-    : canonical?.tier ?? "toolkit";
-
-  if (REBRANDED_SLUGS.has(row.slug) && canonical) {
-    const merged: Record<string, unknown> = { ...row };
-    for (const k of OVERRIDE_KEYS) merged[k] = canonical[k];
-    return merged as unknown as Product;
-  }
-  return { ...row, tier };
+/** 数据库里额外新增（不在代码目录里）的产品：只借用它自己的文案，归类按旧 tier 推 */
+function fromDatabaseRow(row: Record<string, unknown>): Product {
+  return {
+    id: Number(row.id ?? 0),
+    slug: String(row.slug ?? ""),
+    name: String(row.name ?? ""),
+    icon: String(row.icon ?? "file-text"),
+    library: legacyLibrary(row.library ?? row.tier),
+    category: String(row.category ?? "knowledge"),
+    positioning: String(row.positioning ?? ""),
+    problem: String(row.problem ?? ""),
+    audience: String(row.audience ?? ""),
+    deliverable: String(row.deliverable ?? ""),
+    price: String(row.price ?? ""),
+    cta_type: (row.cta_type as Product["cta_type"]) ?? "claim",
+    third_party_url: null,
+    third_party_platform: null,
+    planet_url: null,
+  };
 }
 
 export async function getProducts(): Promise<Product[]> {
-  const rows = (await fetchTable<Product>("products")) ?? FALLBACK_PRODUCTS;
-  return rows
-    .filter((r) => !RETIRED_PRODUCT_SLUGS.has((r as Product).slug))
-    .map((r) => normalizeProduct(r as Product))
-    .map((r) => sanitizeRow(r as unknown as Record<string, unknown>) as unknown as Product);
+  const rows = (await fetchTable<Record<string, unknown>>("products")) ?? [];
+  const extras = rows
+    .filter((r) => typeof r.slug === "string")
+    .filter((r) => !CANONICAL_BY_SLUG.has(String(r.slug)))
+    .filter((r) => !RETIRED_PRODUCT_SLUGS.has(String(r.slug)))
+    .map(fromDatabaseRow)
+    .filter((p) => p.slug && p.name);
+
+  return [...FALLBACK_PRODUCTS, ...extras].map(
+    (p) => sanitizeRow(p as unknown as Record<string, unknown>) as unknown as Product
+  );
 }
 export async function getContents(): Promise<ContentItem[]> {
   const rows = (await fetchTable<ContentItem>("contents")) ?? FALLBACK_CONTENTS;

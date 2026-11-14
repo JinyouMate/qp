@@ -29,7 +29,7 @@ export function ProductCta({
   size?: "sm" | "default" | "lg";
   /** 覆盖按钮文案（默认全站统一 CTA） */
   label?: string;
-  /** 主行动色 orange（默认）/ 次级样式 outline；产品中心按档位区分主次 */
+  /** 主行动色 orange（默认）/ 次级样式 outline；服务目录按板块区分主次 */
   variant?: "orange" | "outline";
 }) {
   const [open, setOpen] = useState(false);

@@ -2,40 +2,54 @@
    数据类型：与 Supabase 表结构一一对应
    ============================================================ */
 
-export type Layer = "traffic" | "trust" | "conversion" | "delivery";
 export type CtaType = "claim" | "buy" | "consult";
 
-/** 价格阶梯：免费 → 工具包(99-499) → 数据订阅与会员(999-1999) → 咨询/合作(1万+) */
-export type Tier = "free" | "toolkit" | "subscription" | "enterprise";
+/* ------------------------------------------------------------------
+   三库商业矩阵（2026-11-14 定调）
+   全站不再使用「流量层 / 信任层 / 转化层 / 交付层」这类内部黑话，
+   也不再有「四档」说法：所有产品只归入三个板块。
+   ------------------------------------------------------------------ */
+export type Library = "kb" | "tools" | "data" | "custom";
 
-export const TIERS: Record<Tier, { name: string; range: string; goal: string; note: string }> = {
-  free: {
-    name: "免费内容",
-    range: "¥0",
-    goal: "认识我们",
-    note: "清单、摘要、模板、避坑知识——能直接照着做，先给再看。",
+export const LIBRARIES: Record<
+  Library,
+  { name: string; en: string; tagline: string; price: string; goal: string; note: string }
+> = {
+  kb: {
+    name: "知识库",
+    en: "KNOWLEDGE",
+    tagline: "构建行业认知",
+    price: "免费 / ¥9.9 引流",
+    goal: "先把行业看明白",
+    note: "避坑指南、行业报告、合规 SOP —— 让你在动手之前就知道哪里会踩坑。",
   },
-  toolkit: {
-    name: "工具包",
-    range: "¥99 – ¥499",
-    goal: "解决一个具体问题",
-    note: "把一份 SOP 做成可填写、可计算的表格工具，买回去就能用在自己的数据上。",
+  tools: {
+    name: "工具库",
+    en: "TOOLKIT",
+    tagline: "现成工具，直接落地",
+    price: "¥99 – ¥299",
+    goal: "把一个动作做出结果",
+    note: "选品评分表、核价毛利计算器、库存周转模板 —— 拿过去填自己的数，当天能用。",
   },
-  subscription: {
-    name: "数据订阅与会员版",
-    range: "¥999 – ¥1,999",
-    goal: "拿到长期查询权",
-    note: "开通金游™数据中台专属账号，312 万条底层数据无限次查询，支持按 OE 号、品牌、毛利区间自由检索。",
+  data: {
+    name: "数据库",
+    en: "DATABASE",
+    tagline: "开通中控台专属账号，看透真实利润",
+    price: "¥999 / 年",
+    goal: "用真实数据做决策",
+    note: "312 万 SKU、OE 号匹配、万家供货商评级 —— 不是给你一份报表，是给你随时能查的底账。",
   },
-  enterprise: {
+  custom: {
     name: "定制合作",
-    range: "¥10,000 起",
+    en: "CUSTOM",
+    tagline: "按你的业务定制",
+    price: "¥30,000 起 / 项目",
     goal: "解决你自己的问题",
-    note: "基于 312 万条交易大盘的诊断 + 方案 + 陪跑，以及 SaaS 与 AI 数据合作——按你的业务定制。",
+    note: "基于 312 万条交易大盘的诊断、方案与陪跑，以及 SaaS 与 AI 数据合作。",
   },
 };
 
-export const TIER_ORDER: Tier[] = ["free", "toolkit", "subscription", "enterprise"];
+export const LIBRARY_ORDER: Library[] = ["kb", "tools", "data"];
 
 /** 产品：每个产品必须回答五个问题
  *  适合谁(audience) / 解决什么问题(problem) / 交付什么(deliverable)
@@ -45,8 +59,9 @@ export interface Product {
   slug: string;
   name: string;
   icon: string; // lucide 图标名，见 components/site/icon.tsx
-  layer: Layer;
-  category: string; // 归属产品页：knowledge|courses|reports|consulting|partners
+  /** 三库归类：kb / tools / data / custom */
+  library: Library;
+  category: string; // 归属产品页：knowledge|reports|consulting|partners
   positioning: string; // 一句话定位
   problem: string; // 解决什么问题
   audience: string; // 适合谁
@@ -59,7 +74,6 @@ export interface Product {
   third_party_platform: string | null;
   /** 历史字段，已废弃（原知识星球邀请链接） */
   planet_url: string | null;
-  tier: Tier; // 价格阶梯
 }
 
 export interface ContentItem {
@@ -127,12 +141,3 @@ export const CHANNEL_LABELS: Record<Channel, string> = {
   direct: "直接访问",
   other: "其他",
 };
-
-export const LAYER_LABELS: Record<Layer, { name: string; desc: string; goal: string }> = {
-  traffic: { name: "免费入门", desc: "内容IP · 报告摘要 · SOP清单", goal: "先看，能直接用" },
-  trust: { name: "上手试用", desc: "基础知识库 · 模板 · 案例", goal: "先用起来再说" },
-  conversion: { name: "数据订阅", desc: "数据中台账号 · 完整报告 · 查询权限", goal: "按需付费，持续查数" },
-  delivery: { name: "长期合作", desc: "定制咨询 · SaaS · AI数据", goal: "定制方案一起做事" },
-};
-
-export const LAYER_ORDER: Layer[] = ["traffic", "trust", "conversion", "delivery"];

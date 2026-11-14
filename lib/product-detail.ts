@@ -1,5 +1,5 @@
-import type { Product, Tier } from "./types";
-import { TIERS, TIER_ORDER } from "./types";
+import type { Product, Library } from "./types";
+import { LIBRARIES, LIBRARY_ORDER } from "./types";
 
 /* ============================================================
    产品详情页内容层
@@ -61,26 +61,26 @@ function defaultSteps(p: Product): string[] {
   ];
 }
 
-/** 按档位给出默认痛点补充 */
-function tierPains(tier: Tier): string[] {
-  switch (tier) {
-    case "free":
+/** 按板块给出默认痛点补充 */
+function libraryPains(library: Library): string[] {
+  switch (library) {
+    case "kb":
       return [
         "想判断我们靠不靠谱，但不想先付钱",
         "网上资料太散，不知道哪些能直接用",
       ];
-    case "toolkit":
+    case "tools":
       return [
         "道理都懂，落到自己数据上就算不明白",
         "请人做太贵，自己做又不知道表格该长什么样",
       ];
-    case "subscription":
+    case "data":
       return [
         "查一个 OE 号要翻好几个平台，翻完还是不敢下结论",
         "想按毛利区间筛一遍品类，只能手工拉表慢慢算",
         "数据就摆在那儿，但手上没有一把能查它的钥匙",
       ];
-    case "enterprise":
+    case "custom":
       return [
         "问题很具体，通用方法套不上去",
         "内部推不动，需要外部视角和陪跑",
@@ -105,13 +105,13 @@ function defaultFaqs(p: Product): ProductFaq[] {
           : "提交后 1 个工作日内联系你约沟通时间。",
     },
   ];
-  if (p.tier === "toolkit" || p.tier === "subscription") {
+  if (p.library === "tools" || p.library === "data") {
     base.push({
       q: "可以开发票吗？",
       a: "可以。联系主理人确认需求后由我们直接开票，无需在第三方平台下单。",
     });
   }
-  if (p.tier === "enterprise") {
+  if (p.library === "custom") {
     base.push({
       q: "数据合规怎么处理？",
       a: "涉及数据的合作先签数据授权与保密协议（DPA），明确来源、用途与留存期限；个人信息一律脱敏后再进入分析与标注环节。",
@@ -268,13 +268,13 @@ export function demandForProduct(p: Product): string {
   }
 }
 
-/** 档位对比：本档 vs 相邻档 */
-export function tierCompare(tier: Tier): { current: string; lower?: string; higher?: string } {
-  const i = TIER_ORDER.indexOf(tier);
+/** 板块对比：本板块 vs 相邻板块 */
+export function libraryCompare(library: Library): { current: string; lower?: string; higher?: string } {
+  const i = LIBRARY_ORDER.indexOf(library);
   return {
-    current: TIERS[tier].name,
-    lower: i > 0 ? TIERS[TIER_ORDER[i - 1]].name : undefined,
-    higher: i < TIER_ORDER.length - 1 ? TIERS[TIER_ORDER[i + 1]].name : undefined,
+    current: LIBRARIES[library].name,
+    lower: i > 0 ? LIBRARIES[LIBRARY_ORDER[i - 1]].name : undefined,
+    higher: i >= 0 && i < LIBRARY_ORDER.length - 1 ? LIBRARIES[LIBRARY_ORDER[i + 1]].name : undefined,
   };
 }
 
@@ -282,13 +282,13 @@ export function tierCompare(tier: Tier): { current: string; lower?: string; high
 export function getProductDetail(p: Product): ProductDetail {
   const extra = PRODUCT_EXTRA[p.slug] ?? {};
   return {
-    pains: extra.pains ?? [p.problem, ...tierPains(p.tier)],
+    pains: extra.pains ?? [p.problem, ...libraryPains(p.library)],
     checklist: extra.checklist ?? splitList(p.deliverable),
     steps: extra.steps ?? defaultSteps(p),
     faqs: extra.faqs ?? defaultFaqs(p),
     form: extra.form ?? "线上交付（文件 / 表格 / 在线文档）",
     update: extra.update ?? "随业务变化持续更新",
     timeline:
-      extra.timeline ?? (p.tier === "enterprise" ? "视项目范围而定" : "上手当天可用"),
+      extra.timeline ?? (p.library === "custom" ? "视项目范围而定" : "上手当天可用"),
   };
 }

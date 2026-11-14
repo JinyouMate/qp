@@ -5,12 +5,12 @@ import { BrandLogo } from "./brand-logo";
 
 const COLS: { title: string; links: { href: string; label: string }[] }[] = [
   {
-    title: "产品与服务",
+    title: "三库服务",
     links: [
-      { href: "/products", label: "产品中心" },
-      { href: "/knowledge", label: "知识库与SOP" },
-      { href: "/products/data-subscription", label: "数据订阅与会员版" },
-      { href: "/reports", label: "报告与数据产品" },
+      { href: "/products", label: "服务目录" },
+      { href: "/products#lib-kb", label: "知识库" },
+      { href: "/products#lib-tools", label: "工具库" },
+      { href: "/products#lib-data", label: "数据库（中控台账号）" },
       { href: "/consulting", label: "定制咨询" },
       { href: "/partners", label: "SaaS与AI合作" },
     ],
@@ -45,8 +45,8 @@ export function Footer() {
               <BrandLogo />
             </Link>
             <p className="text-sm leading-relaxed">
-              汽配行业知识资产运营商——把隐性知识变成可交易资产。
-              从数据到决策，从知识到工具。
+              汽配行业知识资产运营商——知识库建认知，工具库做落地，数据库看利润。
+              从知识到工具，从工具到数据。
             </p>
             <p className="mt-3 text-xs">
               📮

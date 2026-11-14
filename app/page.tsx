@@ -146,7 +146,7 @@ export default async function HomePage() {
       <section className="border-y border-brand-orange/20 bg-brand-cream">
         <div className="container-site flex flex-col items-start gap-5 py-8 md:flex-row md:items-center md:justify-between md:gap-10 md:py-10">
           <p className="text-base font-medium leading-relaxed md:text-lg">
-            想直接获取完整数据包或定制诊断服务？请添加主理人获取全系报价单。
+            知识库建认知，工具库做落地，数据库看利润——三层资产，缺什么补什么。
           </p>
           <Button asChild variant="outline" size="default" className="shrink-0">
             <Link href="/products">

@@ -11,14 +11,14 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ProductIcon } from "@/components/site/icon";
 import { ProductCta } from "@/components/site/product-cta";
-import { ProductCard } from "@/components/site/product-card";
+import { ProductCard, LIBRARY_BADGE } from "@/components/site/product-card";
 import { WecomNote } from "@/components/site/wecom-note";
 import { Faq } from "@/components/site/faq";
 import { JsonLd, productSchema, breadcrumbSchema } from "@/components/site/json-ld";
 import { buildMetadata } from "@/lib/seo";
 import { FALLBACK_PRODUCTS } from "@/lib/data";
-import { getProductDetail, tierCompare } from "@/lib/product-detail";
-import { LAYER_LABELS, TIERS, type Product } from "@/lib/types";
+import { getProductDetail, libraryCompare } from "@/lib/product-detail";
+import { LIBRARIES, type Product } from "@/lib/types";
 
 /* ============================================================
    产品详情模板  /products/[slug]
@@ -26,13 +26,6 @@ import { LAYER_LABELS, TIERS, type Product } from "@/lib/types";
    - 18 个产品全部静态生成（generateStaticParams）
    - 每个产品独立 title / description / OG / Product 结构化数据
    ============================================================ */
-
-const LAYER_BADGE: Record<string, string> = {
-  traffic: "secondary",
-  trust: "default",
-  conversion: "accent",
-  delivery: "destructive",
-};
 
 // Cloudflare Pages：只发布预渲染页，未列出的 slug 直接 404，
 // 避免生成 Node Runtime 的兜底函数（next-on-pages 不支持）
@@ -56,14 +49,14 @@ export async function generateMetadata({
     description: `${product.positioning}。适合${product.audience}；解决：${product.problem}；交付：${product.deliverable}；${product.price}。`,
     path: `/products/${product.slug}`,
     ogImage: `/og/products-${product.slug}.png`,
-    keywords: [product.name, TIERS[product.tier].name, LAYER_LABELS[product.layer].name],
+    keywords: [product.name, LIBRARIES[product.library].name, "三库", "汽配数据"],
   });
 }
 
-/** 同档位推荐（排除自己，最多 3 个） */
+/** 同板块推荐（排除自己，最多 3 个） */
 function siblings(product: Product): Product[] {
   return FALLBACK_PRODUCTS.filter(
-    (p) => p.tier === product.tier && p.slug !== product.slug
+    (p) => p.library === product.library && p.slug !== product.slug
   ).slice(0, 3);
 }
 
@@ -72,9 +65,8 @@ export default function ProductDetailPage({ params }: { params: { slug: string }
   if (!product) notFound();
 
   const detail = getProductDetail(product);
-  const tier = TIERS[product.tier];
-  const layer = LAYER_LABELS[product.layer];
-  const compare = tierCompare(product.tier);
+  const lib = LIBRARIES[product.library];
+  const compare = libraryCompare(product.library);
   const recs = siblings(product);
 
   return (
@@ -106,12 +98,15 @@ export default function ProductDetailPage({ params }: { params: { slug: string }
         <div className="container-site grid gap-8 lg:grid-cols-[1fr_340px]">
           <div>
             <div className="flex flex-wrap items-center gap-2">
-              {/* 档位名与产品名相同时不重复展示（如「数据订阅与会员版」） */}
-              {tier.name !== product.name && (
-                <Badge variant="outline">{tier.name}</Badge>
+              {/* 板块名与产品名相同时不重复展示 */}
+              {lib.name !== product.name && (
+                <span
+                  className={`rounded-full px-2.5 py-1 text-[11px] font-bold ${LIBRARY_BADGE[product.library]}`}
+                >
+                  {lib.name}
+                </span>
               )}
-              <Badge variant={LAYER_BADGE[product.layer] as never}>{layer.name}</Badge>
-              <span className="text-xs text-muted-foreground">{layer.goal}</span>
+              <span className="text-xs text-muted-foreground">{lib.tagline}</span>
             </div>
 
             <div className="mt-4 flex items-start gap-4">
@@ -161,7 +156,7 @@ export default function ProductDetailPage({ params }: { params: { slug: string }
               <CardHeader className="pb-3">
                 <div className="text-xs text-muted-foreground">怎么收费</div>
                 <div className="text-2xl font-bold text-brand-red">{product.price}</div>
-                <p className="text-xs text-muted-foreground">{tier.range} · {tier.goal}</p>
+                <p className="text-xs text-muted-foreground">{lib.name} · {lib.goal}</p>
               </CardHeader>
               <CardContent className="space-y-4 text-sm">
                 <dl className="space-y-3">
@@ -237,14 +232,14 @@ export default function ProductDetailPage({ params }: { params: { slug: string }
             </ol>
           </div>
 
-          {/* 4 档位对比 */}
+          {/* 三库对比 */}
           <div>
-            <h2 className="text-xl font-bold sm:text-2xl">和其他档位怎么选</h2>
+            <h2 className="text-xl font-bold sm:text-2xl">三个板块怎么选</h2>
             <div className="mt-4 overflow-hidden rounded-lg border">
               <table className="w-full text-sm">
                 <thead className="bg-secondary/60 text-left">
                   <tr>
-                    <th className="px-4 py-3 font-semibold">档位</th>
+                    <th className="px-4 py-3 font-semibold">板块</th>
                     <th className="px-4 py-3 font-semibold">价格带</th>
                     <th className="px-4 py-3 font-semibold">适合什么时候</th>
                   </tr>
@@ -254,21 +249,21 @@ export default function ProductDetailPage({ params }: { params: { slug: string }
                     <tr className="border-t">
                       <td className="px-4 py-3 text-muted-foreground">{compare.lower}</td>
                       <td className="px-4 py-3 text-muted-foreground">
-                        {Object.values(TIERS).find((t) => t.name === compare.lower)?.range}
+                        {Object.values(LIBRARIES).find((t) => t.name === compare.lower)?.price}
                       </td>
                       <td className="px-4 py-3 text-muted-foreground">先试试看，判断我们靠不靠谱</td>
                     </tr>
                   )}
                   <tr className="border-t bg-brand-orange-soft">
                     <td className="px-4 py-3 font-bold">{compare.current}（本产品）</td>
-                    <td className="px-4 py-3 font-bold text-brand-red">{tier.range}</td>
-                    <td className="px-4 py-3">{tier.goal}</td>
+                    <td className="px-4 py-3 font-bold text-brand-red">{lib.price}</td>
+                    <td className="px-4 py-3">{lib.goal}</td>
                   </tr>
                   {compare.higher && (
                     <tr className="border-t">
                       <td className="px-4 py-3 text-muted-foreground">{compare.higher}</td>
                       <td className="px-4 py-3 text-muted-foreground">
-                        {Object.values(TIERS).find((t) => t.name === compare.higher)?.range}
+                        {Object.values(LIBRARIES).find((t) => t.name === compare.higher)?.price}
                       </td>
                       <td className="px-4 py-3 text-muted-foreground">问题更具体、需要人陪着做</td>
                     </tr>
@@ -316,7 +311,7 @@ export default function ProductDetailPage({ params }: { params: { slug: string }
       {recs.length > 0 && (
         <section className="section-pad bg-brand-cream">
           <div className="container-site">
-            <h2 className="text-xl font-bold sm:text-2xl">同档位的其他选择</h2>
+            <h2 className="text-xl font-bold sm:text-2xl">同板块的其他选择</h2>
             <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {recs.map((p) => (
                 <ProductCard key={p.id} product={p} />

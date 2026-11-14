@@ -15,7 +15,7 @@ import { getProducts } from "@/lib/data";
 
 export const metadata: Metadata = buildMetadata({
   title: "报告与数据产品",
-  description: "行业报告（品类数据、价格带、竞争格局、趋势预判）与数据订阅会员（金游™数据中台 Client 只读账号，312 万条底层数据无限次查询）。",
+  description: "行业报告（品类数据、价格带、竞争格局、趋势预判，¥9.9 引流）与数据库会员（金游™数据中台 Client 只读账号，312 万 SKU 无限次查询，¥999 / 年）。",
   path: "/reports",
   keywords: [KEYWORDS.data, KEYWORDS.nev, KEYWORDS.compliance, KEYWORDS.oe],
 });
@@ -25,19 +25,19 @@ const REPORTS = [
     name: "《中国汽配电商价格带全景 2026》",
     metric: "覆盖 12 个主流品类 · 4 个平台",
     desc: "每个品类的成交价格带分布、头部集中度、低价区陷阱，附选品价格定位建议。",
-    price: "¥1,299",
+    price: "¥9.9",
   },
   {
     name: "《跨境汽配（俄罗斯 / 欧美 / 东南亚）机会地图》",
     metric: "3 平台 · 9 个高潜品类",
     desc: "真实成交数据拆毛利结构：汇率、物流、佣金、退货，算清楚到手多少钱。",
-    price: "¥1,999",
+    price: "¥9.9",
   },
   {
     name: "《修理厂采购渠道现状调研》",
     metric: "217 份有效样本 · 6 省",
     desc: "修理厂从哪进货、为什么换供应商、对账期和适配准确率的真实要求。",
-    price: "¥899",
+    price: "¥9.9",
   },
 ];
 
@@ -120,7 +120,7 @@ export default async function ReportsPage() {
 
       <section className="section-pad bg-brand-cream">
         <div className="container-site">
-          <SectionHeading tag="数据订阅与会员版" title="312 万条数据，随你查" desc="金游™数据中台 Client 只读账号，一人一号，按 OE 号、品牌、毛利区间自由检索。" />
+          <SectionHeading tag="数据库" title="312 万 SKU，随你查" desc="金游™数据中台 Client 只读账号，一人一号，按 OE 号、品牌、毛利区间自由检索，看透真实利润。" />
           <div className="grid gap-4 md:grid-cols-3">
             {DATA_FEATURES.map((f) => (
               <Card key={f.title}>
@@ -139,7 +139,7 @@ export default async function ReportsPage() {
           {sub && (
             <div className="mx-auto mt-6 flex max-w-2xl flex-col items-center gap-3 rounded-xl border bg-card p-5 sm:flex-row sm:justify-between">
               <div>
-                <p className="font-semibold">数据订阅与会员版 · ¥999 – ¥1,999 / 年</p>
+                <p className="font-semibold">金游™ 数据中台账号 · ¥999 / 年</p>
                 <p className="text-xs text-muted-foreground">312 万条底层数据无限次查询，只给工具，不讲废话。</p>
               </div>
               <ProductCta product={sub} />
