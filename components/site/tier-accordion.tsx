@@ -17,14 +17,14 @@ import { cn } from "@/lib/utils";
 const ONE_LINER: Record<Tier, string> = {
   free: "先用免费清单，把问题解决一次",
   toolkit: "把 SOP 做成能填、能算的表格工具",
-  course: "从会做一次，到持续会做",
+  subscription: "拿到 312 万条数据的查询权",
   enterprise: "按你的业务定制，从诊断到陪跑",
 };
 
 const TIER_BADGE: Record<Tier, string> = {
   free: "bg-secondary text-primary",
   toolkit: "bg-brand-orange text-white",
-  course: "bg-brand-green-soft text-brand-green",
+  subscription: "bg-brand-green-soft text-brand-green",
   enterprise: "bg-brand-red-soft text-brand-red",
 };
 

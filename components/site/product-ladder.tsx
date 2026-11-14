@@ -13,7 +13,7 @@ import {
 const TIER_STYLE: Record<Tier, { bar: string; soft: string; text: string }> = {
   free: { bar: "bg-secondary", soft: "bg-secondary/50", text: "text-primary" },
   toolkit: { bar: "bg-brand-orange", soft: "bg-brand-orange-soft", text: "text-accent-foreground" },
-  course: { bar: "bg-brand-green", soft: "bg-brand-green-soft", text: "text-brand-green" },
+  subscription: { bar: "bg-brand-green", soft: "bg-brand-green-soft", text: "text-brand-green" },
   enterprise: { bar: "bg-brand-red", soft: "bg-brand-red-soft", text: "text-brand-red" },
 };
 
@@ -29,7 +29,7 @@ type GroupBy = "tier" | "layer";
 
 /**
  * 产品阶梯 / 产品分层
- * - groupBy="tier" ：按价格档分四档（免费 → 工具包 → 课程订阅 → 咨询内训）
+ * - groupBy="tier" ：按价格档分四档（免费 → 工具包 → 数据订阅与会员 → 咨询内训）
  * - groupBy="layer"：按信任层级分四层（流量层 → 信任层 → 转化层 → 交付层）
  * 两种分组都回答：这一档解决什么、有什么产品、下一步动作。
  */

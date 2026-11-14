@@ -15,7 +15,7 @@ import { getProducts } from "@/lib/data";
 
 export const metadata: Metadata = buildMetadata({
   title: "报告与数据产品",
-  description: "行业报告（品类数据、价格带、竞争格局、趋势预判）与订阅数据产品（价格监测、跨平台销量追踪、竞品动态周报），支持 7 天试用。",
+  description: "行业报告（品类数据、价格带、竞争格局、趋势预判）与数据订阅会员（金游™数据中台 Client 只读账号，312 万条底层数据无限次查询）。",
   path: "/reports",
   keywords: [KEYWORDS.data, KEYWORDS.nev, KEYWORDS.compliance, KEYWORDS.oe],
 });
@@ -42,9 +42,9 @@ const REPORTS = [
 ];
 
 const DATA_FEATURES = [
-  { icon: LineChart, title: "品类价格监测", desc: "主流平台核心品类价格波动，周更，异常波动单独标注。" },
-  { icon: Table2, title: "跨平台销量追踪", desc: "同一 SKU 在不同平台的表现对照，口径统一后再比。" },
-  { icon: FileText, title: "竞品动态周报", desc: "新品、调价、活动、评价变化，每周一封，附判断。" },
+  { icon: LineChart, title: "按毛利区间检索", desc: "直接筛出 40%-50% 黄金毛利带的 SKU，不用再手工拉表算。" },
+  { icon: Table2, title: "按 OE 号反查", desc: "一个零件号查到底：适配车型、年款、替代关系与在售价格带。" },
+  { icon: FileText, title: "按品牌 / 车型维度筛选", desc: "2,219 个主流品牌全覆盖，按品类下钻到具体 SKU 再决策。" },
 ];
 
 const METHOD = [
@@ -73,14 +73,14 @@ export default async function ReportsPage() {
       <PageHero
         tag="REPORTS & DATA"
         title="决策要有依据，别再用拍脑袋交学费"
-        desc="报告给结论与动作，数据产品给持续盯盘的能力。两者都可以先看摘要，再决定要不要买。"
+        desc="报告给结论与动作，数据中台账号给持续查数的能力。摘要免费看，账号开通即查 312 万条底层数据。"
       >
         <div className="flex flex-wrap gap-3">
           <Button asChild variant="destructive">
             <Link href="/contact">免费领报告摘要</Link>
           </Button>
           <Button asChild variant="outline">
-            <Link href="/contact">申请 7 天试用</Link>
+            <Link href="/contact">开通数据中台账号</Link>
           </Button>
         </div>
       </PageHero>
@@ -120,7 +120,7 @@ export default async function ReportsPage() {
 
       <section className="section-pad bg-brand-cream">
         <div className="container-site">
-          <SectionHeading tag="订阅数据产品" title="盯盘这件事，交给看板" desc="飞书多维表格 / 看板交付，周更，支持 7 天试用。" />
+          <SectionHeading tag="数据订阅与会员版" title="312 万条数据，随你查" desc="金游™数据中台 Client 只读账号，一人一号，按 OE 号、品牌、毛利区间自由检索。" />
           <div className="grid gap-4 md:grid-cols-3">
             {DATA_FEATURES.map((f) => (
               <Card key={f.title}>
@@ -139,8 +139,8 @@ export default async function ReportsPage() {
           {sub && (
             <div className="mx-auto mt-6 flex max-w-2xl flex-col items-center gap-3 rounded-xl border bg-card p-5 sm:flex-row sm:justify-between">
               <div>
-                <p className="font-semibold">订阅数据产品 · ¥699 起 / 月</p>
-                <p className="text-xs text-muted-foreground">含 7 天试用，不满意直接停，不自动续费。</p>
+                <p className="font-semibold">数据订阅与会员版 · ¥999 – ¥1,999 / 年</p>
+                <p className="text-xs text-muted-foreground">312 万条底层数据无限次查询，只给工具，不讲废话。</p>
               </div>
               <ProductCta product={sub} />
             </div>
@@ -161,7 +161,7 @@ export default async function ReportsPage() {
           </div>
           <p className="mt-6 flex items-center justify-center gap-1.5 text-xs text-muted-foreground">
             <ExternalLink className="h-3.5 w-3.5" />
-            报告与数据在飞书交付，官网不处理支付；所有第三方链接均附加来源参数。
+            报告由主理人在企业微信一对一交付，数据在数据中台内查询；官网不处理支付。
           </p>
         </div>
       </section>

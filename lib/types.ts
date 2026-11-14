@@ -5,8 +5,8 @@
 export type Layer = "traffic" | "trust" | "conversion" | "delivery";
 export type CtaType = "claim" | "buy" | "consult";
 
-/** 价格阶梯：免费 → 工具包(99-499) → 课程/订阅(999-4999) → 咨询/内训(1万+) */
-export type Tier = "free" | "toolkit" | "course" | "enterprise";
+/** 价格阶梯：免费 → 工具包(99-499) → 数据订阅与会员(999-1999) → 咨询/内训(1万+) */
+export type Tier = "free" | "toolkit" | "subscription" | "enterprise";
 
 export const TIERS: Record<Tier, { name: string; range: string; goal: string; note: string }> = {
   free: {
@@ -21,11 +21,11 @@ export const TIERS: Record<Tier, { name: string; range: string; goal: string; no
     goal: "解决一个具体问题",
     note: "把一份 SOP 做成可填写、可计算的表格工具，买回去就能用在自己的数据上。",
   },
-  course: {
-    name: "课程 / 订阅",
-    range: "¥999 – ¥4,999",
-    goal: "建立体系与持续能力",
-    note: "体系课（录播+答疑+批改）、完整报告、订阅数据看板——从会做一次到持续会做。",
+  subscription: {
+    name: "数据订阅与会员版",
+    range: "¥999 – ¥1,999",
+    goal: "拿到长期查询权",
+    note: "开通金游™数据中台专属账号，312 万条底层数据无限次查询，支持按 OE 号、品牌、毛利区间自由检索。",
   },
   enterprise: {
     name: "咨询 / 内训",
@@ -35,7 +35,7 @@ export const TIERS: Record<Tier, { name: string; range: string; goal: string; no
   },
 };
 
-export const TIER_ORDER: Tier[] = ["free", "toolkit", "course", "enterprise"];
+export const TIER_ORDER: Tier[] = ["free", "toolkit", "subscription", "enterprise"];
 
 /** 产品：每个产品必须回答五个问题
  *  适合谁(audience) / 解决什么问题(problem) / 交付什么(deliverable)
@@ -98,7 +98,7 @@ export interface Lead {
   name: string;
   contact: string;
   role: string; // 修理厂 / 汽配商 / 平台企业 / AI公司 / 其他
-  demand: string; // 知识库 / 数据产品 / SOP / 报告 / 课程 / 咨询 / SaaS / AI合作
+  demand: string; // 知识库 / 数据产品 / SOP / 报告 / 数据订阅 / 咨询 / SaaS / AI合作
   description?: string;
   utm?: Record<string, string>;
   channel?: Channel; // 来源渠道：抖音/视频号/知乎/公众号/搜索/直接访问/其他
@@ -131,7 +131,7 @@ export const CHANNEL_LABELS: Record<Channel, string> = {
 export const LAYER_LABELS: Record<Layer, { name: string; desc: string; goal: string }> = {
   traffic: { name: "免费入门", desc: "内容IP · 报告摘要 · SOP清单", goal: "先看，能直接用" },
   trust: { name: "上手试用", desc: "基础知识库 · 模板 · 案例", goal: "先用起来再说" },
-  conversion: { name: "系统学习", desc: "培训课程 · 完整报告 · 订阅数据", goal: "按需付费，深入使用" },
+  conversion: { name: "数据订阅", desc: "数据中台账号 · 完整报告 · 查询权限", goal: "按需付费，持续查数" },
   delivery: { name: "长期合作", desc: "咨询方案 · 企业内训 · SaaS · AI数据", goal: "定制方案一起做事" },
 };
 

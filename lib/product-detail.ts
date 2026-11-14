@@ -74,10 +74,11 @@ function tierPains(tier: Tier): string[] {
         "道理都懂，落到自己数据上就算不明白",
         "请人做太贵，自己做又不知道表格该长什么样",
       ];
-    case "course":
+    case "subscription":
       return [
-        "看过很多干货，真到自己上手还是不会",
-        "团队水平不齐，缺一套能统一口径的方法",
+        "查一个 OE 号要翻好几个平台，翻完还是不敢下结论",
+        "想按毛利区间筛一遍品类，只能手工拉表慢慢算",
+        "数据就摆在那儿，但手上没有一把能查它的钥匙",
       ];
     case "enterprise":
       return [
@@ -104,7 +105,7 @@ function defaultFaqs(p: Product): ProductFaq[] {
           : "提交后 1 个工作日内联系你约沟通时间。",
     },
   ];
-  if (p.tier === "toolkit" || p.tier === "course") {
+  if (p.tier === "toolkit" || p.tier === "subscription") {
     base.push({
       q: "可以开发票吗？",
       a: "可以。联系主理人确认需求后由我们直接开票，无需在第三方平台下单。",
@@ -201,20 +202,25 @@ const PRODUCT_EXTRA: Record<string, Partial<ProductDetail>> = {
     update: "随滞销处理经验补充新场景",
     timeline: "一轮盘点约半天，资金回笼视清仓节奏而定",
   },
-  courses: {
+  "data-subscription": {
     pains: [
-      "看过很多免费内容，真到自己上手还是不会",
-      "学的东西和自己的品类对不上，听完就忘",
-      "没人批改，不知道自己做得对不对",
+      "查一个 OE 号要翻好几个平台，翻完还是不敢下结论",
+      "想按毛利区间筛一遍品类，只能手工拉表慢慢算",
+      "手上有数据需求，但没有一把能查 312 万条数据的钥匙",
+    ],
+    checklist: [
+      "金游™数据中台 Client 只读账号（一人一号，网页登录）",
+      "312 万条底层 SKU 数据，按 OE 号 / 品牌 / 车型 / 毛利区间自由检索",
+      "无限次查询，不按条计费",
     ],
     steps: [
-      "录播按模块推进，每模块配一份要交的作业",
-      "作业提交后逐份批改，指出你具体错在哪一步",
-      "社群答疑，同类问题一次讲清，沉淀进知识库",
+      "开通后先跑一个你正在做的品类，按 OE 号反查适配关系与价格带",
+      "用毛利区间筛出 40%-50% 的候选，再回到你的一线判断",
+      "把常查的检索条件存成自己的常用视图，每周复用",
     ],
-    form: "企微交付 · 录播 + 作业批改 + 社群答疑",
-    update: "课程内容按平台规则变化每年更新",
-    timeline: "按每周一个模块的节奏，约 4-6 周走完",
+    form: "网页端账号（Client 只读权限）· 一人一号",
+    update: "底层数据每周更新，账号有效期内持续可查",
+    timeline: "开通当天可查，第一份选品结论约 1 小时",
   },
   "ai-data": {
     pains: [
@@ -252,7 +258,7 @@ export function demandForProduct(p: Product): string {
     case "knowledge":
       return "知识库";
     case "courses":
-      return "课程";
+      return "数据订阅";
     case "reports":
       return "报告";
     case "consulting":

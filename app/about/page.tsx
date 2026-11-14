@@ -44,7 +44,7 @@ const MILESTONES = [
   { time: "起点", text: "从自营汽配业务起步，做跨境与国内多平台，攒下第一手数据与踩坑记录。" },
   { time: "沉淀", text: "把内部用的名词表、适配库、SOP 整理成册，先给自己的团队用。" },
   { time: "外溢", text: "同行来要，才开始对外。内容都公开写出来，用内容换信任，不靠买广告。" },
-  { time: "资产化", text: "把知识分成四层：免费清单先解决小问题，体系课与报告再往深处走，咨询与数据合作做长期交付。" },
+  { time: "资产化", text: "把知识分成四层：免费清单先解决小问题，数据中台账号与完整报告再往深处走，咨询与数据合作做长期交付。" },
   { time: "现在", text: "知识库 12,000+ 条目，服务 1,800+ 从业者，开始与 AI 公司做语料与评测合作。" },
 ];
 
@@ -80,8 +80,8 @@ export default function AboutPage() {
               </h2>
               <p className="mt-3 text-sm leading-relaxed text-foreground/85">
                 做四件事：把一线经验整理成<strong>知识库与 SOP</strong>；把真实交易数据处理成
-                <strong>报告与数据产品</strong>；把方法排成顺序做成
-                <strong>课程</strong>；对具体问题给
+                <strong>报告与数据产品</strong>；把 312 万条底层数据做成
+                <strong>可查询的数据中台</strong>；对具体问题给
                 <strong>咨询与内训</strong>，对行业伙伴开放
                 <strong>SaaS 与 AI 数据合作</strong>。
               </p>

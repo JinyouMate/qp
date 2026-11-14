@@ -101,18 +101,9 @@ export const FALLBACK_PRODUCTS: Product[] = [
     price: "¥199",
     cta_type: "buy", third_party_url: null, third_party_platform: "企业微信", planet_url: null,
   },
-  // ---------- 阶梯三：课程 / 订阅 999-4999（建立体系） ----------
+  // ---------- 阶梯三：数据订阅与会员 999-1999（拿到查询权） ----------
   {
-    id: 7, slug: "courses", name: "培训课程", icon: "graduation-cap", layer: "conversion", category: "courses", tier: "course",
-    positioning: "录播 + 社群答疑 + 作业批改的体系课",
-    problem: "经验零散、体系缺失，学了很多干货还是不会干",
-    audience: "0-5 年经验想系统建立方法论的卖家与团队",
-    deliverable: "企微交付 · 录播 + 直播答疑 + 结课清单",
-    price: "¥999 – ¥3,980 / 门",
-    cta_type: "buy", third_party_url: null, third_party_platform: "企业微信", planet_url: null,
-  },
-  {
-    id: 8, slug: "full-reports", name: "完整行业报告", icon: "book", layer: "conversion", category: "reports", tier: "course",
+    id: 8, slug: "full-reports", name: "完整行业报告", icon: "book", layer: "conversion", category: "reports", tier: "subscription",
     positioning: "品类数据、价格带、竞争格局与趋势预判",
     problem: "决策缺数据支撑，拍脑袋交学费",
     audience: "需要决策依据的经营者与平台团队",
@@ -121,21 +112,12 @@ export const FALLBACK_PRODUCTS: Product[] = [
     cta_type: "buy", third_party_url: null, third_party_platform: "企业微信", planet_url: null,
   },
   {
-    id: 9, slug: "data-subscription", name: "订阅数据产品", icon: "line-chart", layer: "conversion", category: "reports", tier: "course",
-    positioning: "品类价格监测 / 跨平台销量追踪 / 竞品动态周报",
-    problem: "盯盘靠手工翻平台，慢、口径乱、还容易漏",
-    audience: "持续经营、需要盯盘的卖家与类目团队",
-    deliverable: "飞书多维表格 / 看板 · 周更 · 支持 7 天试用",
-    price: "¥699 起 / 月（年付 ¥4,999 起）",
-    cta_type: "consult", third_party_url: null, third_party_platform: "企业微信", planet_url: null,
-  },
-  {
-    id: 18, slug: "annual-pass", name: "年度知识通行证", icon: "badge-check", layer: "conversion", category: "courses", tier: "course",
-    positioning: "一年内全部课程 + 全部工具包 + 报告更新 + 社群答疑",
-    problem: "单买课程和工具包加起来太贵，又不想错过更新",
-    audience: "打算长期在这个行业里做的个人与团队（可开多人席位）",
-    deliverable: "年度权益 + 内部资料库全权限 + 季度闭门直播",
-    price: "¥4,999 / 年",
+    id: 9, slug: "data-subscription", name: "数据订阅与会员版", icon: "line-chart", layer: "conversion", category: "reports", tier: "subscription",
+    positioning: "开通金游™数据中台专属账号，312 万条底层数据无限次查询",
+    problem: "开通金游™数据中台专属账号，312 万条底层数据无限次查询，支持按 OE 号、品牌、毛利区间自由检索。只给工具，不讲废话。",
+    audience: "需要长期查数、按 OE 号 / 品牌 / 毛利区间自由检索的卖家与团队",
+    deliverable: "金游™数据中台 Client 只读账号（一人一号）+ 312 万条底层数据无限次查询",
+    price: "¥999 – ¥1,999 / 年",
     cta_type: "buy", third_party_url: null, third_party_platform: "企业微信", planet_url: null,
   },
   // ---------- 阶梯四：咨询 / 内训 / 合作 1万+（解决你自己的问题） ----------
@@ -245,7 +227,9 @@ export const FALLBACK_PARTNERS: Partner[] = [
    配套 SQL：supabase/migrations/0007_wecom_only.sql（可选执行，用于彻底清库）。
    ============================================================ */
 const DELIVERY_REPLACERS: Array<[RegExp, string]> = [
-  [/知识星球课程/g, "企微交付课程"],
+  [/知识星球课程/g, "内部资料"],
+  [/培训课程|体系课|录播课/g, "数据订阅与会员版"],
+  [/课程/g, "数据工具"],
   [/知识星球/g, "企业微信"],
   [/小鹅通/g, "企业微信"],
   [/Baklib\s*\/?\s*飞书/g, "内部资料库"],
@@ -282,9 +266,14 @@ function sanitizeRow<T extends Record<string, unknown>>(row: T): T {
   return out as T;
 }
 
+/** 已下线的产品 slug：即使数据库里还有旧记录，也不允许再出现在站点上 */
+const RETIRED_PRODUCT_SLUGS = new Set(["courses", "annual-pass"]);
+
 export async function getProducts(): Promise<Product[]> {
   const rows = (await fetchTable<Product>("products")) ?? FALLBACK_PRODUCTS;
-  return rows.map((r) => sanitizeRow(r as unknown as Record<string, unknown>) as unknown as Product);
+  return rows
+    .filter((r) => !RETIRED_PRODUCT_SLUGS.has((r as Product).slug))
+    .map((r) => sanitizeRow(r as unknown as Record<string, unknown>) as unknown as Product);
 }
 export async function getContents(): Promise<ContentItem[]> {
   const rows = (await fetchTable<ContentItem>("contents")) ?? FALLBACK_CONTENTS;

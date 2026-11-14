@@ -34,7 +34,7 @@ export function organizationSchema() {
       addressCountry: "CN",
     },
     description:
-      "汽配行业知识资产运营商：把隐性知识变成可交易资产。提供汽配知识库、SOP、行业报告、培训课程、数据产品、咨询内训与 AI 数据标注合作。",
+      "汽配行业知识资产运营商：把隐性知识变成可交易资产。提供汽配知识库、SOP、行业报告、数据订阅与会员、数据中台账号、咨询内训与 AI 数据标注合作。",
     areaServed: { "@type": "Country", name: "CN" },
     knowsAbout: [
       "汽配数据",
@@ -106,7 +106,7 @@ export function productSchema(p: Product) {
   };
 }
 
-/** Course schema：培训课与体系课 */
+/** Course schema（保留能力，当前站点已无课程产品） */
 export function courseSchema(c: {
   name: string;
   description: string;

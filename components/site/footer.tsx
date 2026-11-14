@@ -9,7 +9,7 @@ const COLS: { title: string; links: { href: string; label: string }[] }[] = [
     links: [
       { href: "/products", label: "产品中心" },
       { href: "/knowledge", label: "知识库与SOP" },
-      { href: "/courses", label: "培训课程" },
+      { href: "/products/data-subscription", label: "数据订阅与会员版" },
       { href: "/reports", label: "报告与数据产品" },
       { href: "/consulting", label: "咨询与内训" },
       { href: "/partners", label: "SaaS与AI合作" },

@@ -106,7 +106,10 @@ export default function ProductDetailPage({ params }: { params: { slug: string }
         <div className="container-site grid gap-8 lg:grid-cols-[1fr_340px]">
           <div>
             <div className="flex flex-wrap items-center gap-2">
-              <Badge variant="outline">{tier.name}</Badge>
+              {/* 档位名与产品名相同时不重复展示（如「数据订阅与会员版」） */}
+              {tier.name !== product.name && (
+                <Badge variant="outline">{tier.name}</Badge>
+              )}
               <Badge variant={LAYER_BADGE[product.layer] as never}>{layer.name}</Badge>
               <span className="text-xs text-muted-foreground">{layer.goal}</span>
             </div>

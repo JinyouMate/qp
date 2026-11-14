@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     default: `${SITE_NAME} | ${SITE_SLOGAN}`,
     template: `%s | ${SITE_NAME}`,
   },
-  description: `${SITE_SLOGAN}。${SITE_SUB}。知识库、SOP、行业报告、培训课程、数据产品、咨询内训、AI 数据合作。`,
+  description: `${SITE_SLOGAN}。${SITE_SUB}。知识库、SOP、行业报告、数据订阅与会员、数据中台账号、咨询内训、AI 数据合作。`,
   keywords: [...CORE_KEYWORDS],
   // favicon 放在 public/（app/favicon.ico 会被 Next 当成动态路由，Cloudflare 边缘构建不支持）
   icons: {
